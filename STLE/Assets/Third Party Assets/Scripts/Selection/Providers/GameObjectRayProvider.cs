@@ -5,10 +5,10 @@ namespace GD.Selection
     /// <summary>
     /// Provides a ray that originates from a target GameObject.
     /// </summary>
-    public class GameObjectRayProvider : MonoBehaviour, IRayProvider
+    public class MouseRayProvider : MonoBehaviour, IRayProvider
     {
         [SerializeField]
-        private GameObject targetObject;
+        private Camera targetCamera;
 
         [Header("Debug Gizmo Properties")]
         [SerializeField]
@@ -20,19 +20,21 @@ namespace GD.Selection
 
         [ReadOnly] private Ray ray;
 
+        // https://www.youtube.com/watch?v=aaYfoe9i5lY
         public Ray CreateRay()
         {
-            ray = new Ray(targetObject.transform.position, targetObject.transform.forward);
+            Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
             return ray;
         }
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = rayColor;
-            Gizmos.DrawLine(targetObject.transform.position,
-                targetObject.transform.position + targetObject.transform.forward * rayLength);
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 100f;
 
-            // Gizmos.DrawWireSphere(targetObject.transform.position, 2);
+            mousePos = targetCamera.ScreenToWorldPoint(mousePos);
+
+            Debug.DrawRay(targetCamera.transform.position, mousePos - targetCamera.transform.position, rayColor);
         }
     }
 }

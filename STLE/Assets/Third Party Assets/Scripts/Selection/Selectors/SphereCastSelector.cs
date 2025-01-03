@@ -36,13 +36,5 @@ namespace GD.Selection
                     selection = currentSelection;
             }
         }
-
-        // Implement this OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = sphereColor;
-            Vector3 pointOnRay = ray.origin + ray.direction * maxDistance * sphereCastPositionAsProportion;
-            Gizmos.DrawWireSphere(pointOnRay, sphereRadius);
-        }
     }
 }
