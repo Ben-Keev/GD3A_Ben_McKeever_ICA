@@ -1,7 +1,10 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using System.IO;
+using GD;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// 
@@ -9,22 +12,23 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class DialogueBox : MonoBehaviour
 {
-    public TextMeshProUGUI textComponent; // Textcomponent where text will be displayed
-    public string[] lines; // Each box of dialogue.
-    public float textWait; // How long to wait between inserting a character.
+    [SerializeField]
+    private TextMeshProUGUI textComponent; // Textcomponent where text will be displayed
+
+    [SerializeField]
+    private float textWait; // How long to wait between inserting a character.
 
     private int index;
+    private string[] lines; // Each box of dialogue.
+    private bool displayed = true;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartDialogue(string[] readin)
     {
-        textComponent.text = string.Empty; // The dialogue box starts empty
-        StartDialogue(); // The dialogue begins
-    }
+        lines = readin;
 
-    void StartDialogue()
-    {
         index = 0;
+
+        DisplayDialogue(true);
         StartCoroutine(TypeLine());
     }
 
@@ -37,7 +41,7 @@ public class DialogueBox : MonoBehaviour
         }
     }
 
-    public void AdvanceDialogue(InputAction.CallbackContext context)
+    public void AdvanceDialogue()
     {
         if (textComponent.text == lines[index])
         {
@@ -50,9 +54,8 @@ public class DialogueBox : MonoBehaviour
         }
     }
 
-    public void NextLine()
+    private void NextLine()
     {
-
         if (index < lines.Length - 1)
         {
             index++;
@@ -60,9 +63,17 @@ public class DialogueBox : MonoBehaviour
             StartCoroutine(TypeLine());
         }
 
-        else
+        else // All the dialogue has been read
         {
-            gameObject.SetActive(false);
+            DisplayDialogue(false);
+            textComponent.text = string.Empty; // Empty the dialogue
         }
+    }
+
+    private void DisplayDialogue(bool isDisplayed)
+    {
+        displayed = isDisplayed;
+        GetComponent<Image>().enabled = isDisplayed;
+        textComponent.GetComponent<TMP_Text>().enabled = isDisplayed;
     }
 }

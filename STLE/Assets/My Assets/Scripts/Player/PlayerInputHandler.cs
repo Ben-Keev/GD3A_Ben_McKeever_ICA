@@ -44,7 +44,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnEnable()
     {
         move.performed += controller.Move;
-        advanceDialogue.performed += dialogueBox.AdvanceDialogue;
+        advanceDialogue.performed += DialogueBoxManager.Instance.AdvanceDialogue;
     }
 
     private void OnDisable()
