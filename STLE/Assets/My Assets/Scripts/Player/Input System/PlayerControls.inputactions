@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Main",
@@ -24,6 +24,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "2e3271ef-ecaf-443f-950c-8b0f494b151d",
+            "actions": [
+                {
+                    "name": "Advance Dialogue",
+                    "type": "Button",
+                    "id": "40956c88-95cf-46a8-8197-0955f7da43fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "87a22405-61c9-43af-9bde-c9fc98e5a531",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Advance Dialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

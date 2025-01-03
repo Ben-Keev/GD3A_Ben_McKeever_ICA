@@ -7,31 +7,49 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerInputHandler : MonoBehaviour
 {
-    private InputActionMap playerActions;
+    private PlayerInput playerActions;
     private InputAction move;
+    private InputAction advanceDialogue;
+
+    // TODO remove
+    public DialogueBox dialogueBox;
 
     private PlayerController controller;
 
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
+        playerActions = GetComponent<PlayerInput>();
 
-        playerActions = GetComponent<PlayerInput>().actions.FindActionMap("Main");
+        initaliseGameplayInput();
+        initialiseUiInput();
+    }
+
+    private void initaliseGameplayInput()
+    {
+        InputActionMap actionMap = playerActions.actions.FindActionMap("Main");
 
         // Find Actions
-        move = playerActions.FindAction("Move");
+        move = actionMap.FindAction("Move");
+    }
+
+    private void initialiseUiInput()
+    {
+        InputActionMap actionMap = playerActions.actions.FindActionMap("UI");
+
+        // Find Actions
+        advanceDialogue = actionMap.FindAction("Advance Dialogue");
     }
 
     private void OnEnable()
     {
-        Debug.Log(controller);
-        Debug.Log(move);
         move.performed += controller.Move;
+        advanceDialogue.performed += dialogueBox.AdvanceDialogue;
     }
 
     private void OnDisable()
     {
-        playerActions.Disable();
+        playerActions.actions.FindActionMap("Main").Disable();
+        playerActions.actions.FindActionMap("UI").Disable();
     }
-
 }
