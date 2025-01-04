@@ -8,21 +8,24 @@ using UnityEngine.InputSystem;
 public class PlayerDialogueInputHandler : PlayerInputHandler
 {
     private InputAction advanceDialogue;
+    private InputActionMap actionMap;
 
     private void Awake()
     {
         playerActions = GetComponent<PlayerInput>();
-        InputActionMap actionMap = playerActions.actions.FindActionMap("UI");
+        actionMap = playerActions.actions.FindActionMap("UI");
         advanceDialogue = actionMap.FindAction("Advance Dialogue");
     }
 
     void OnEnable()
     {
+        actionMap.Enable();
         advanceDialogue.performed += DialogueBoxManager.Instance.AdvanceDialogue;
     }
 
     private void OnDisable()
     {
+        actionMap.Disable();
         advanceDialogue.performed -= DialogueBoxManager.Instance.AdvanceDialogue;
     }
 }

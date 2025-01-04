@@ -11,10 +11,9 @@ namespace GD.Selection
         {
             if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
             {
-                DialogueBoxManager.Instance.LoadDialogue("student_a");
+                if(currentTransform.name.Contains("student"))
+                DialogueBoxManager.Instance.LoadDialogue(currentTransform.name);
             }
-
-            //Debug.Log(currentTransform.gameObject.name);
         }
     }
 }

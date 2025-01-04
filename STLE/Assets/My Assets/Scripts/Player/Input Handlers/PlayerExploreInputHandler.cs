@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerExploreInputHandler : PlayerInputHandler
 {
     private PlayerController controller;
+    private InputActionMap actionMap;
 
     public InputAction interact;
     public InputAction move;
@@ -18,22 +19,21 @@ public class PlayerExploreInputHandler : PlayerInputHandler
         controller = GetComponent<PlayerController>();
         playerActions = GetComponent<PlayerInput>();
 
-        InputActionMap actionMap = playerActions.actions.FindActionMap("Main");
+        actionMap = playerActions.actions.FindActionMap("Main");
         move = actionMap.FindAction("Move");
+        // Interact is checked in the response scripts.
         interact = actionMap.FindAction("Interact");
-        Debug.Log("Awake");
     }
 
     void OnEnable()
     {
-        Debug.Log("OnEnable");
+        actionMap.Enable();
         move.performed += controller.Move;
-        interact.performed += controller.Interact;
     }
 
     private void OnDisable()
     {
+        actionMap.Disable();
         move.performed -= controller.Move;
-        interact.performed -= controller.Interact;
     }
 }
