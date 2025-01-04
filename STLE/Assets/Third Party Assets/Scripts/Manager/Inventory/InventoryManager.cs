@@ -1,3 +1,4 @@
+using GD.Types;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace GD.Items
             //check if the inventory collection has been added
             if (inventoryCollection == null)
                 throw new NullReferenceException("No inventory collection has been added");
+
+            inventoryCollection.ClearInventories();
         }
 
         /// <summary>

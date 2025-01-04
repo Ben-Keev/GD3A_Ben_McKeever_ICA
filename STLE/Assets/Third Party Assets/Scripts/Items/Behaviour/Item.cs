@@ -8,7 +8,7 @@ namespace GD.Items
     /// </summary>
     /// <see cref="ItemData"/>
     /// <see cref="ItemGameEvent"/>
-    public class Item : MonoBehaviour, IConsumable
+    public class Item : MonoBehaviour, IInteractable
     {
         [SerializeField]
         [Tooltip("The item data that represents this item")]
@@ -23,31 +23,16 @@ namespace GD.Items
         private LayerMask targetLayer;
 
         /// <summary>
-        /// Consumes the item
+        /// Called when the item is interacted with (Most likely right clicked on)
         /// </summary>
         /// <param name="consumer">Reference to consuming object</param>
-        public void Consume(GameObject consumer)
+        public void Interact(GameObject interactor)
         {
-            Debug.Log("Consuming item: " + itemData.name);
-        }
+            //raise the event to notify listeners
+            onItemEvent?.Raise(itemData);
 
-        /// <summary>
-        /// Called when the item is picked up by a game object on the target layer
-        /// </summary>
-        /// <param name="other">Reference to collider object triggering response</param>
-        private void OnTriggerEnter(Collider other)
-        {
-            if (targetLayer.OnLayer(other.gameObject))
-            {
-                //set the audio position to the transform position
-                itemData.AudioPosition = transform.position;
-
-                //raise the event to notify listeners
-                onItemEvent?.Raise(itemData);
-
-                //remove the item from the scene
-                Destroy(gameObject);
-            }
+            //remove the item from the scene
+            Destroy(gameObject);
         }
     }
 }

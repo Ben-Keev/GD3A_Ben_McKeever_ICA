@@ -1,9 +1,10 @@
 using UnityEngine;
+using GD.Items;
 
 namespace GD.Selection
 {   
     /// <summary>
-    /// Opens a dialogue box. Regardless of what was selected.
+    /// Opens a dialogue box. The script loaded is according to the name of the selection
     /// </summary>
     public class DialogueSelectionResponse : SelectionResponse
     {
@@ -11,8 +12,14 @@ namespace GD.Selection
         {
             if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
             {
-                if(currentTransform.name.Contains("student"))
+                // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject-layer.html
+                if (currentTransform.gameObject.layer == LayerMask.NameToLayer("NPC"))
                 DialogueBoxManager.Instance.LoadDialogue(currentTransform.name);
+
+                // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject-layer.html
+                if (currentTransform.gameObject.layer == 6) // 6 is the item layer
+                    // Call interaction event
+                    currentTransform.GetComponent<Item>().Interact(GameObject.FindGameObjectWithTag("Player"));
             }
         }
     }

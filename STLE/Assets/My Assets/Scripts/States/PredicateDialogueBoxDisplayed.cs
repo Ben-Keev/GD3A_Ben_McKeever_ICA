@@ -13,6 +13,6 @@ public class PredicateDialogueBoxDisplayed : PredicateBase
     private bool isDialogueShown;
 
     override public bool Evaluate() {
-        return DialogueBoxManager.Instance.dialogueGameObject.GetComponent<DialogueBox>().displayed == isDialogueShown;
+        return DialogueBoxManager.Instance.db.displayed == isDialogueShown;
     }
 }

@@ -82,5 +82,14 @@ namespace GD.Items
             onCollectionEmpty?.Raise();
             return contents.Count == 0;
         }
+
+        public void ClearInventories()
+        {
+            // Reset inventories on game boot.
+            foreach (Inventory inventory in contents.Values)
+            {
+                inventory.Clear();
+            }
+        }
     }
 }
