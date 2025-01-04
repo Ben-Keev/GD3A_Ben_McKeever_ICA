@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8522678752254536085}
   - component: {fileID: 7262901423881729068}
   - component: {fileID: 1349561291620950811}
-  - component: {fileID: 1281860245105005656}
+  - component: {fileID: 2765250928347863435}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1281860245105005656
+--- !u!114 &2765250928347863435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,9 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 7592413713967724257}
-  lines:
-  - Plz like vid
-  - Ok I will
   textWait: 0.1
 --- !u!1 &3965416172893284095
 GameObject:

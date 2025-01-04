@@ -20,7 +20,12 @@ public class DialogueBox : MonoBehaviour
 
     private int index;
     private string[] lines; // Each box of dialogue.
-    private bool displayed = true;
+    public bool displayed;
+
+    private void Awake()
+    {
+        displayed = false;
+    }
 
     public void StartDialogue(string[] readin)
     {

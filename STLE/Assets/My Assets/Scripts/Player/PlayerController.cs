@@ -59,7 +59,11 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
             }
-
         }
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+
     }
 }

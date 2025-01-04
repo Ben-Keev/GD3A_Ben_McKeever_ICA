@@ -28,35 +28,54 @@ namespace GD.FSM
         {
             if (!CheckGlobalTransitions())
             {
-                ExecuteActions();
+                ExecuteActions(currentState.actions);
                 CheckTransitions();
             }
         }
 
-        private void ExecuteActions()
+        /// <summary>
+        /// Execute each action.
+        /// Ben - Added parameter so enter and exit actions may run
+        /// </summary>
+        private void ExecuteActions(List<FSMAction> stateActions)
         {
-            foreach (FSMAction action in currentState.actions)
+            foreach (FSMAction action in stateActions)
             {
                 action.Execute();
             }
         }
 
+        /// <summary>
+        /// Check transitions possible in this state. If condition met, change states.
+        /// </summary>
         private void CheckTransitions()
         {
             foreach (FSMTransition transition in currentState.transitions)
             {
                 if (transition.condition.Evaluate())
                 {
+                    // Previous state's exit action
+                    ExecuteActions(currentState.exitActions);
+
                     currentState = transition.targetState;
+
+                    // This state's entrance action
+                    ExecuteActions(currentState.enterActions);
                     break;
                 }
             }
         }
 
+        /// <summary>
+        /// Check transitions that apply across all states (regardless of current state).
+        /// </summary>
+        /// <returns></returns>
         private bool CheckGlobalTransitions()
         {
+
             foreach (var transition in globalTransitions)
             {
+                // The condition is true
                 if (transition.condition.Evaluate())
                 {
                     currentState = transition.targetState;
