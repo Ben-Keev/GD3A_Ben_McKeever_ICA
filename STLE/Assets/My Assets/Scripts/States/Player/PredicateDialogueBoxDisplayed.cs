@@ -1,5 +1,4 @@
 using GD.FSM;
-using GD.Types;
 using UnityEngine;
 
 /// <summary>
@@ -9,13 +8,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GD/FSM/Predicate/DialogueBoxDisplayed")]
 public class PredicateDialogueBoxDisplayed : PredicateBase
 {
-    [SerializeField]
-    private DialogueBox dialogueBox;
 
     [SerializeField]
     private bool isDialogueShown;
 
     override public bool Evaluate() {
-        return dialogueBox.displayed == isDialogueShown;
+        // Storing the dialogue box as a variable gives outdated parameters when we call for displayed.
+        // We must find it in the scene instead.
+        return GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<DialogueBox>().displayed == isDialogueShown;
     }
 }

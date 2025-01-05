@@ -25,7 +25,7 @@ public class DialogueBox : MonoBehaviour
 
     private void Awake()
     {
-        displayed = false;
+        DisplayDialogue(false);
     }
 
     public void StartDialogue(NPCData data)
@@ -81,5 +81,6 @@ public class DialogueBox : MonoBehaviour
         displayed = isDisplayed;
         GetComponent<Image>().enabled = isDisplayed;
         textComponent.GetComponent<TMP_Text>().enabled = isDisplayed;
+        //Debug.Log("Visibility: " + isDisplayed);
     }
 }

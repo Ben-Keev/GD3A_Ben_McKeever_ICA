@@ -16,7 +16,7 @@ namespace GD.Selection
                 if (currentTransform.gameObject.layer == LayerMask.NameToLayer("NPC"))
                     currentTransform.GetComponent<NPC>().Interact(GameObject.FindGameObjectWithTag("Player"));
 
-                if (currentTransform.gameObject.layer == LayerMask.NameToLayer("Item")) // 6 is the item layer
+                if (currentTransform.gameObject.layer == LayerMask.NameToLayer("Item"))
                     // Call interaction event
                     currentTransform.GetComponent<Item>().Interact(GameObject.FindGameObjectWithTag("Player"));
             }
