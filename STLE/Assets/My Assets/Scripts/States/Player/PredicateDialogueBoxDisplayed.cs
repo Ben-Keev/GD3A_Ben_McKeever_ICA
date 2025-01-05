@@ -10,9 +10,12 @@ using UnityEngine;
 public class PredicateDialogueBoxDisplayed : PredicateBase
 {
     [SerializeField]
+    private DialogueBox dialogueBox;
+
+    [SerializeField]
     private bool isDialogueShown;
 
     override public bool Evaluate() {
-        return DialogueBoxManager.Instance.db.displayed == isDialogueShown;
+        return dialogueBox.displayed == isDialogueShown;
     }
 }

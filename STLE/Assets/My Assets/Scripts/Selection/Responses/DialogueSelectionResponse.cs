@@ -14,10 +14,9 @@ namespace GD.Selection
             {
                 // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject-layer.html
                 if (currentTransform.gameObject.layer == LayerMask.NameToLayer("NPC"))
-                DialogueBoxManager.Instance.LoadDialogue(currentTransform.name);
+                    currentTransform.GetComponent<NPC>().Interact(GameObject.FindGameObjectWithTag("Player"));
 
-                // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject-layer.html
-                if (currentTransform.gameObject.layer == 6) // 6 is the item layer
+                if (currentTransform.gameObject.layer == LayerMask.NameToLayer("Item")) // 6 is the item layer
                     // Call interaction event
                     currentTransform.GetComponent<Item>().Interact(GameObject.FindGameObjectWithTag("Player"));
             }

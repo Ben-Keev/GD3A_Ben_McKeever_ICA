@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerDialogueInputHandler : PlayerInputHandler
 {
+    [SerializeField]
+    private DialogueBox dialogueBox;
     private InputAction advanceDialogue;
     private InputActionMap actionMap;
 
@@ -20,12 +22,12 @@ public class PlayerDialogueInputHandler : PlayerInputHandler
     void OnEnable()
     {
         actionMap.Enable();
-        advanceDialogue.performed += DialogueBoxManager.Instance.AdvanceDialogue;
+        advanceDialogue.performed += dialogueBox.AdvanceDialogue;
     }
 
     private void OnDisable()
     {
         actionMap.Disable();
-        advanceDialogue.performed -= DialogueBoxManager.Instance.AdvanceDialogue;
+        advanceDialogue.performed -= dialogueBox.AdvanceDialogue;
     }
 }

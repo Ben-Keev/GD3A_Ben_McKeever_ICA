@@ -5,6 +5,7 @@ using System.IO;
 using GD;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using GD.Items;
 
 /// <summary>
 /// 
@@ -27,9 +28,9 @@ public class DialogueBox : MonoBehaviour
         displayed = false;
     }
 
-    public void StartDialogue(string[] readin)
+    public void StartDialogue(NPCData data)
     {
-        lines = readin;
+        lines = data.Dialogues[data.CurrentDialogue];
 
         index = 0;
 
@@ -46,7 +47,7 @@ public class DialogueBox : MonoBehaviour
         }
     }
 
-    public void AdvanceDialogue()
+    public void AdvanceDialogue(InputAction.CallbackContext context)
     {
         if (textComponent.text == lines[index])
         {

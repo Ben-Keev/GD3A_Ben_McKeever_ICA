@@ -1,5 +1,4 @@
 using GD.Events;
-using GD.Types;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;

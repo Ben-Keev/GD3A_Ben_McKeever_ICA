@@ -25,7 +25,7 @@ namespace GD.Items
         /// <summary>
         /// Called when the item is interacted with (Most likely right clicked on)
         /// </summary>
-        /// <param name="consumer">Reference to consuming object</param>
+        /// <param name="interactor">Reference to interactor object</param>
         public void Interact(GameObject interactor)
         {
             //raise the event to notify listeners
