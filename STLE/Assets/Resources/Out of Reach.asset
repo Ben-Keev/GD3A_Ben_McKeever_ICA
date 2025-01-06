@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e16bc5999cd284344a8cf0680758232e, type: 3}
-  m_Name: Interactible
+  m_Name: Out of Reach
   m_EditorClassIdentifier: 
-  name: Interactible
-  description: The object is able to be interacted with
-  stateName: Interactible
+  name: Out of Reach
+  description: Not close enough to be interacted with
+  stateName: Out of reach
   enterActions:
-  - {fileID: 11400000, guid: 54d6e8fc7b4d8544694b58e49ef8d768, type: 2}
-  exitActions:
   - {fileID: 11400000, guid: 12bbce5d2501a944cb1734408b402c73, type: 2}
+  exitActions:
+  - {fileID: 11400000, guid: 54d6e8fc7b4d8544694b58e49ef8d768, type: 2}
   actions: []
   transitions:
-  - {fileID: 11400000, guid: 22a0f6f20e4c00944beafe8c4a163145, type: 2}
+  - {fileID: 11400000, guid: 199abbeddb20ccd408c6e15b081f5c3d, type: 2}

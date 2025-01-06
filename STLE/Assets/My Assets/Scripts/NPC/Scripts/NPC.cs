@@ -1,6 +1,8 @@
 ﻿using GD.Events;
 using UnityEngine;
 using GD.Items;
+using Unity.VisualScripting;
+using GD.Selection;
 
 /// <summary>
 /// Represents an item that can be consumed by a game object on the correct layer
@@ -17,8 +19,12 @@ public class NPC : MonoBehaviour, IInteractable
     [Tooltip("The event raised when NPC is interacted with")]
     private NPCGameEvent onNPCEvent;
 
+    public bool interactible;
+
     private void Awake()
     {
+        interactible = true;
+
         // Reset dialogue
         npcData.CurrentDialogue = 0;
     }
@@ -29,16 +35,37 @@ public class NPC : MonoBehaviour, IInteractable
     /// <param name="interactor">Reference to interactor object</param>
     public void Interact(GameObject interactor)
     {
-        //raise the event to notify listeners
-        onNPCEvent?.Raise(npcData);
+        if (interactible)
+        {
+            //raise the event to notify listeners
+            onNPCEvent?.Raise(npcData);
 
-        // Cycle to the next possible dialogue
-        cycleDialogue();
+            // Cycle to the next possible dialogue
+            cycleDialogue();
+        }
+    }
+
+    public void SetInteractible(bool interactible)
+    {
+        this.interactible = interactible;
     }
 
     private void cycleDialogue()
     {
         if (npcData.CurrentDialogue < npcData.Dialogues.Count-1)
             npcData.CurrentDialogue++;
+    }
+
+    public void OnHover()
+    {
+        if (interactible)
+        {
+            transform.GetChild(1).GetComponent<Renderer>().enabled = true;
+        }
+    }
+
+    public void OnDehover()
+    {
+        transform.GetChild(1).GetComponent<Renderer>().enabled = false;
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using GD.Items;
+using GD.FSM;
 
 namespace GD.Selection
 {   
@@ -10,16 +11,20 @@ namespace GD.Selection
     {
         public override void OnSelect(Transform currentTransform)
         {
-            if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
+            if(GameObject.FindGameObjectWithTag("Player").GetComponent<FSMController>().currentState.name == "Explore") // Player can interact
             {
-                // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject-layer.html
-                if (currentTransform.gameObject.layer == LayerMask.NameToLayer("NPC"))
-                    currentTransform.GetComponent<NPC>().Interact(GameObject.FindGameObjectWithTag("Player"));
+                currentTransform.GetComponent<IInteractable>().OnHover();
 
-                if (currentTransform.gameObject.layer == LayerMask.NameToLayer("Item"))
-                    // Call interaction event
-                    currentTransform.GetComponent<Item>().Interact(GameObject.FindGameObjectWithTag("Player"));
+                if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
+                {
+                    currentTransform.GetComponent<IInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
+                }
             }
+        }
+
+        public override void OnDeselect(Transform currentTransform)
+        {
+            currentTransform.GetComponent<IInteractable>().OnDehover();
         }
     }
 }

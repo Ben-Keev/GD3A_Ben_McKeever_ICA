@@ -22,6 +22,8 @@ namespace GD.Items
         [Tooltip("The layer that the item can be picked up by")]
         private LayerMask targetLayer;
 
+        private bool interactible;
+
         /// <summary>
         /// Called when the item is interacted with (Most likely right clicked on)
         /// </summary>
@@ -33,6 +35,21 @@ namespace GD.Items
 
             //remove the item from the scene
             Destroy(gameObject);
+        }
+
+        public void SetInteractible(bool interactible)
+        {
+            this.interactible = interactible;
+        }
+
+        public void OnHover()
+        {
+
+        }
+
+        public void OnDehover()
+        {
+
         }
     }
 }

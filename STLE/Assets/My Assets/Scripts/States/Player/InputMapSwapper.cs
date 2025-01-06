@@ -15,7 +15,7 @@ public class InputMapSwapper : FSMAction
     [SerializeField]
     private bool enabled;
 
-    override public void Execute()
+    override public void Execute(GameObject context = null)
     {
         player = GameObject.FindGameObjectWithTag("Player");
 

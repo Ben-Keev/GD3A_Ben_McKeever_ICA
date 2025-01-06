@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Selectable
       objectReference: {fileID: 0}
+    - target: {fileID: 3823854334518920879, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
+      propertyPath: npcData
+      value: 
+      objectReference: {fileID: 11400000, guid: 2689cc89b2bd5ee4fb69b79de6387b28, type: 2}
     - target: {fileID: 4818978694532600357, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
       propertyPath: m_Name
       value: student_b
@@ -1401,89 +1405,11 @@ Transform:
   - {fileID: 1150136913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 19.5, y: -16, z: 0}
---- !u!1 &1439468139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-  m_PrefabInstance: {fileID: 488500009508815020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1439468140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5682858904637485639, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
   m_PrefabInstance: {fileID: 488500009508815020}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1439468148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439468139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f415c7a5243eb64eb10b3693ae9f95f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1439468149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439468139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768df15f12c553747a0e0fdd36fae65f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectableTag: Selectable
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 192
-  maxDistance: 500
-  sphereColor: {r: 1, g: 0, b: 0.014759541, a: 1}
-  sphereRadius: 0.3
-  sphereCastPositionAsProportion: 0
---- !u!114 &1439468150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439468139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b790447134863a443bb1231332d17dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCamera: {fileID: 1150136912}
-  monoOrStereoscopicEye: 2
---- !u!114 &1439468151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439468139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d2de42ed442ed44ad341347eb4576a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1439468152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439468139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa609ba09a7b96d44a8b311706c83784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialState: {fileID: 11400000, guid: 3be51fc8cec149c448ec2e11ce68b965, type: 2}
-  globalTransitions: []
-  currentState: {fileID: 0}
 --- !u!1001 &1496680362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1907,6 +1833,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3195278689818503079, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
+      propertyPath: currentCamera
+      value: 
+      objectReference: {fileID: 1150136912}
     - target: {fileID: 5682858904637485639, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.438961
@@ -1971,22 +1901,7 @@ PrefabInstance:
     - {fileID: 5696422045418436843, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439468151}
-    - targetCorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439468150}
-    - targetCorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439468149}
-    - targetCorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439468148}
-    - targetCorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439468152}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
 --- !u!1001 &2616678862139504830
 PrefabInstance:
@@ -2004,6 +1919,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 2765250928347863435, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
+      propertyPath: displayed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3082873845767250586, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
       propertyPath: m_Name
       value: DialogueBox
@@ -2011,6 +1930,10 @@ PrefabInstance:
     - target: {fileID: 3082873845767250586, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082873845767250586, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
+      propertyPath: m_TagString
+      value: DialogueBox
       objectReference: {fileID: 0}
     - target: {fileID: 7592413713967724257, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
       propertyPath: m_text
@@ -2124,6 +2047,10 @@ PrefabInstance:
     - target: {fileID: 3465294606412943252, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823854334518920879, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
+      propertyPath: interactible
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818978694532600357, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
       propertyPath: m_Name

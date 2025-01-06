@@ -41,7 +41,7 @@ namespace GD.FSM
         {
             foreach (FSMAction action in stateActions)
             {
-                action.Execute();
+                action.Execute(gameObject);
             }
         }
 
@@ -52,7 +52,7 @@ namespace GD.FSM
         {
             foreach (FSMTransition transition in currentState.transitions)
             {
-                if (transition.condition.Evaluate())
+                if (transition.condition.Evaluate(gameObject))
                 {
                     // Previous state's exit action
                     ExecuteActions(currentState.exitActions);
@@ -76,7 +76,7 @@ namespace GD.FSM
             foreach (var transition in globalTransitions)
             {
                 // The condition is true
-                if (transition.condition.Evaluate())
+                if (transition.condition.Evaluate(gameObject))
                 {
                     currentState = transition.targetState;
                     return true;

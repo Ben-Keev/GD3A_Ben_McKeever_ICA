@@ -39,7 +39,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3298148819303091737}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 2743367050963353745}
   - component: {fileID: 8499743037619012123}
   - component: {fileID: 3823854334518920879}
+  - component: {fileID: 5584353066820603578}
   m_Layer: 0
   m_Name: student_a
   m_TagString: Selectable
@@ -270,3 +271,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcData: {fileID: 11400000, guid: 313c67b2806636a48b5ba84054ad8941, type: 2}
   onNPCEvent: {fileID: 11400000, guid: 9b27fc60729a84348aa80557c0d3b399, type: 2}
+  interactible: 0
+--- !u!114 &5584353066820603578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818978694532600357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa609ba09a7b96d44a8b311706c83784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialState: {fileID: 11400000, guid: 482b16c5971f2db4a92213141ee7a63f, type: 2}
+  globalTransitions: []
+  currentState: {fileID: 0}

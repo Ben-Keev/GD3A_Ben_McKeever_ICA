@@ -9,6 +9,6 @@ namespace GD.FSM
     [CreateAssetMenu(menuName = "GD/FSM/Action")]
     public abstract class FSMAction : ScriptableObject
     {
-        public abstract void Execute();
+        public abstract void Execute(GameObject context = null);
     }
 }

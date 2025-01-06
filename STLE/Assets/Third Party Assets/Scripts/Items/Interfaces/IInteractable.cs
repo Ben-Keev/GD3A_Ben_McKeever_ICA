@@ -7,6 +7,12 @@ namespace GD.Items
     /// </summary>
     public interface IInteractable
     {
+        void SetInteractible(bool interactible);
+
         void Interact(GameObject interactor);
+
+        void OnHover();
+
+        void OnDehover();
     }
 }

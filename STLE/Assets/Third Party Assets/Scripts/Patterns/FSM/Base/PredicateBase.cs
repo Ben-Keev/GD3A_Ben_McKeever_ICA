@@ -1,4 +1,5 @@
 using GD.Types;
+using UnityEngine;
 
 namespace GD.FSM
 {
@@ -8,6 +9,6 @@ namespace GD.FSM
     /// </summary>
     public abstract class PredicateBase : ScriptableGameObject
     {
-        public abstract bool Evaluate();
+        public abstract bool Evaluate(GameObject context = null);
     }
 }

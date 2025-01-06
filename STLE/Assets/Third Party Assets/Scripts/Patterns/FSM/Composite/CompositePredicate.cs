@@ -17,7 +17,7 @@ namespace GD.FSM
         [ListDrawerSettings(ShowFoldout = true), InlineEditor]
         public List<PredicateBase> conditions;
 
-        public override bool Evaluate()
+        public override bool Evaluate(GameObject context = null)
         {
             if (conditionType == ConditionType.And)
                 return conditions.TrueForAll(c => c.Evaluate());

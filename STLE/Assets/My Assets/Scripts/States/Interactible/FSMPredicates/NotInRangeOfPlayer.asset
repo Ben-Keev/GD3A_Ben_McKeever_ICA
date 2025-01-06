@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e0a33ab0e4f4d94ea55650a1456e3cb, type: 3}
-  m_Name: Dialogue Shown
+  m_Script: {fileID: 11500000, guid: 14277c6574a9e1640b095cf68590bbc5, type: 3}
+  m_Name: NotInRangeOfPlayer
   m_EditorClassIdentifier: 
-  name: 
+  name: NotInRange
   description: 
-  isDialogueShown: 1
+  minDistance: 20
+  inRange: 1
