@@ -30,11 +30,14 @@ namespace GD.Items
         /// <param name="interactor">Reference to interactor object</param>
         public void Interact(GameObject interactor)
         {
-            //raise the event to notify listeners
-            onItemEvent?.Raise(itemData);
+            if (interactible)
+            {
+                //raise the event to notify listeners
+                onItemEvent?.Raise(itemData);
 
-            //remove the item from the scene
-            Destroy(gameObject);
+                //remove the item from the scene
+                Destroy(gameObject);
+            }
         }
 
         public void SetInteractible(bool interactible)
@@ -44,12 +47,13 @@ namespace GD.Items
 
         public void OnHover()
         {
-
+            if (interactible)
+                GetComponent<Outline>().enabled = true;
         }
 
         public void OnDehover()
         {
-
+            GetComponent<Outline>().enabled = false;
         }
     }
 }

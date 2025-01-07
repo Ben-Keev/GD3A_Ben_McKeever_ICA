@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: NotInRange
   description: 
-  minDistance: 20
+  minDistance: 10
   inRange: 1
