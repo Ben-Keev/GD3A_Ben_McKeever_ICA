@@ -90,39 +90,41 @@ namespace GD.State
         /// <summary>
         /// Evaluates conditions each frame and handles game state transitions.
         /// </summary>
-        //private void Update()  //TODO - NMCG : Slow down the update rate to once every 0.1 seconds
-        //{
-        //    //// If the game has already ended, no need to evaluate further
-        //    //if (gameEnded)
-        //    //    return;
+        private void Update()  //TODO - NMCG : Slow down the update rate to once every 0.1 seconds
+        {
+            // If the game has already ended, no need to evaluate further
+            if (gameEnded)
+                return;
 
-        //    //// Evaluate the win condition
-        //    //if (winCondition != null && winCondition.Evaluate(conditionContext))
-        //    //{
-        //    //    HandleWin();
-        //    //    // Set gameEnded to true to prevent further updates
-        //    //    gameEnded = true;
-        //    //    // Optionally, disable this component
-        //    //    // enabled = false;
-        //    //}
-        //    //// Evaluate the lose condition only if the win condition is not met
-        //    //else if (loseCondition != null && loseCondition.Evaluate(conditionContext))
-        //    //{
-        //    //    HandleLoss();
-        //    //    // Set gameEnded to true to prevent further updates
-        //    //    gameEnded = true;
-        //    //    // Optionally, disable this component
-        //    //    // enabled = false;
-        //    //}
+            
 
-        //    //foreach (var achievmentCondition in achievementConditions)
-        //    //{
-        //    //    if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
-        //    //    {
-        //    //        //do something
-        //    //    }
-        //    //}
-        //}
+            // Evaluate the win condition
+            if (winCondition != null && winCondition.Evaluate(conditionContext))
+            {
+                HandleWin();
+                // Set gameEnded to true to prevent further updates
+                gameEnded = true;
+                // Optionally, disable this component
+                // enabled = false;
+            }
+            // Evaluate the lose condition only if the win condition is not met
+            else if (loseCondition != null && loseCondition.Evaluate(conditionContext))
+            {
+                HandleLoss();
+                // Set gameEnded to true to prevent further updates
+                gameEnded = true;
+                // Optionally, disable this component
+                // enabled = false;
+            }
+
+            foreach (var achievmentCondition in achievementConditions)
+            {
+                if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
+                {
+                    //do something
+                }
+            }
+        }
 
         /// <summary>
         /// Handles the logic when the player wins.

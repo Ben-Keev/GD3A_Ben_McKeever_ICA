@@ -17,8 +17,7 @@ MonoBehaviour:
   stateName: Explore
   enterActions:
   - {fileID: 11400000, guid: f01e35131f8ceb148afae7d2a9c94145, type: 2}
-  exitActions:
-  - {fileID: 11400000, guid: 01ae0ad3ec0ed1c45b78372e8911451d, type: 2}
+  exitActions: []
   actions: []
   transitions:
   - {fileID: 11400000, guid: 97ed1f0c6f84b3240baf5ba39e20d5da, type: 2}

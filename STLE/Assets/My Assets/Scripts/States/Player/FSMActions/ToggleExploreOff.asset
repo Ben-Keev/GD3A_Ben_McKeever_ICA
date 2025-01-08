@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4d4d0ef3c770a94f92b27e8404778ce, type: 3}
-  m_Name: DisableDialogue
+  m_Name: ToggleExploreOff
   m_EditorClassIdentifier: 
   inputHandlerType: 1
-  enabled: 0
+  enabled: 1

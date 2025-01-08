@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d4d0ef3c770a94f92b27e8404778ce, type: 3}
-  m_Name: DisableExplore
+  m_Script: {fileID: 11500000, guid: 09b8421b11ee6c84580fdce6166811d7, type: 3}
+  m_Name: Player Score
   m_EditorClassIdentifier: 
-  inputHandlerType: 0
-  enabled: 0
+  score: 0
+  lifetimeTrashCollected: 0
+  lifetimeRecyclableCollected: 0
+  lifetimeCompostableCollected: 0

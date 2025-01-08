@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d4d0ef3c770a94f92b27e8404778ce, type: 3}
-  m_Name: EnableExplore
+  m_Script: {fileID: 11500000, guid: f943bc8c7b483a6449beeb9d89a5730f, type: 3}
+  m_Name: Losing
   m_EditorClassIdentifier: 
-  inputHandlerType: 0
-  enabled: 1
+  name: TimePastThreshold
+  description: 
+  evaluateStrategy: 1
+  priorityLevel: 1
+  OnConditionMet: {fileID: 0}
+  isMet: 0
+  timeMet: -1
+  threshold: 10
