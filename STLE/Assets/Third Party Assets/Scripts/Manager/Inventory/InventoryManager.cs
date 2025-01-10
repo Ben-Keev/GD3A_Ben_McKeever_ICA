@@ -3,6 +3,7 @@ using GD.Types;
 using Sirenix.OdinInspector;
 using System;
 using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -26,18 +27,27 @@ namespace GD.Items
         [Tooltip("The event to raise on succesful/unsuccesful inventory insertion")]
         private IntGameEvent onScoreEvent;
 
+        [FoldoutGroup("SelectedInventory")]
         [SerializeField]
         [Tooltip("Currently selected inventory")]
         private int selectedInventory;
 
+        [FoldoutGroup("SelectedInventory")]
         [SerializeField]
         [Tooltip("All possible items")]
         private ItemData[] possibleItems = new ItemData[3];
 
+        [FoldoutGroup("UI")]
         [SerializeField]
         [InlineEditor]
         [Tooltip("The UI Component indicating the selected inventory")]
-        private Image UIIndicator;
+        private Image UISelectedInventory;
+
+        [FoldoutGroup("UI")]
+        [SerializeField]
+        [InlineEditor]
+        [Tooltip("The UI Component indicating how much is left in the selected inventory")]
+        private TextMeshProUGUI UIItemsLeft;
 
         private void Awake()
         {
@@ -46,8 +56,7 @@ namespace GD.Items
                 throw new NullReferenceException("No inventory collection has been added");
 
             selectedInventory = 0;
-
-            UIIndicator.sprite = inventoryCollection.Get((ItemCategoryType) selectedInventory).uiIcon;
+            UpdateUI();
 
             inventoryCollection.ClearInventories();
         }
@@ -59,7 +68,7 @@ namespace GD.Items
             if (selectedInventory >= 3)
                 selectedInventory = 0;
 
-            updateUI();
+            UpdateUI();
         }
 
         public void CycleInventoryDown(InputAction.CallbackContext context)
@@ -69,12 +78,23 @@ namespace GD.Items
             if (selectedInventory <= -1)
                 selectedInventory = 2;
         
-            updateUI();
+            UpdateUI();
         }
 
-        private void updateUI()
+        /// <summary>
+        /// Called on InventoryChange or CycleInventory
+        /// </summary>
+        public void UpdateUI()
         {
-            UIIndicator.sprite = inventoryCollection.Get((ItemCategoryType)selectedInventory).uiIcon;
+            ItemCategoryType target = (ItemCategoryType)selectedInventory;
+
+            UISelectedInventory.sprite = inventoryCollection.Get(target).uiIcon;
+            UIItemsLeft.text = inventoryCollection.Get(target).Count(possibleItems[(int) target]).ToString();
+        }
+
+        private void UpdateSelectedInventoryUI()
+        {
+            ItemCategoryType target = (ItemCategoryType)selectedInventory;
         }
 
         /// <summary>

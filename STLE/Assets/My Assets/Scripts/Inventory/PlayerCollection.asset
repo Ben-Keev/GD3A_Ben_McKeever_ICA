@@ -86,5 +86,5 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  onCollectionChange: {fileID: 0}
+  onCollectionChange: {fileID: 11400000, guid: 4ff1577730d603b468d4dbb2e36d06f9, type: 2}
   onCollectionEmpty: {fileID: 0}

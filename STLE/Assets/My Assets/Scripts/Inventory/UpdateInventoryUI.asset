@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d4d0ef3c770a94f92b27e8404778ce, type: 3}
-  m_Name: ToggleExploreOff
+  m_Script: {fileID: 11500000, guid: 891baf0ba4c569646a3b1841d4cb922d, type: 3}
+  m_Name: UpdateInventoryUI
   m_EditorClassIdentifier: 
-  enableExplore: 0
-  swapEvent: {fileID: 11400000, guid: 8a44117615eb5dd4eaada757722c6c90, type: 2}
+  name: 
+  description: 

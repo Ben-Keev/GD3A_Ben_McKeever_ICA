@@ -1,7 +1,9 @@
+using GD.FSM;
 using GD.Items;
 using GD.Tick;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace GD.State
@@ -27,6 +29,9 @@ namespace GD.State
         [Tooltip("Player reference to evaluate conditions required by the context")]
         private Player player;
 
+        // Gotten from player
+        private FSMController playerFSM;
+
         [FoldoutGroup("Context")]
         [SerializeField]
         [Tooltip("Player inventory collection to evaluate conditions required by the context")]
@@ -47,6 +52,22 @@ namespace GD.State
         [SerializeField]
         [Tooltip("The condition that determines if the player loses")]
         private ConditionBase loseCondition;
+
+        [FoldoutGroup("Stopwatch")]
+        [SerializeField]
+        [Tooltip("The condition that determines if the player is out of time")]
+        private Stopwatch stopwatch;
+
+        [FoldoutGroup("UI")]
+        [Tooltip("UI displaying Stopwatch")]
+        [SerializeField]
+        private TextMeshProUGUI UiStopwatch;
+
+        [FoldoutGroup("UI")]
+        [Tooltip("UI displaying Score")]
+        [SerializeField]
+        private TextMeshProUGUI UiScore;
+
 
         [FoldoutGroup("Achievements [optional]")]
         [SerializeField]
@@ -73,6 +94,11 @@ namespace GD.State
 
             // Register with the tick system
             TimeTickSystem.Instance.RegisterListener(tickRateType, HandleTick);
+
+            playerFSM = player.transform.GetComponent<FSMController>();
+
+            stopwatch.TimeLeft = stopwatch.StartingTime;
+            stopwatch.TimerOn = false;
         }
 
         private void OnDestroy()
@@ -96,8 +122,6 @@ namespace GD.State
             if (gameEnded)
                 return;
 
-            
-
             // Evaluate the win condition
             if (winCondition != null && winCondition.Evaluate(conditionContext))
             {
@@ -116,6 +140,15 @@ namespace GD.State
                 // Optionally, disable this component
                 // enabled = false;
             }
+
+            else if (stopwatch != null && stopwatch.Evaluate(conditionContext))
+            {
+                Debug.Log("Game Ended By Timer Running Out!");
+                gameEnded = true;
+            }
+
+            UiScore.text = player.scoreTracker.Score.ToString();
+            UiStopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
 
             foreach (var achievmentCondition in achievementConditions)
             {

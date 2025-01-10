@@ -78,12 +78,8 @@ namespace GD.Items
         {
             int remaining = 0;
 
-            Debug.Log(item.Name);
-
             if (contents.ContainsKey(item))
             {
-                Debug.Log("We're inside");
-
                 if (contents[item] > count)
                 {
                     contents[item] -= count;

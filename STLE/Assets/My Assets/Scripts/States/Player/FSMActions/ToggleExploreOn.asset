@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ToggleExploreOn
   m_EditorClassIdentifier: 
   enableExplore: 1
+  swapEvent: {fileID: 11400000, guid: 8a44117615eb5dd4eaada757722c6c90, type: 2}

@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class ScoreTracker : ScriptableObject
 {
-    public int score;
+    [SerializeField]
+    private int score;
 
     // Total number of items picked up throughout the game.
-    public int lifetimeTrashCollected;
-    public int lifetimeRecyclableCollected;
-    public int lifetimeCompostableCollected;
+    [SerializeField]
+    private int lifetimeTrashCollected;
+    [SerializeField]
+    private int lifetimeRecyclableCollected;
+    [SerializeField]
+    private int lifetimeCompostableCollected;
+
+    public int Score { get => score; set => score = value; }
+    public int LifetimeTrashCollected { get => lifetimeTrashCollected; set => lifetimeTrashCollected = value; }
+    public int LifetimeRecyclableCollected { get => lifetimeRecyclableCollected; set => lifetimeRecyclableCollected = value; }
+    public int LifetimeCompostableCollected { get => lifetimeCompostableCollected; set => lifetimeCompostableCollected = value; }
 
     public void InitialiseScore()
     {
