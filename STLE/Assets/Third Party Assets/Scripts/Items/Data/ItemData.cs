@@ -18,12 +18,12 @@ namespace GD.Items
         [FoldoutGroup("Type & Category", expanded: true)]
         [SerializeField, EnumPaging]
         [Tooltip("The category of item")]
-        private ItemCategoryType itemCategory = ItemCategoryType.Recyclable;
+        private ItemCategoryType itemCategory;
 
         [FoldoutGroup("Type & Category")]
         [SerializeField, EnumPaging]
         [Tooltip("The type of item")]
-        private ItemType itemType = ItemType.Paper;
+        private ItemType itemType;
 
         [FoldoutGroup("UI & Sound", expanded: true)]
         [SerializeField]

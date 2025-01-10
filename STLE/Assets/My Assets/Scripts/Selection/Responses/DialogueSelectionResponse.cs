@@ -15,6 +15,8 @@ namespace GD.Selection
             {
                 currentTransform.GetComponent<IInteractable>().OnHover();
 
+                //Debug.Log(currentTransform.gameObject.name);
+
                 if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
                     currentTransform.GetComponent<IInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
             }

@@ -1,4 +1,5 @@
 using GD.Events;
+using GD.Types;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,12 @@ namespace GD.Items
         [SerializeField]
         [Tooltip("Event to raise when the inventory is cleared.")]
         private GameEvent onInventoryClear;
+
+        [FoldoutGroup("UI & Sound", expanded: true)]
+        [SerializeField]
+        [PreviewField(100, ObjectFieldAlignment.Left)]
+        [Tooltip("The sprite that represents this item in the UI")]
+        public Sprite uiIcon;
 
         #endregion Fields
 
@@ -71,8 +78,12 @@ namespace GD.Items
         {
             int remaining = 0;
 
+            Debug.Log(item.Name);
+
             if (contents.ContainsKey(item))
             {
+                Debug.Log("We're inside");
+
                 if (contents[item] > count)
                 {
                     contents[item] -= count;
@@ -84,6 +95,8 @@ namespace GD.Items
                 }
                 onInventoryChange?.Raise(); //tell interested parties that the inventory has changed
             }
+
+            Debug.Log("Remove is being triggered");
             return remaining;
         }
 
@@ -97,6 +110,11 @@ namespace GD.Items
             if (contents.ContainsKey(item))
                 return contents[item];
             return 0;
+        }
+
+        public bool isEmpty()
+        {
+            return contents.Count == 0;
         }
 
         /// <summary>

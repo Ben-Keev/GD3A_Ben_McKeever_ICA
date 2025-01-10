@@ -108,13 +108,13 @@
     public enum ItemCategoryType : sbyte
     {
         [Description("Items that cannot be recycled")]
-        Trash,
+        Trash = 0,
 
         [Description("Items that can be recycled")]
-        Recyclable,
+        Recyclable = 1,
 
         [Description("Items made can be composted")]
-        Compost
+        Compost = 2
     }
 
     /// <summary>
@@ -129,7 +129,13 @@
         /// <summary>
         /// Represents an armor vest providing additional protection.
         /// </summary>
-        [Description("Paper scraps thrown about by the class")]
-        Paper
+        [Description("Items that cannot be recycled")]
+        TrashItem = 0,
+
+        [Description("Items that cannot be recycled")]
+        RecyclableItem = 1,
+
+        [Description("Items that cannot be recycled")]
+        CompostItem = 2
     }
 }
