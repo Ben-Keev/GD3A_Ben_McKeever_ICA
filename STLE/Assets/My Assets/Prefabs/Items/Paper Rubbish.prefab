@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 2b9a9bfa7d7920444a31cdf310f94087, type: 2}
   onItemEvent: {fileID: 11400000, guid: 5d0e7539313ab9c4199e80a2275369d7, type: 2}
+  onParticleEvent: {fileID: 11400000, guid: 6e058a63d37c4cd4a93dc2ae794ab173, type: 2}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128

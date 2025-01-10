@@ -1,9 +1,11 @@
 using GD.Events;
 using GD.Types;
+using NUnit.Framework.Interfaces;
 using Sirenix.OdinInspector;
 using System;
 using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -26,6 +28,11 @@ namespace GD.Items
         [InlineEditor]
         [Tooltip("The event to raise on succesful/unsuccesful inventory insertion")]
         private IntGameEvent onScoreEvent;
+
+        [SerializeField]
+        [InlineEditor]
+        [Tooltip("Trigger particles on an inventory insertion")]
+        private ParticleGameEvent onParticleEvent;
 
         [FoldoutGroup("SelectedInventory")]
         [SerializeField]
@@ -103,21 +110,29 @@ namespace GD.Items
         /// <param name="data"></param>
         public void OnBinDeposit(BinData bin)
         {
-            if(inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
+
+            Tuple<Transform, Enum> particleData;
+
+            if (inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
             {
                 Debug.Log("No Item");
-                onScoreEvent?.Raise(-1);
+
+                //particleData = new Tuple<Transform, Enum>(bin.GameObject().transform, FeedbackType.NoItem);
+                //onParticleEvent?.Raise(particleData);
             }
             else if (selectedInventory != (int)bin.BinType)
             {
                 Debug.Log("Wrong Bin!");
 
-                Debug.Log(possibleItems[(int)selectedInventory].Name);
+                //Debug.Log(possibleItems[(int)selectedInventory].Name);
 
                 ItemData selectedItem = possibleItems[(int)selectedInventory];
 
                 onScoreEvent?.Raise(-1);
                 inventoryCollection.Get((ItemCategoryType) selectedInventory).Remove(selectedItem, 1);
+
+                //particleData = new Tuple<Transform, Enum>(bin.GameObject().transform, FeedbackType.Wrong);
+                //onParticleEvent?.Raise(particleData);
             }
             else
             {
@@ -125,6 +140,9 @@ namespace GD.Items
 
                 onScoreEvent?.Raise(1);
                 inventoryCollection.Get(bin.BinType).Remove(bin.AcceptedItem, 1);
+
+                //particleData = new Tuple<Transform, Enum>(bin.GameObject().transform, FeedbackType.Correct);
+                //onParticleEvent?.Raise(particleData);
             }
         }
 

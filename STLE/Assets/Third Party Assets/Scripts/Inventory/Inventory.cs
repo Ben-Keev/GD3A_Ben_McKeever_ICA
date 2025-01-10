@@ -36,7 +36,7 @@ namespace GD.Items
         [FoldoutGroup("UI & Sound", expanded: true)]
         [SerializeField]
         [PreviewField(100, ObjectFieldAlignment.Left)]
-        [Tooltip("The sprite that represents this item in the UI")]
+        [Tooltip("The sprite that represents this inventory in the UI")]
         public Sprite uiIcon;
 
         #endregion Fields

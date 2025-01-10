@@ -11,14 +11,16 @@ namespace GD.Selection
     {
         public override void OnSelect(Transform currentTransform)
         {
-            if(GameObject.FindGameObjectWithTag("Player").GetComponent<FSMController>().currentState.name == "Explore") // Player can interact
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player.GetComponent<FSMController>().currentState.name == "Explore") // Player can interact
             {
                 currentTransform.GetComponent<IInteractable>().OnHover();
 
                 //Debug.Log(currentTransform.gameObject.name);
 
                 if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
-                    currentTransform.GetComponent<IInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
+                    currentTransform.GetComponent<IInteractable>().Interact(player);
             }
         }
 

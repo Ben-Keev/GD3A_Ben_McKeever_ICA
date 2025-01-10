@@ -1,4 +1,6 @@
 ﻿using GD.Events;
+using GD.FSM;
+using System;
 using UnityEngine;
 
 namespace GD.Items
@@ -19,6 +21,10 @@ namespace GD.Items
         private ItemGameEvent onItemEvent;
 
         [SerializeField]
+        [Tooltip("The event that is raised to trigger particles where this item is consumed")]
+        private ParticleGameEvent onParticleEvent;
+
+        [SerializeField]
         [Tooltip("The layer that the item can be picked up by")]
         private LayerMask targetLayer;
 
@@ -35,8 +41,13 @@ namespace GD.Items
                 //raise the event to notify listeners
                 onItemEvent?.Raise(itemData);
 
-                //remove the item from the scene
-                Destroy(gameObject);
+                Tuple<Transform, Enum> particleData = new Tuple<Transform, Enum>(gameObject.transform, itemData.ItemCategory);
+
+                onParticleEvent?.Raise(particleData);
+
+                // Don't destroy object as want to preserve gameObject transform for particles
+                // make item invisible and uninteractible
+                gameObject.SetActive(false);
             }
         }
 

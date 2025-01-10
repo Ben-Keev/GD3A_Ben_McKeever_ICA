@@ -110,9 +110,9 @@
         Trash = 0,
 
         [Description("Items that can be recycled")]
-        Recyclable = 1,
+        Recycle = 1,
 
-        [Description("Items made can be composted")]
+        [Description("Items that can be composted")]
         Compost = 2
     }
 
@@ -128,13 +128,28 @@
         /// <summary>
         /// Represents an armor vest providing additional protection.
         /// </summary>
-        [Description("Items that cannot be recycled")]
+        [Description("Item that cannot be recycled")]
         TrashItem = 0,
 
-        [Description("Items that cannot be recycled")]
+        [Description("Item that cannot be recycled")]
         RecyclableItem = 1,
 
-        [Description("Items that cannot be recycled")]
+        [Description("Item that can be composted")]
         CompostItem = 2
+    }
+
+    /// <summary>
+    /// Types of feedback you can receive from depositing in a bin
+    /// </summary>
+    public enum FeedbackType : sbyte
+    {
+        [Description("Item that cannot be recycled")]
+        Correct = 0,
+
+        [Description("Item that cannot be recycled")]
+        Wrong = 1,
+
+        [Description("Item that can be composted")]
+        NoItem = 2
     }
 }
