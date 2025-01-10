@@ -96,7 +96,6 @@ namespace GD.Items
                 onInventoryChange?.Raise(); //tell interested parties that the inventory has changed
             }
 
-            Debug.Log("Remove is being triggered");
             return remaining;
         }
 

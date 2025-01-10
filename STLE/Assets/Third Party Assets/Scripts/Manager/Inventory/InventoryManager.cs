@@ -94,8 +94,10 @@ namespace GD.Items
 
                 Debug.Log(possibleItems[(int)selectedInventory].Name);
 
+                ItemData selectedItem = possibleItems[(int)selectedInventory];
+
                 onScoreEvent?.Raise(-1);
-                inventoryCollection.Get(bin.BinType).Remove(possibleItems[(int) selectedInventory], 1);
+                inventoryCollection.Get((ItemCategoryType) selectedInventory).Remove(selectedItem, 1);
             }
             else
             {

@@ -72,20 +72,7 @@ namespace GD.Items
 
             //add 1 specific consumable (e.g. ItemData = Apple) to the inventory
             contents[itemData.ItemCategory].Add(itemData, 1);
-
-            //tell interested parties that the collection has changed
-            onCollectionChange?.Raise();
-        }
-
-        //remove an item from the collection.
-        public void Remove(ItemData itemData)
-        {
-            //if I never collected a Consumable
-            if (!contents.ContainsKey(itemData.ItemCategory))
-                throw new NullReferenceException("No inventory for this item category");
-
-            //add 1 specific consumable (e.g. ItemData = Apple) to the inventory
-            contents[itemData.ItemCategory].Remove(itemData, 1);
+            //TODO - add more than 1?
 
             //tell interested parties that the collection has changed
             onCollectionChange?.Raise();

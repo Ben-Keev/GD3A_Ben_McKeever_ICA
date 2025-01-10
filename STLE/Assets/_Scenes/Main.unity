@@ -1156,6 +1156,10 @@ MonoBehaviour:
   inventoryCollection: {fileID: 11400000, guid: 330cf89fb64038b459073229783b601f, type: 2}
   onScoreEvent: {fileID: 11400000, guid: a9699a3dfe896cc46b04fcbe7be3d6f8, type: 2}
   selectedInventory: 0
+  possibleItems:
+  - {fileID: 11400000, guid: 994e7c2cf1e3ac444ad7b85626171d97, type: 2}
+  - {fileID: 11400000, guid: 2b9a9bfa7d7920444a31cdf310f94087, type: 2}
+  - {fileID: 11400000, guid: bec7115605502a74ca62daf422dd3c45, type: 2}
   UIIndicator: {fileID: 338693057}
 --- !u!1 &690143317
 GameObject:
@@ -2364,10 +2368,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper Rubbish
       objectReference: {fileID: 0}
-    - target: {fileID: 4907686286234639155, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 2b9a9bfa7d7920444a31cdf310f94087, type: 2}
     - target: {fileID: 7635093698187643018, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
       propertyPath: m_Enabled
       value: 0
