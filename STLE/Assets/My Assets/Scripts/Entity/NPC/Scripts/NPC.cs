@@ -1,8 +1,9 @@
 ﻿using GD.Events;
 using UnityEngine;
 using GD.Items;
-using Unity.VisualScripting;
-using GD.Selection;
+using GD.Audio;
+using GD.Types;
+using Sirenix.OdinInspector;
 
 /// <summary>
 /// Represents an item that can be consumed by a game object on the correct layer
@@ -18,6 +19,17 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField]
     [Tooltip("The event raised when NPC is interacted with")]
     private NPCGameEvent onNPCEvent;
+
+    // NPCs have no variation between audio clips so keep the audio here.
+    [FoldoutGroup("UI & Sound", expanded: true)]
+    [SerializeField]
+    [Tooltip("The audio clip that represents this item")]
+    private AudioClip audioClip;
+
+    [FoldoutGroup("UI & Sound")]
+    [SerializeField]
+    [Tooltip("The position of the audio source that plays the audio clip")]
+    private Vector3 audioPosition;
 
     public bool interactible;
 
@@ -39,6 +51,8 @@ public class NPC : MonoBehaviour, IInteractable
         {
             //raise the event to notify listeners
             onNPCEvent?.Raise(npcData);
+
+            AudioManager.Instance.PlaySound(audioClip, AudioMixerGroupName.SFX);
 
             // Cycle to the next possible dialogue
             cycleDialogue();

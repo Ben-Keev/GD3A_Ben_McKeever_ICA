@@ -272,6 +272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcData: {fileID: 11400000, guid: 313c67b2806636a48b5ba84054ad8941, type: 2}
   onNPCEvent: {fileID: 11400000, guid: 9b27fc60729a84348aa80557c0d3b399, type: 2}
+  audioClip: {fileID: 8300000, guid: 2a221b60ed179fe41a64005de75140ef, type: 3}
+  audioPosition: {x: 0, y: 0, z: 0}
   interactible: 0
 --- !u!114 &5584353066820603578
 MonoBehaviour:

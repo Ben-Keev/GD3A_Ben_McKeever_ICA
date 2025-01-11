@@ -33,9 +33,7 @@ public class NPCData : SerializedScriptableObject
     #region Properties
 
     public string Character { get => character; set => character = value; }
-
     public Dictionary<int, string[]> Dialogues { get => dialogues; set => dialogues = value; }
-
     public int CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
 
     #endregion Properties

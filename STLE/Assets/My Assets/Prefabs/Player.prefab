@@ -52,12 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57d8266c5d4d5742bc39ea60ee8acd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundDist: 0
   terrainLayer:
     serializedVersion: 2
     m_Bits: 8
-  rb: {fileID: 6604192771321767125}
-  sr: {fileID: 0}
+  clickEffect: {fileID: 0}
 --- !u!135 &5494860123813752558
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
-﻿using GD.Events;
-using GD.FSM;
+﻿using GD.Audio;
+using GD.Events;
+using GD.Types;
 using System;
 using UnityEngine;
 
@@ -44,6 +45,8 @@ namespace GD.Items
                 Tuple<Transform, Enum> particleData = new Tuple<Transform, Enum>(gameObject.transform, itemData.ItemCategory);
 
                 onParticleEvent?.Raise(particleData);
+
+                AudioManager.Instance.PlaySound(itemData.AudioClip, AudioMixerGroupName.SFX);
 
                 // Don't destroy object as want to preserve gameObject transform for particles
                 // make item invisible and uninteractible

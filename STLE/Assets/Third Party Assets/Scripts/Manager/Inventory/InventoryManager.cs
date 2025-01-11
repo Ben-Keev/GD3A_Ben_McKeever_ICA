@@ -1,3 +1,4 @@
+using GD.Audio;
 using GD.Events;
 using GD.Types;
 using NUnit.Framework.Interfaces;
@@ -44,17 +45,32 @@ namespace GD.Items
         [Tooltip("All possible items")]
         private ItemData[] possibleItems = new ItemData[3];
 
-        [FoldoutGroup("UI")]
+        [FoldoutGroup("UI & Sound")]
         [SerializeField]
         [InlineEditor]
         [Tooltip("The UI Component indicating the selected inventory")]
         private Image UISelectedInventory;
 
-        [FoldoutGroup("UI")]
+        [FoldoutGroup("UI & Sound")]
         [SerializeField]
         [InlineEditor]
         [Tooltip("The UI Component indicating how much is left in the selected inventory")]
         private TextMeshProUGUI UIItemsLeft;
+
+        [FoldoutGroup("UI & Sound", expanded: true)]
+        [SerializeField]
+        [Tooltip("The audio clip that represents absence of an item")]
+        private AudioClip noItemClip;
+
+        [FoldoutGroup("UI & Sound", expanded: true)]
+        [SerializeField]
+        [Tooltip("Plays when correct choice made")]
+        private AudioClip correctClip;
+
+        [FoldoutGroup("UI & Sound", expanded: true)]
+        [SerializeField]
+        [Tooltip("Plays when incorrect choice made")]
+        private AudioClip incorrectClip;
 
         private void Awake()
         {
@@ -112,9 +128,13 @@ namespace GD.Items
         {
             Tuple<Transform, Enum> particleData;
 
+            ItemData selectedItem = possibleItems[(int)selectedInventory];
+
             if (inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
             {
                 Debug.Log("No Item");
+
+                AudioManager.Instance.PlaySound(noItemClip, AudioMixerGroupName.SFX);
 
                 particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.NoItem);
                 onParticleEvent?.Raise(particleData);
@@ -123,10 +143,11 @@ namespace GD.Items
             {
                 Debug.Log("Wrong Bin!");
 
-                ItemData selectedItem = possibleItems[(int)selectedInventory];
 
                 onScoreEvent?.Raise(-1);
                 inventoryCollection.Get((ItemCategoryType) selectedInventory).Remove(selectedItem, 1);
+
+                AudioManager.Instance.PlaySound(incorrectClip, AudioMixerGroupName.SFX);
 
                 particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.Wrong);
                 onParticleEvent?.Raise(particleData);
@@ -136,7 +157,9 @@ namespace GD.Items
                 Debug.Log("Correct Bin!");
 
                 onScoreEvent?.Raise(1);
-                inventoryCollection.Get(bin.Item2.BinType).Remove(bin.Item2.AcceptedItem, 1);
+                inventoryCollection.Get(bin.Item2.BinType).Remove(selectedItem, 1);
+
+                AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);
 
                 particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.Correct);
                 onParticleEvent?.Raise(particleData);
