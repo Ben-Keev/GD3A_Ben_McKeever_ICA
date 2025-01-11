@@ -108,41 +108,38 @@ namespace GD.Items
         /// Adds the item to the inventory, taking InventoryCollection as a parameter
         /// </summary>
         /// <param name="data"></param>
-        public void OnBinDeposit(BinData bin)
+        public void OnBinDeposit(Tuple<Transform, BinData> bin)
         {
-
             Tuple<Transform, Enum> particleData;
 
             if (inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
             {
                 Debug.Log("No Item");
 
-                //particleData = new Tuple<Transform, Enum>(bin.GameObject().transform, FeedbackType.NoItem);
-                //onParticleEvent?.Raise(particleData);
+                particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.NoItem);
+                onParticleEvent?.Raise(particleData);
             }
-            else if (selectedInventory != (int)bin.BinType)
+            else if (selectedInventory != (int)bin.Item2.BinType)
             {
                 Debug.Log("Wrong Bin!");
-
-                //Debug.Log(possibleItems[(int)selectedInventory].Name);
 
                 ItemData selectedItem = possibleItems[(int)selectedInventory];
 
                 onScoreEvent?.Raise(-1);
                 inventoryCollection.Get((ItemCategoryType) selectedInventory).Remove(selectedItem, 1);
 
-                //particleData = new Tuple<Transform, Enum>(bin.GameObject().transform, FeedbackType.Wrong);
-                //onParticleEvent?.Raise(particleData);
+                particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.Wrong);
+                onParticleEvent?.Raise(particleData);
             }
             else
             {
                 Debug.Log("Correct Bin!");
 
                 onScoreEvent?.Raise(1);
-                inventoryCollection.Get(bin.BinType).Remove(bin.AcceptedItem, 1);
+                inventoryCollection.Get(bin.Item2.BinType).Remove(bin.Item2.AcceptedItem, 1);
 
-                //particleData = new Tuple<Transform, Enum>(bin.GameObject().transform, FeedbackType.Correct);
-                //onParticleEvent?.Raise(particleData);
+                particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.Correct);
+                onParticleEvent?.Raise(particleData);
             }
         }
 

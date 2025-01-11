@@ -1,4 +1,6 @@
 ﻿using GD.Items;
+using System;
+using UnityEngine;
 
 namespace GD.Events
 {
@@ -6,6 +8,6 @@ namespace GD.Events
     /// Listens for an NPC Event
     /// </summary>
     /// <see cref="NPCGameEvent"/>
-    public class BinGameEventListener : BaseGameEventListener<BinData>
+    public class BinGameEventListener : BaseGameEventListener<Tuple<Transform, BinData>>
     { }
 }

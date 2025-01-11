@@ -3,6 +3,7 @@ using UnityEngine;
 using GD.Items;
 using Unity.VisualScripting;
 using GD.Selection;
+using System;
 
 /// <summary>
 /// Represents an item that can be consumed by a game object on the correct layer
@@ -37,8 +38,10 @@ public class Bin : MonoBehaviour, IInteractable
     {
         if (interactible)
         {
+            Tuple<Transform, BinData> eventData = new Tuple<Transform, BinData>(transform, binContents);
+
             //raise the event to notify listeners
-            onBinEvent?.Raise(binContents);
+            onBinEvent?.Raise(eventData);
         }
     }
 

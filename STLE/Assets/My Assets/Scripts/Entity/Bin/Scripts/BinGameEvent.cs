@@ -1,4 +1,5 @@
 ﻿using GD.Items;
+using System;
 using UnityEngine;
 
 namespace GD.Events
@@ -10,6 +11,6 @@ namespace GD.Events
     [CreateAssetMenu(fileName = "BinGameEvent",
         menuName = "GD/Events/Params/Bin",
         order = 5)]
-    public class BinGameEvent : BaseGameEvent<BinData>
+    public class BinGameEvent : BaseGameEvent<Tuple<Transform, BinData>>
     { }
 }
