@@ -98,7 +98,7 @@ namespace GD.State
             playerFSM = player.transform.GetComponent<FSMController>();
 
             stopwatch.TimeLeft = stopwatch.StartingTime;
-            stopwatch.TimerOn = false;
+            stopwatch.TimerOn = true;
         }
 
         private void OnDestroy()

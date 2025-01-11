@@ -27,7 +27,6 @@ namespace GD.State
         // https://www.youtube.com/watch?v=hxpUk0qiRGs
         protected override bool EvaluateCondition(ConditionContext conditionContext)
         {
-            timerOn = true;
             if (TimerOn)
             {
                 if (timeLeft > 0)
