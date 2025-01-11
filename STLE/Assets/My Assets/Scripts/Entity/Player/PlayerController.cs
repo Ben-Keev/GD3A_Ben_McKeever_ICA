@@ -6,19 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float groundDist;
+    [SerializeField]
+    private LayerMask terrainLayer;
+    [SerializeField]
+    private ParticleSystem clickEffect;
 
-    public LayerMask terrainLayer;
-    public Rigidbody rb;
-    public SpriteRenderer sr;
-
-    NavMeshAgent agent;
-    ParticleSystem clickEffect;
+    private NavMeshAgent agent;
+    private Animator animator;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -33,5 +32,22 @@ public class PlayerController : MonoBehaviour
                 Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
             }
         }
+
+    }
+
+    //https://www.youtube.com/watch?v=LVu3_IVCzys
+    // Animation
+    private void Update()
+    {
+        animator.SetBool("isRun", agent.velocity.magnitude > 0.1f);
+
+        Vector3 direction = (agent.destination - transform.position).normalized;
+
+        if(direction.x > 0)
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        else if (direction.x < 0)
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+        // Flip y based on dirction of X, as indicated by its sign.
     }
 }

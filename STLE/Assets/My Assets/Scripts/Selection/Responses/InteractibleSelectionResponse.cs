@@ -5,9 +5,9 @@ using GD.FSM;
 namespace GD.Selection
 {   
     /// <summary>
-    /// Opens a dialogue box. The script loaded is according to the name of the selection
+    /// Interacts with interactible objects
     /// </summary>
-    public class DialogueSelectionResponse : SelectionResponse
+    public class InteractibleSelectionResponse : SelectionResponse
     {
         public override void OnSelect(Transform currentTransform)
         {
@@ -19,7 +19,7 @@ namespace GD.Selection
 
                 //Debug.Log(currentTransform.gameObject.name);
 
-                if (GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
+                if (player.GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
                     currentTransform.GetComponent<IInteractable>().Interact(player);
             }
         }
