@@ -126,44 +126,43 @@ namespace GD.Items
         /// <param name="data"></param>
         public void OnBinDeposit(Tuple<Transform, BinData> bin)
         {
-            Tuple<Transform, Enum> particleData;
-
-            ItemData selectedItem = possibleItems[(int)selectedInventory];
+            ItemData selectedItem = possibleItems[selectedInventory];
 
             if (inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
             {
-                Debug.Log("No Item");
-
                 AudioManager.Instance.PlaySound(noItemClip, AudioMixerGroupName.SFX);
 
-                particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.NoItem);
-                onParticleEvent?.Raise(particleData);
+                SendParticleFeedback(bin.Item1, FeedbackType.NoItem);
             }
             else if (selectedInventory != (int)bin.Item2.BinType)
             {
-                Debug.Log("Wrong Bin!");
-
-
-                onScoreEvent?.Raise(-1);
-                inventoryCollection.Get((ItemCategoryType) selectedInventory).Remove(selectedItem, 1);
+                DepositIntoBinInventory(bin.Item2, selectedItem, -1);
 
                 AudioManager.Instance.PlaySound(incorrectClip, AudioMixerGroupName.SFX);
 
-                particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.Wrong);
-                onParticleEvent?.Raise(particleData);
+                SendParticleFeedback(bin.Item1, FeedbackType.Wrong);
             }
             else
             {
-                Debug.Log("Correct Bin!");
-
-                onScoreEvent?.Raise(1);
-                inventoryCollection.Get(bin.Item2.BinType).Remove(selectedItem, 1);
+                DepositIntoBinInventory(bin.Item2, selectedItem, 1);
 
                 AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);
 
-                particleData = new Tuple<Transform, Enum>(bin.Item1, FeedbackType.Correct);
-                onParticleEvent?.Raise(particleData);
+                SendParticleFeedback(bin.Item1, FeedbackType.Correct);
             }
+        }
+
+        private void DepositIntoBinInventory(BinData bin, ItemData item, int score)
+        {
+            onScoreEvent?.Raise(score);
+            inventoryCollection.Get((ItemCategoryType)selectedInventory).Remove(item, 1);
+            bin.BinContents.Add(item, 1);
+        }
+
+        private void SendParticleFeedback(Transform transform, FeedbackType feedback)
+        {
+            Tuple<Transform, Enum> particleData = new Tuple<Transform, Enum>(transform, feedback);
+            onParticleEvent?.Raise(particleData);
         }
 
         /// <summary>
