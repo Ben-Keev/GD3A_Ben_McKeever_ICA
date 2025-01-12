@@ -107,6 +107,20 @@ namespace GD.Items
             return 0;
         }
 
+        /// <summary>
+        /// Counts all items in the bin
+        /// </summary>
+        /// <returns></returns>
+        public int Tally()
+        {
+            int tally = 0;
+
+            foreach(ItemData item in contents.Keys)
+                tally += Count(item);
+
+            return tally;
+        }
+
         public bool isEmpty()
         {
             return contents.Count == 0;

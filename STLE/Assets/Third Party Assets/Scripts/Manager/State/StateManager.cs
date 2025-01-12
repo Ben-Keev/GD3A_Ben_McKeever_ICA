@@ -53,6 +53,16 @@ namespace GD.State
         [Tooltip("The condition that determines if the player loses")]
         private ConditionBase loseCondition;
 
+        [FoldoutGroup("GameObjects")]
+        [SerializeField]
+        [Tooltip("BinEmpty")]
+        private GameObject binEmpty;
+
+        [FoldoutGroup("GameObjects")]
+        [SerializeField]
+        [Tooltip("itemEmpty")]
+        private GameObject itemEmpty;
+
         [FoldoutGroup("Stopwatch")]
         [SerializeField]
         [Tooltip("The condition that determines if the player is out of time")]
@@ -68,6 +78,10 @@ namespace GD.State
         [SerializeField]
         private TextMeshProUGUI UiScore;
 
+        [FoldoutGroup("UI")]
+        [Tooltip("UI displaying winning screen")]
+        [SerializeField]
+        private GameObject feedbackScreen;
 
         [FoldoutGroup("Achievements [optional]")]
         [SerializeField]
@@ -78,6 +92,7 @@ namespace GD.State
         /// Indicates whether the game has ended.
         /// </summary>
         private bool gameEnded = false;
+        private bool inTutorial = true;
 
         private ConditionContext conditionContext;
 
@@ -97,7 +112,19 @@ namespace GD.State
 
             playerFSM = player.transform.GetComponent<FSMController>();
 
+            feedbackScreen.SetActive(false);
+            binEmpty.SetActive(false);
+            itemEmpty.SetActive(false);
+
             stopwatch.TimeLeft = stopwatch.StartingTime;
+            stopwatch.TimerOn = false;
+        }
+
+        public void ExitTutorial()
+        {
+            inTutorial = false;
+            itemEmpty.SetActive(true);
+            binEmpty.SetActive(true);
             stopwatch.TimerOn = true;
         }
 
@@ -118,43 +145,46 @@ namespace GD.State
         /// </summary>
         private void Update()  //TODO - NMCG : Slow down the update rate to once every 0.1 seconds
         {
-            // If the game has already ended, no need to evaluate further
-            if (gameEnded)
-                return;
-
-            // Evaluate the win condition
-            if (winCondition != null && winCondition.Evaluate(conditionContext))
+            if (!inTutorial)
             {
-                HandleWin();
-                // Set gameEnded to true to prevent further updates
-                gameEnded = true;
-                // Optionally, disable this component
-                // enabled = false;
-            }
-            // Evaluate the lose condition only if the win condition is not met
-            else if (loseCondition != null && loseCondition.Evaluate(conditionContext))
-            {
-                HandleLoss();
-                // Set gameEnded to true to prevent further updates
-                gameEnded = true;
-                // Optionally, disable this component
-                // enabled = false;
-            }
+                // If the game has already ended, no need to evaluate further
+                if (gameEnded)
+                    return;
 
-            else if (stopwatch != null && stopwatch.Evaluate(conditionContext))
-            {
-                Debug.Log("Game Ended By Timer Running Out!");
-                gameEnded = true;
-            }
-
-            UiScore.text = player.scoreTracker.Score.ToString();
-            UiStopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
-
-            foreach (var achievmentCondition in achievementConditions)
-            {
-                if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
+                // Evaluate the win condition
+                if (winCondition != null && winCondition.Evaluate(conditionContext))
                 {
-                    //do something
+                    HandleWin();
+                    // Set gameEnded to true to prevent further updates
+                    gameEnded = true;
+                    // Optionally, disable this component
+                    // enabled = false;
+                }
+                // Evaluate the lose condition only if the win condition is not met
+                else if (loseCondition != null && loseCondition.Evaluate(conditionContext))
+                {
+                    HandleLoss();
+                    // Set gameEnded to true to prevent further updates
+                    gameEnded = true;
+                    // Optionally, disable this component
+                    // enabled = false;
+                }
+
+                else if (stopwatch != null && stopwatch.Evaluate(conditionContext))
+                {
+                    Debug.Log("Game Ended By Timer Running Out!");
+                    gameEnded = true;
+                }
+
+                UiScore.text = player.scoreTracker.Score.ToString();
+                UiStopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
+
+                foreach (var achievmentCondition in achievementConditions)
+                {
+                    if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
+                    {
+                        //do something
+                    }
                 }
             }
         }
@@ -165,6 +195,9 @@ namespace GD.State
         protected virtual void HandleWin()
         {
             Debug.Log($"Player Wins! Win condition met at {winCondition.TimeMet} seconds.");
+
+            player.gameObject.SetActive(false);
+            feedbackScreen.SetActive(true);
 
             // Implement win logic here, such as:
             // - Displaying a victory screen
@@ -183,6 +216,8 @@ namespace GD.State
         protected virtual void HandleLoss()
         {
             Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
+
+            feedbackScreen.SetActive(true);
 
             // Implement loss logic here, such as:
             // - Displaying a game over screen
