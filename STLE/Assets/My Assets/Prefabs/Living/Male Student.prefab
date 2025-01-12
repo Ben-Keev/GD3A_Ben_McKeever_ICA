@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 3298148819303091737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.13917309, z: 0, w: 0.9902681}
-  m_LocalPosition: {x: 0, y: 5.6, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalPosition: {x: 0, y: 5.1, z: 0}
+  m_LocalScale: {x: 8.38, y: 8.38, z: 8.38}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7084834371532738149}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 8499743037619012123}
   - component: {fileID: 3823854334518920879}
   - component: {fileID: 5584353066820603578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Male Student
   m_TagString: Selectable
   m_Icon: {fileID: 0}

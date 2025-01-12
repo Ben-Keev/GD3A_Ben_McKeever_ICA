@@ -33,12 +33,14 @@ public class NPC : MonoBehaviour, IInteractable
 
     public bool interactible;
 
+    public NPCData NpcData { get => npcData; set => npcData = value; }
+
     private void Awake()
     {
         interactible = true;
 
         // Reset dialogue
-        npcData.CurrentDialogue = 0;
+        NpcData.CurrentDialogue = 0;
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class NPC : MonoBehaviour, IInteractable
         if (interactible)
         {
             //raise the event to notify listeners
-            onNPCEvent?.Raise(npcData);
+            onNPCEvent?.Raise(NpcData);
 
             AudioManager.Instance.PlaySound(audioClip, AudioMixerGroupName.SFX);
 
@@ -66,8 +68,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void cycleDialogue()
     {
-        if (npcData.CurrentDialogue < npcData.Dialogues.Count-1)
-            npcData.CurrentDialogue++;
+        if (NpcData.CurrentDialogue < NpcData.Dialogues.Count-1)
+            NpcData.CurrentDialogue++;
     }
 
     public void OnHover()

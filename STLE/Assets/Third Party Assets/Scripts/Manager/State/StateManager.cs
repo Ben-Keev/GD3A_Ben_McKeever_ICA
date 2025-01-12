@@ -3,6 +3,7 @@ using GD.Items;
 using GD.Tick;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GD.State
@@ -52,15 +53,25 @@ namespace GD.State
         [Tooltip("The condition that determines if the player loses")]
         private ConditionBase loseCondition;
 
-        [FoldoutGroup("GameObjects")]
+        [FoldoutGroup("Tutorial")]
         [SerializeField]
         [Tooltip("BinEmpty")]
         private GameObject binEmpty;
 
-        [FoldoutGroup("GameObjects")]
+        [FoldoutGroup("Tutorial")]
         [SerializeField]
         [Tooltip("itemEmpty")]
         private GameObject itemEmpty;
+
+        [FoldoutGroup("Tutorial")]
+        [SerializeField]
+        [Tooltip("A helper sign that introduces you to the game")]
+        private NPC helperSign;
+
+        [FoldoutGroup("Tutorial")]
+        [SerializeField]
+        [Tooltip("A helper sign that introduces you to the game")]
+        private string[] tutorialText = new string[5];
 
         [FoldoutGroup("Stopwatch")]
         [SerializeField]
@@ -79,7 +90,6 @@ namespace GD.State
         private bool inTutorial = true;
 
         private ConditionContext conditionContext;
-
         private void Awake()
         {
             if (player == null)
@@ -99,6 +109,8 @@ namespace GD.State
             UIManager.Instance.FeedbackScreen.SetActive(false);
             binEmpty.SetActive(false);
             itemEmpty.SetActive(false);
+
+            helperSign.NpcData.Dialogues[0] = tutorialText;
 
             stopwatch.TimeLeft = stopwatch.StartingTime;
             stopwatch.TimerOn = false;
@@ -122,6 +134,9 @@ namespace GD.State
         {
             if (resetAllConditionsOnStart)
                 ResetConditions();
+
+            // Initiates the first cutscene.
+            helperSign.GetComponent<NPC>().Interact(gameObject);
         }
 
         /// <summary>

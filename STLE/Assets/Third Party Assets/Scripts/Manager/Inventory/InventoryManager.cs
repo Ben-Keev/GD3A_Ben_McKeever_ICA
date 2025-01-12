@@ -50,6 +50,11 @@ namespace GD.Items
         [Tooltip("Event to end tutorial")]
         private BoolGameEvent onTutorialComplete;
 
+        [FoldoutGroup("Tutorial")]
+        [SerializeField]
+        [Tooltip("Send feedback to helper signs")]
+        private FeedbackGameEvent onFeedbackCreated;
+
         [FoldoutGroup("Sound", expanded: true)]
         [SerializeField]
         [Tooltip("The audio clip that represents absence of an item")]
@@ -119,24 +124,33 @@ namespace GD.Items
         /// <param name="data"></param>
         public void OnBinDeposit(Tuple<Transform, BinData> bin)
         {
+            FeedbackType feedback;
             ItemData selectedItem = possibleItems[selectedInventory];
 
             if (inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
             {
+                feedback = FeedbackType.NoItem;
+
                 AudioManager.Instance.PlaySound(noItemClip, AudioMixerGroupName.SFX);
 
-                SendParticleFeedback(bin.Item1, FeedbackType.NoItem);
+                SendParticleFeedback(bin.Item1, feedback);
             }
             else if (selectedInventory != (int)bin.Item2.BinType)
             {
+                feedback = FeedbackType.Wrong;
+
                 DepositIntoBinInventory(bin.Item2, selectedItem, -1);
 
                 AudioManager.Instance.PlaySound(incorrectClip, AudioMixerGroupName.SFX);
 
-                SendParticleFeedback(bin.Item1, FeedbackType.Wrong);
+                SendParticleFeedback(bin.Item1, feedback);
+
+                SendFeedBack(bin.Item2.BinType, selectedItem, feedback);
             }
             else
             {
+                feedback = FeedbackType.Correct;
+
                 // Raise the event only once
                 if(onTutorialComplete != null)
                 {
@@ -148,7 +162,9 @@ namespace GD.Items
 
                 AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);
 
-                SendParticleFeedback(bin.Item1, FeedbackType.Correct);
+                SendParticleFeedback(bin.Item1, feedback);
+
+                SendFeedBack(bin.Item2.BinType, selectedItem, feedback);
             }
         }
 
@@ -157,6 +173,12 @@ namespace GD.Items
             onScoreEvent?.Raise(score);
             inventoryCollection.Get((ItemCategoryType)selectedInventory).Remove(item, 1);
             bin.BinContents.Add(item, 1);
+        }
+
+        private void SendFeedBack(ItemCategoryType expected, ItemData actual, FeedbackType feedback)
+        {
+            Tuple<ItemCategoryType, ItemData, FeedbackType> feedbackData = new Tuple<ItemCategoryType, ItemData, FeedbackType>(expected, actual, feedback);
+            onFeedbackCreated?.Raise(feedbackData);
         }
 
         private void SendParticleFeedback(Transform transform, FeedbackType feedback)
