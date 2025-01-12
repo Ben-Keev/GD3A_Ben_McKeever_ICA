@@ -3,7 +3,6 @@ using GD.Items;
 using GD.Tick;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace GD.State
@@ -181,7 +180,8 @@ namespace GD.State
         {
             Debug.Log($"Player Wins! Win condition met at {winCondition.TimeMet} seconds.");
 
-            player.gameObject.SetActive(false);
+            player.gameObject.GetComponent<FSMController>().enabled = false;
+            player.gameObject.GetComponent<PlayerExploreInputHandler>().enabled = false;
             UIManager.Instance.FeedbackScreen.SetActive(true);
 
             // Implement win logic here, such as:
@@ -202,6 +202,8 @@ namespace GD.State
         {
             Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
 
+            player.gameObject.GetComponent<FSMController>().enabled = false;
+            player.gameObject.GetComponent<PlayerExploreInputHandler>().enabled = false;
             UIManager.Instance.FeedbackScreen.SetActive(true);
 
             // Implement loss logic here, such as:
