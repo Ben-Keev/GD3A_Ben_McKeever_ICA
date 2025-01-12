@@ -68,21 +68,6 @@ namespace GD.State
         [Tooltip("The condition that determines if the player is out of time")]
         private Stopwatch stopwatch;
 
-        [FoldoutGroup("UI")]
-        [Tooltip("UI displaying Stopwatch")]
-        [SerializeField]
-        private TextMeshProUGUI UiStopwatch;
-
-        [FoldoutGroup("UI")]
-        [Tooltip("UI displaying Score")]
-        [SerializeField]
-        private TextMeshProUGUI UiScore;
-
-        [FoldoutGroup("UI")]
-        [Tooltip("UI displaying winning screen")]
-        [SerializeField]
-        private GameObject feedbackScreen;
-
         [FoldoutGroup("Achievements [optional]")]
         [SerializeField]
         [Tooltip("Set of optional conditions related to acheivements")]
@@ -112,7 +97,7 @@ namespace GD.State
 
             playerFSM = player.transform.GetComponent<FSMController>();
 
-            feedbackScreen.SetActive(false);
+            UIManager.Instance.FeedbackScreen.SetActive(false);
             binEmpty.SetActive(false);
             itemEmpty.SetActive(false);
 
@@ -176,8 +161,8 @@ namespace GD.State
                     gameEnded = true;
                 }
 
-                UiScore.text = player.scoreTracker.Score.ToString();
-                UiStopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
+                UIManager.Instance.Score.text = player.scoreTracker.Score.ToString();
+                UIManager.Instance.Stopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
 
                 foreach (var achievmentCondition in achievementConditions)
                 {
@@ -197,7 +182,7 @@ namespace GD.State
             Debug.Log($"Player Wins! Win condition met at {winCondition.TimeMet} seconds.");
 
             player.gameObject.SetActive(false);
-            feedbackScreen.SetActive(true);
+            UIManager.Instance.FeedbackScreen.SetActive(true);
 
             // Implement win logic here, such as:
             // - Displaying a victory screen
@@ -217,7 +202,7 @@ namespace GD.State
         {
             Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
 
-            feedbackScreen.SetActive(true);
+            UIManager.Instance.FeedbackScreen.SetActive(true);
 
             // Implement loss logic here, such as:
             // - Displaying a game over screen

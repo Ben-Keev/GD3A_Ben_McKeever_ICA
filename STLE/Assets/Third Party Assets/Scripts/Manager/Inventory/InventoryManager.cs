@@ -45,29 +45,17 @@ namespace GD.Items
         [Tooltip("All possible items")]
         private ItemData[] possibleItems = new ItemData[3];
 
-        [FoldoutGroup("UI & Sound")]
-        [SerializeField]
-        [InlineEditor]
-        [Tooltip("The UI Component indicating the selected inventory")]
-        private Image UISelectedInventory;
-
-        [FoldoutGroup("UI & Sound")]
-        [SerializeField]
-        [InlineEditor]
-        [Tooltip("The UI Component indicating how much is left in the selected inventory")]
-        private TextMeshProUGUI UIItemsLeft;
-
-        [FoldoutGroup("UI & Sound", expanded: true)]
+        [FoldoutGroup("Sound", expanded: true)]
         [SerializeField]
         [Tooltip("The audio clip that represents absence of an item")]
         private AudioClip noItemClip;
 
-        [FoldoutGroup("UI & Sound", expanded: true)]
+        [FoldoutGroup("Sound", expanded: true)]
         [SerializeField]
         [Tooltip("Plays when correct choice made")]
         private AudioClip correctClip;
 
-        [FoldoutGroup("UI & Sound", expanded: true)]
+        [FoldoutGroup("Sound", expanded: true)]
         [SerializeField]
         [Tooltip("Plays when incorrect choice made")]
         private AudioClip incorrectClip;
@@ -111,8 +99,8 @@ namespace GD.Items
         {
             ItemCategoryType target = (ItemCategoryType)selectedInventory;
 
-            UISelectedInventory.sprite = inventoryCollection.Get(target).uiIcon;
-            UIItemsLeft.text = inventoryCollection.Get(target).Count(possibleItems[(int) target]).ToString();
+            UIManager.Instance.SelectedInventory.sprite = inventoryCollection.Get(target).uiIcon;
+            UIManager.Instance.ItemsLeft.text = inventoryCollection.Get(target).Count(possibleItems[(int) target]).ToString();
         }
 
         private void UpdateSelectedInventoryUI()
