@@ -93,4 +93,5 @@ MonoBehaviour:
       Entry: 8
       Data: 
   character: Jeremy
-  currentDialogue: 0
+  currentDialogue: 1
+  dialogueBeep: {fileID: 8300000, guid: d22bfb69fb5e2384f9acae55797bd619, type: 3}

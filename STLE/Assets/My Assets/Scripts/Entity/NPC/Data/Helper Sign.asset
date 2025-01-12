@@ -49,10 +49,11 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 1
-      Data: You put Plastic Bags into the Compost bin.
+      Data: You put Apple Cores and Banana Skins into the Compost bin.
     - Name: 
       Entry: 1
-      Data: There's nothing edible or fruity looking about Plastic Bags
+      Data: Good job! Apple Cores and Banana Skins are supposed to go into the Compost
+        bin.
     - Name: 
       Entry: 13
       Data: 
@@ -70,3 +71,4 @@ MonoBehaviour:
       Data: 
   character: Helper Sign
   currentDialogue: 0
+  dialogueBeep: {fileID: 8300000, guid: 982255526c9cdc14cbe45d21a230808e, type: 3}

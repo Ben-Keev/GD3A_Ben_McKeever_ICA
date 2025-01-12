@@ -1,3 +1,6 @@
+using GD.Audio;
+using GD.Types;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -11,8 +14,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ParticleSystem clickEffect;
 
+    [SerializeField]
+    private AudioClip footstepSound;
+
+    // How often the player steps
+    [SerializeField]
+    private float stepRate;
+
+
     private NavMeshAgent agent;
     private Animator animator;
+    private bool moving;
+
+    private float stepCoolDown;
+
 
     private void Awake()
     {
@@ -37,9 +52,21 @@ public class PlayerController : MonoBehaviour
 
     //https://www.youtube.com/watch?v=LVu3_IVCzys
     // Animation
+
     private void Update()
     {
+        moving = agent.velocity.magnitude > 0.1f;
+
         animator.SetBool("isRun", agent.velocity.magnitude > 0.1f);
+
+        // https://www.reddit.com/r/Unity3D/comments/2s3iub/good_footstep_tutorials/
+        // Footsteps
+        stepCoolDown -= Time.deltaTime;
+        if (moving && stepCoolDown < 0f)
+        {
+            AudioManager.Instance.PlaySound(footstepSound, AudioMixerGroupName.SFX);
+            stepCoolDown = stepRate;
+        }
 
         Vector3 direction = (agent.destination - transform.position).normalized;
 
@@ -47,7 +74,17 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         else if (direction.x < 0)
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            // Flip y based on dirction of X, as indicated by its sign.
+        }
 
-        // Flip y based on dirction of X, as indicated by its sign.
-    }
+    //IEnumerator FootstepSound()
+    //{
+    //    if(footstepSound != null)
+    //    {
+    //        Debug.Log("Playing it");
+    //        AudioManager.Instance.PlaySound(footstepSound, AudioMixerGroupName.SFX);
+    //    }
+
+    //    yield return new WaitForSeconds(0.4f);
+    //}
 }

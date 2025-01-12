@@ -12,7 +12,7 @@ public class NPCData : SerializedScriptableObject
 {
     #region Fields
 
-    [FoldoutGroup("character", expanded: true)]
+    [FoldoutGroup("Character", expanded: true)]
     [Tooltip("The character's name")]
     [SerializeField]
     private string character;
@@ -23,10 +23,15 @@ public class NPCData : SerializedScriptableObject
     private Dictionary<int, string[]> dialogues
          = new Dictionary<int, string[]>();
 
-    [FoldoutGroup("Current Dialogue", expanded: true)]
+    [FoldoutGroup("Dialogues", expanded: true)]
     [Tooltip("The index of the dialogue which will load first")]
     [SerializeField]
     private int currentDialogue;
+
+    [FoldoutGroup("Dialogues", expanded: true)]
+    [Tooltip("The character's 'Voice'. Plays on each letter of their dialogue.")]
+    [SerializeField]
+    private AudioClip dialogueBeep;
 
     #endregion Fields
 
@@ -35,6 +40,7 @@ public class NPCData : SerializedScriptableObject
     public string Character { get => character; set => character = value; }
     public Dictionary<int, string[]> Dialogues { get => dialogues; set => dialogues = value; }
     public int CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
+    public AudioClip DialogueBeep { get => dialogueBeep; set => dialogueBeep = value; }
 
     #endregion Properties
 }

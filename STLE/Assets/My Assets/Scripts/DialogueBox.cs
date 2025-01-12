@@ -6,6 +6,8 @@ using GD;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using GD.Items;
+using GD.Audio;
+using GD.Types;
 
 /// <summary>
 /// 
@@ -19,9 +21,14 @@ public class DialogueBox : MonoBehaviour
     [SerializeField]
     private float textWait; // How long to wait between inserting a character.
 
+    [SerializeField]
+    private AudioClip advanceSound; // Plays on advance of dialoguebox
+
     private int index;
     private string[] lines; // Each box of dialogue.
     public bool displayed;
+
+    AudioClip currentVoice;
 
     private void Awake()
     {
@@ -31,6 +38,8 @@ public class DialogueBox : MonoBehaviour
     public void StartDialogue(NPCData data)
     {
         lines = data.Dialogues[data.CurrentDialogue];
+        currentVoice = data.DialogueBeep;
+
 
         index = 0;
 
@@ -42,7 +51,12 @@ public class DialogueBox : MonoBehaviour
     {
         foreach (char c in lines[index].ToCharArray())
         {
+
             textComponent.text += c;
+
+            if (currentVoice != null)
+            AudioManager.Instance.PlaySound(currentVoice, AudioMixerGroupName.Voiceover);
+        
             yield return new WaitForSeconds(textWait);
         }
     }
@@ -51,6 +65,7 @@ public class DialogueBox : MonoBehaviour
     {
         if (textComponent.text == lines[index])
         {
+            AudioManager.Instance.PlaySound(advanceSound, AudioMixerGroupName.UI);
             NextLine();
         }
         else

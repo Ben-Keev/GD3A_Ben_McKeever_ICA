@@ -51,6 +51,8 @@ namespace GD.Audio
 
         private ObjectPool<AudioSource> audioSourcePool;
 
+        private AudioSource lastPlayedMusic;
+
         protected override void Awake()
         {
             base.Awake();
@@ -82,15 +84,29 @@ namespace GD.Audio
             };
         }
 
-        public void PlaySound(AudioClip clip, AudioMixerGroupName groupName, Vector3 position = default)
+        public void PlaySound(AudioClip clip, AudioMixerGroupName groupName, bool music = false, bool loop = false, Vector3 position = default)
         {
             AudioSource audioSource = audioSourcePool.Get();
             audioSource.transform.position = position;
             audioSource.clip = clip;
             audioSource.outputAudioMixerGroup = GetAudioMixerGroup(groupName);
+            audioSource.loop = loop;
+
+            if (music)
+            {
+                if (lastPlayedMusic != null && lastPlayedMusic != audioSource)
+                {
+                    lastPlayedMusic.Stop();
+                    audioSourcePool.ReturnToPool(lastPlayedMusic);
+                }
+
+                lastPlayedMusic = audioSource;
+            }
+
             audioSource.Play();
 
-            StartCoroutine(ReturnAudioSourceAfterPlaying(audioSource));
+            if(!music)
+                StartCoroutine(ReturnAudioSourceAfterPlaying(audioSource));
         }
 
         private IEnumerator ReturnAudioSourceAfterPlaying(AudioSource audioSource)

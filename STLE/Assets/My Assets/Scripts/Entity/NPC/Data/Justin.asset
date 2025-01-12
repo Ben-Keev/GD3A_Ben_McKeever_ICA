@@ -70,3 +70,4 @@ MonoBehaviour:
       Data: 
   character: Justin
   currentDialogue: 0
+  dialogueBeep: {fileID: 8300000, guid: caa23119cb828bb458dc61b7ce9c8de8, type: 3}

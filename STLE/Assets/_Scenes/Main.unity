@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 170292506}
   - component: {fileID: 170292504}
   - component: {fileID: 170292509}
+  - component: {fileID: 170292513}
   m_Layer: 0
   m_Name: Event Manager
   m_TagString: Untagged
@@ -625,6 +626,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: HelperSign, Assembly-CSharp
         m_MethodName: OnFeedbackReceived
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &170292513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170292501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ddd383a0396fc458ffbf018bb57463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Once time is running out play new music
+  Event: {fileID: 11400000, guid: 07bbd82711401584b8225c721239312d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1228432372}
+        m_TargetAssemblyTypeName: GD.State.StateManager, Assembly-CSharp
+        m_MethodName: EnterDangerThreshold
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1076,7 +1106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 340852604}
   m_Layer: 5
-  m_Name: Compost
+  m_Name: Recycle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1461,7 +1491,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 319
+    m_Bits: 447
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -2319,7 +2349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778738551}
   m_Layer: 5
-  m_Name: Recycle
+  m_Name: Compost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2736,6 +2766,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 37d16cf79f38dc1439b967bdf0fc3116, type: 3}
   m_PrefabInstance: {fileID: 1208357666}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &889944836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1770295024}
+    m_Modifications:
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.45876
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426712100923864450, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+      propertyPath: m_Name
+      value: 'Recycle [Parent]'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
 --- !u!1 &943800039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4167,6 +4254,9 @@ MonoBehaviour:
   - I'll give you feedback whenever you chuck something in the bin so check in with
     me!
   stopwatch: {fileID: 11400000, guid: 189e2ae93d3627d4aa2e2d41fb1f4dfe, type: 2}
+  tutorialMusic: {fileID: 8300000, guid: bc1d89d07c4437e4eae417a328386c3b, type: 3}
+  inGameMusic: {fileID: 8300000, guid: 9246397f2aa552745ad42ed4cd3e5930, type: 3}
+  timeRunningOutMusic: {fileID: 8300000, guid: f0bb215ad857c63498d6999b0432b0b5, type: 3}
   achievementConditions:
   - {fileID: 11400000, guid: a127dbff8aae41e478efef07500967e1, type: 2}
 --- !u!1 &1238227627
@@ -5139,24 +5229,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648563068}
   m_CullTransparentMesh: 1
---- !u!1 &1735865462 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
+--- !u!114 &1735865475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6641219156945122410, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
   m_PrefabInstance: {fileID: 488500009508815020}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1735865475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735865462}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b33309c2e00fc2b4e94980b610e2d30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTracker: {fileID: 11400000, guid: d85c8424ebd4dfc4c9ac4401a7c77ab8, type: 2}
 --- !u!1 &1755405475
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,6 +5313,7 @@ Transform:
   m_Children:
   - {fileID: 142801252}
   - {fileID: 1342811316}
+  - {fileID: 2131270528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1770295025
@@ -6052,6 +6136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3dbff6f9d97024ca06173d527bbca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2131270528 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3901533032217915192, guid: 815c2f6bf56fdc64cb11300024e8fd12, type: 3}
+  m_PrefabInstance: {fileID: 889944836}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &488500009508815020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6148,10 +6237,7 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 352320230139204215, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 1735865475}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bd94a43eaa53624fa155b0db60afee6, type: 3}
 --- !u!1001 &2616678862139504830
 PrefabInstance:
@@ -6189,6 +6275,10 @@ PrefabInstance:
       propertyPath: displayed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2765250928347863435, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
+      propertyPath: advanceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3385a641545133f448fd9326cce51735, type: 3}
     - target: {fileID: 3082873845767250586, guid: 707c44baf76b0194e8a51428ab462ef8, type: 3}
       propertyPath: m_Name
       value: DialogueBox

@@ -1,3 +1,4 @@
+using GD.Audio;
 using GD.FSM;
 using GD.Items;
 using GD.Tick;
@@ -78,6 +79,21 @@ namespace GD.State
         [Tooltip("The condition that determines if the player is out of time")]
         private Stopwatch stopwatch;
 
+        [FoldoutGroup("Music")]
+        [SerializeField]
+        [Tooltip("Plays during tutorial")]
+        private AudioClip tutorialMusic;
+
+        [FoldoutGroup("Music")]
+        [SerializeField]
+        [Tooltip("Plays once timer starts")]
+        private AudioClip inGameMusic;
+
+        [FoldoutGroup("Music")]
+        [SerializeField]
+        [Tooltip("Plays when 30s remain")]
+        private AudioClip timeRunningOutMusic;
+
         [FoldoutGroup("Achievements [optional]")]
         [SerializeField]
         [Tooltip("Set of optional conditions related to acheivements")]
@@ -113,6 +129,7 @@ namespace GD.State
             helperSign.NpcData.Dialogues[0] = tutorialText;
 
             stopwatch.TimeLeft = stopwatch.StartingTime;
+            stopwatch.DangerThresholdReached = false;
             stopwatch.TimerOn = false;
         }
 
@@ -122,6 +139,8 @@ namespace GD.State
             itemEmpty.SetActive(enabled);
             binEmpty.SetActive(enabled);
             stopwatch.TimerOn = enabled;
+
+            AudioManager.Instance.PlaySound(inGameMusic, Types.AudioMixerGroupName.Background, true);
         }
 
         private void OnDestroy()
@@ -134,6 +153,8 @@ namespace GD.State
         {
             if (resetAllConditionsOnStart)
                 ResetConditions();
+            
+            AudioManager.Instance.PlaySound(tutorialMusic, Types.AudioMixerGroupName.Background, true);
 
             // Initiates the first cutscene.
             helperSign.GetComponent<NPC>().Interact(gameObject);
@@ -172,6 +193,7 @@ namespace GD.State
                 else if (stopwatch != null && stopwatch.Evaluate(conditionContext))
                 {
                     Debug.Log("Game Ended By Timer Running Out!");
+                    HandleLoss();
                     gameEnded = true;
                 }
 
@@ -187,6 +209,12 @@ namespace GD.State
                     }
                 }
             }
+        }
+
+        // Put any modifications that should happen here for the last 30 seconds of the game
+        public void EnterDangerThreshold()
+        {
+            AudioManager.Instance.PlaySound(timeRunningOutMusic, Types.AudioMixerGroupName.Background, true, false);
         }
 
         /// <summary>
@@ -216,7 +244,7 @@ namespace GD.State
         /// </summary>
         protected virtual void HandleLoss()
         {
-            Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
+            //Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
 
             player.gameObject.GetComponent<FSMController>().enabled = false;
             player.gameObject.GetComponent<PlayerExploreInputHandler>().enabled = false;

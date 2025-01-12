@@ -19,5 +19,6 @@ MonoBehaviour:
   OnConditionMet: {fileID: 0}
   isMet: 0
   timeMet: -1
-  startingTime: 300
-  UiStopwatch: {fileID: 0}
+  startingTime: 60
+  dangerThreshold: 25
+  timeRunningOut: {fileID: 11400000, guid: 07bbd82711401584b8225c721239312d, type: 2}

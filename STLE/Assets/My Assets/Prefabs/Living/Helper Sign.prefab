@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: npcData
       value: 
       objectReference: {fileID: 11400000, guid: 3889e74238f67db44bdf944d70256fdb, type: 2}
+    - target: {fileID: 3823854334518920879, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a221b60ed179fe41a64005de75140ef, type: 3}
     - target: {fileID: 4818978694532600357, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
       propertyPath: m_Name
       value: Helper Sign
@@ -108,6 +112,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4818978694532600357, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
       insertIndex: -1
       addedObject: {fileID: 77279227046579370}
+    - targetCorrespondingSourceObject: {fileID: 4818978694532600357, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9067377560707977926}
   m_SourcePrefab: {fileID: 100100000, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}
 --- !u!1 &5346304682540075283 stripped
 GameObject:
@@ -127,6 +134,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCData: {fileID: 11400000, guid: 3889e74238f67db44bdf944d70256fdb, type: 2}
+--- !u!114 &9067377560707977926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346304682540075283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &7675245430143866195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7084834371532738149, guid: 032c59d88e2fb1c4f93e66bf5c577438, type: 3}

@@ -54,6 +54,7 @@ public class NPC : MonoBehaviour, IInteractable
             //raise the event to notify listeners
             onNPCEvent?.Raise(NpcData);
 
+            if(audioClip != null)
             AudioManager.Instance.PlaySound(audioClip, AudioMixerGroupName.SFX);
 
             // Cycle to the next possible dialogue

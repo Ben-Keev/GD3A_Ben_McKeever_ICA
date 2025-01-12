@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6604192771321767125}
   - component: {fileID: 254416368894412566}
   - component: {fileID: 91946363298104523}
+  - component: {fileID: 6641219156945122410}
   - component: {fileID: 6688072179395770483}
   - component: {fileID: 7341682245892414912}
   - component: {fileID: 4267536943666878964}
@@ -56,6 +57,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   clickEffect: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: 49ec1c4cccd0ca0458b4b60e3404d09f, type: 3}
+  stepRate: 0.3
 --- !u!135 &5494860123813752558
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -156,6 +159,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6641219156945122410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352320230139204215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33309c2e00fc2b4e94980b610e2d30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTracker: {fileID: 11400000, guid: d85c8424ebd4dfc4c9ac4401a7c77ab8, type: 2}
 --- !u!114 &6688072179395770483
 MonoBehaviour:
   m_ObjectHideFlags: 0
