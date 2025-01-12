@@ -18,7 +18,7 @@ namespace GD.State
 
         protected override bool EvaluateCondition(ConditionContext conditionContext)
         {
-            return scoreTracker.Score == threshold;
+            return scoreTracker.Score >= threshold;
         }
     }
 }

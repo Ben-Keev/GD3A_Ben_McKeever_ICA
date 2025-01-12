@@ -144,7 +144,7 @@ namespace GD.Items
                     onTutorialComplete = null;
                 }
 
-                DepositIntoBinInventory(bin.Item2, selectedItem, 1);
+                DepositIntoBinInventory(bin.Item2, selectedItem, selectedItem.Value);
 
                 AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);
 

@@ -25,6 +25,11 @@ namespace GD.Items
         [Tooltip("The type of item")]
         private ItemType itemType;
 
+        [FoldoutGroup("Type & Category")]
+        [SerializeField, EnumPaging]
+        [Tooltip("How many points the item is worth")]
+        private int value;
+
         [FoldoutGroup("UI & Sound", expanded: true)]
         [SerializeField]
         [PreviewField(100, ObjectFieldAlignment.Left)]
@@ -51,6 +56,7 @@ namespace GD.Items
         public Sprite UiIcon { get => uiIcon; set => uiIcon = value; }
         public AudioClip AudioClip { get => audioClip; set => audioClip = value; }
         public Vector3 AudioPosition { get => audioPosition; set => audioPosition = value; }
+        public int Value { get => value; set => this.value = value; }
 
         #endregion Properties
     }
