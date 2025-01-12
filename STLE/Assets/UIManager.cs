@@ -10,6 +10,11 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [FoldoutGroup("Indicators")]
+    [Tooltip("Parent containing all indicators")]
+    [SerializeField]
+    private GameObject indicatorsParent;
+
+    [FoldoutGroup("Indicators")]
     [Tooltip("UI displaying Stopwatch")]
     [SerializeField]
     private TextMeshProUGUI stopwatch;
@@ -34,11 +39,12 @@ public class UIManager : Singleton<UIManager>
     [FoldoutGroup("Feedback")]
     [Tooltip("UI displaying winning screen")]
     [SerializeField]
-    private GameObject feedbackScreen;
+    private GameObject feedbackParent;
 
+    public GameObject IndicatorEmpty { get => indicatorsParent; set => indicatorsParent = value; }
     public TextMeshProUGUI Stopwatch { get => stopwatch; set => stopwatch = value; }
     public TextMeshProUGUI Score { get => score; set => score = value; }
     public Image SelectedInventory { get => selectedInventory; set => selectedInventory = value; }
     public TextMeshProUGUI ItemsLeft { get => itemsLeft; set => itemsLeft = value; }
-    public GameObject FeedbackScreen { get => feedbackScreen; set => feedbackScreen = value; }
+    public GameObject FeedbackScreen { get => feedbackParent; set => feedbackParent = value; }
 }

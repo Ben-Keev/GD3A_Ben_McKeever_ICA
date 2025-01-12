@@ -105,12 +105,12 @@ namespace GD.State
             stopwatch.TimerOn = false;
         }
 
-        public void ExitTutorial()
+        public void ToggleTutorial(bool enabled)
         {
-            inTutorial = false;
-            itemEmpty.SetActive(true);
-            binEmpty.SetActive(true);
-            stopwatch.TimerOn = true;
+            inTutorial = !enabled;
+            itemEmpty.SetActive(enabled);
+            binEmpty.SetActive(enabled);
+            stopwatch.TimerOn = enabled;
         }
 
         private void OnDestroy()

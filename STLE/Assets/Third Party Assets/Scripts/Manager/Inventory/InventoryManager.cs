@@ -45,6 +45,11 @@ namespace GD.Items
         [Tooltip("All possible items")]
         private ItemData[] possibleItems = new ItemData[3];
 
+        [FoldoutGroup("Tutorial")]
+        [SerializeField]
+        [Tooltip("Event to end tutorial")]
+        private BoolGameEvent onTutorialComplete;
+
         [FoldoutGroup("Sound", expanded: true)]
         [SerializeField]
         [Tooltip("The audio clip that represents absence of an item")]
@@ -132,6 +137,13 @@ namespace GD.Items
             }
             else
             {
+                // Raise the event only once
+                if(onTutorialComplete != null)
+                {
+                    onTutorialComplete.Raise(true);
+                    onTutorialComplete = null;
+                }
+
                 DepositIntoBinInventory(bin.Item2, selectedItem, 1);
 
                 AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);

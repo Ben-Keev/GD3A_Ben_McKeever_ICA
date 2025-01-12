@@ -20,10 +20,6 @@ public class Bin : MonoBehaviour, IInteractable
     [Tooltip("The event raised when NPC is interacted with")]
     private BinGameEvent onBinEvent;
 
-    [SerializeField]
-    [Tooltip("The event raised once tutorial is completed (Only for first bin)")]
-    private GameEvent onCompleteTutorial;
-
     public bool interactible;
 
     private void Awake()
@@ -46,13 +42,6 @@ public class Bin : MonoBehaviour, IInteractable
 
             //raise the event to notify listeners
             onBinEvent?.Raise(eventData);
-
-            if(onCompleteTutorial != null) // This bin must be the tutorial bin
-            {
-                onCompleteTutorial?.Raise();
-                onCompleteTutorial = null; // The event will only be raised once
-            }
-
         }
     }
 
