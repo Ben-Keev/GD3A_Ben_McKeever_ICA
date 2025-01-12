@@ -2,7 +2,10 @@
 using GD.Events;
 using GD.Types;
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.WSA;
+using Random = UnityEngine.Random;
 
 namespace GD.Items
 {
@@ -50,7 +53,13 @@ namespace GD.Items
 
                 // Don't destroy object as want to preserve gameObject transform for particles
                 // make item invisible and uninteractible
-                gameObject.SetActive(false);
+
+                UpdateActivation(false);
+
+                // Tutorial items will not respawn.
+                // Prevents grinding in the tutorial to cheat.
+                if (gameObject.name != "Tutorial")
+                    StartCoroutine(RespawnAfterTime());
             }
         }
 
@@ -68,6 +77,21 @@ namespace GD.Items
         public void OnDehover()
         {
             GetComponent<Outline>().enabled = false;
+        }
+
+        // Activates or disactivates the item by making it invisible
+        private void UpdateActivation(bool activated)
+        {
+            interactible = activated;
+            transform.GetChild(0).gameObject.SetActive(activated);
+        }
+
+        IEnumerator RespawnAfterTime()
+        {
+            // More valuable items take longer to respawn
+            yield return new WaitForSeconds(Random.Range(2.0f + itemData.Value, 10.0f + itemData.Value * 2));
+
+            UpdateActivation(true);
         }
     }
 }
