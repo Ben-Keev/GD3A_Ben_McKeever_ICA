@@ -10,6 +10,7 @@ public class ScoreTracker : ScriptableObject
     private int score;
 
     // Saved between sessions
+    [SerializeField]
     private int highScore;
 
     public int Score { get => score; set => score = value; }

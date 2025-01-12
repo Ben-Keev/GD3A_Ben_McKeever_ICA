@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4336f34f91556c646baa5a996ca97979, type: 3}
   m_Name: TrashItemData
   m_EditorClassIdentifier: 
-  name: Trash
+  name: Plastic Bags
   description: 
   itemCategory: 0
   itemType: 0
+  value: 1
   uiIcon: {fileID: 21300000, guid: 7084539383f19184da9cf1382189052d, type: 3}
   audioClip: {fileID: 8300000, guid: 557df59d7a3a14d419ab2aabc74ad11d, type: 3}
   audioPosition: {x: 0, y: 0, z: 0}

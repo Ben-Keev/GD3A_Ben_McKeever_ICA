@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b8421b11ee6c84580fdce6166811d7, type: 3}
   m_Name: Player Score
   m_EditorClassIdentifier: 
-  score: 0
-  lifetimeTrashCollected: 0
-  lifetimeRecyclableCollected: 0
-  lifetimeCompostableCollected: 0
+  score: 6
+  highScore: 6

@@ -37,6 +37,11 @@ public class UIManager : Singleton<UIManager>
     private TextMeshProUGUI itemsLeft;
 
     [FoldoutGroup("Feedback")]
+    [Tooltip("New High Score! Text")]
+    [SerializeField]
+    private TextMeshProUGUI newHighScore;
+
+    [FoldoutGroup("Feedback")]
     [Tooltip("UI displaying winning screen")]
     [SerializeField]
     private GameObject feedbackParent;
@@ -47,4 +52,5 @@ public class UIManager : Singleton<UIManager>
     public Image SelectedInventory { get => selectedInventory; set => selectedInventory = value; }
     public TextMeshProUGUI ItemsLeft { get => itemsLeft; set => itemsLeft = value; }
     public GameObject FeedbackScreen { get => feedbackParent; set => feedbackParent = value; }
+    public TextMeshProUGUI NewHighScore { get => newHighScore; set => newHighScore = value; }
 }

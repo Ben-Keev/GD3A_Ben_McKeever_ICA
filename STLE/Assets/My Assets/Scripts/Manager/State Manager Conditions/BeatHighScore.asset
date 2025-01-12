@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e8787651425374f948faec217496a1, type: 3}
-  m_Name: WinningScore
+  m_Script: {fileID: 11500000, guid: e3f77f443aa48cc43819938bc4d3fdab, type: 3}
+  m_Name: BeatHighScore
   m_EditorClassIdentifier: 
-  name: ScoreHitThreshold
+  name: BeatHighScore
   description: 
   evaluateStrategy: 1
-  priorityLevel: 1
+  priorityLevel: 3
   OnConditionMet: {fileID: 0}
   isMet: 1
-  timeMet: 14.438481
+  timeMet: 11.427733
   scoreTracker: {fileID: 11400000, guid: d85c8424ebd4dfc4c9ac4401a7c77ab8, type: 2}
-  threshold: 5

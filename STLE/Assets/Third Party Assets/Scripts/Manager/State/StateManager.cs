@@ -167,7 +167,8 @@ namespace GD.State
                 {
                     if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
                     {
-                        //do something
+                        if(achievmentCondition.Name == "BeatHighScore")
+                            UIManager.Instance.NewHighScore.enabled = true;
                     }
                 }
             }
