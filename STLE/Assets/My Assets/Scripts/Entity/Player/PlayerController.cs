@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float stepRate;
 
-
     private NavMeshAgent agent;
     private Animator animator;
-    private bool moving;
+    private bool navMeshMovement;
+    private bool playerMoving;
 
     private float stepCoolDown;
 
@@ -35,7 +35,22 @@ public class PlayerController : MonoBehaviour
         animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public void StartMoving(InputAction.CallbackContext context)
+    {
+        playerMoving = true;
+    }
+
+    public void StopMoving()
+    {
+        playerMoving = false;
+    }
+
+    public void StopMoving(InputAction.CallbackContext context)
+    {
+        playerMoving = false;
+    }
+
+    public void Move()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, terrainLayer))
@@ -50,41 +65,43 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void FootStep()
+    {
+        // https://www.reddit.com/r/Unity3D/comments/2s3iub/good_footstep_tutorials/
+        // Footsteps
+        stepCoolDown -= Time.deltaTime;
+        if (navMeshMovement && stepCoolDown < 0f)
+        {
+            AudioManager.Instance.PlaySound(footstepSound, AudioMixerGroupName.SFX);
+            stepCoolDown = stepRate;
+        }
+    }
+
+    private void FaceTrajectory()
+    {
+        // Flip y based on dirction of X, as indicated by its sign.
+
+        Vector3 direction = (agent.destination - transform.position).normalized;
+
+        if (direction.x > 0)
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        else if (direction.x < 0)
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+    }
+
     //https://www.youtube.com/watch?v=LVu3_IVCzys
     // Animation
 
     private void Update()
     {
-        moving = agent.velocity.magnitude > 0.1f;
+        navMeshMovement = agent.velocity.magnitude > 0.1f;
 
         animator.SetBool("isRun", agent.velocity.magnitude > 0.1f);
+        FootStep();
 
-        // https://www.reddit.com/r/Unity3D/comments/2s3iub/good_footstep_tutorials/
-        // Footsteps
-        stepCoolDown -= Time.deltaTime;
-        if (moving && stepCoolDown < 0f)
-        {
-            AudioManager.Instance.PlaySound(footstepSound, AudioMixerGroupName.SFX);
-            stepCoolDown = stepRate;
-        }
+        if (playerMoving)
+            Move();
 
-        Vector3 direction = (agent.destination - transform.position).normalized;
-
-        if(direction.x > 0)
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        else if (direction.x < 0)
-            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            // Flip y based on dirction of X, as indicated by its sign.
-        }
-
-    //IEnumerator FootstepSound()
-    //{
-    //    if(footstepSound != null)
-    //    {
-    //        Debug.Log("Playing it");
-    //        AudioManager.Instance.PlaySound(footstepSound, AudioMixerGroupName.SFX);
-    //    }
-
-    //    yield return new WaitForSeconds(0.4f);
-    //}
+        FaceTrajectory();
+    }
 }

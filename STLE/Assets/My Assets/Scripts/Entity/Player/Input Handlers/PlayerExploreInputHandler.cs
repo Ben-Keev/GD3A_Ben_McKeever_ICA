@@ -37,7 +37,8 @@ public class PlayerExploreInputHandler : PlayerInputHandler
     void OnEnable()
     {
         actionMap.Enable();
-        move.performed += controller.Move;
+        move.performed += controller.StartMoving;
+        move.canceled += controller.StopMoving;
         cycleUp.performed += inventoryManager.CycleInventoryUp;
         cycleDown.performed += inventoryManager.CycleInventoryDown;
     }
@@ -45,7 +46,10 @@ public class PlayerExploreInputHandler : PlayerInputHandler
     private void OnDisable()
     {
         actionMap.Disable();
-        move.performed -= controller.Move;
+
+        controller.StopMoving();
+
+        move.performed -= controller.StartMoving;
         cycleUp.performed -= inventoryManager.CycleInventoryUp;
         cycleDown.performed -= inventoryManager.CycleInventoryDown;
     }
