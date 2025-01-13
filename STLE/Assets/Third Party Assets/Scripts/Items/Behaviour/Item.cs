@@ -41,7 +41,6 @@ namespace GD.Items
         /// <param name="interactor">Reference to interactor object</param>
         public void Interact(GameObject interactor)
         {
-            Debug.Log(interactible);
 
             if (interactible)
             {
@@ -90,7 +89,7 @@ namespace GD.Items
 
             string layer = activated ? "Item" : "Ignore Raycast";
 
-            Debug.Log(layer);
+            //Debug.Log(layer);
 
             gameObject.layer =  LayerMask.NameToLayer(layer); // Fix a bug where the item is STILL selectable when using "move" as input.
         }
@@ -109,7 +108,7 @@ namespace GD.Items
 
             yield return new WaitUntil(timeEqual);
 
-            Debug.Log(interactible);
+            //Debug.Log(interactible);
 
             UpdateActivation(true);
         }

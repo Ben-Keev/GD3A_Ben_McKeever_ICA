@@ -131,7 +131,8 @@ namespace GD.State
             binEmpty.SetActive(false);
             itemEmpty.SetActive(false);
 
-            helperSign.NpcData.Dialogues[0] = tutorialText;
+            helperSign.NpcData.Dialogues.Clear();
+            helperSign.NpcData.Dialogues.AddFirst(tutorialText);
 
             stopwatch.TimeLeft = stopwatch.StartingTime;
             stopwatch.DangerThresholdReached = false;
@@ -221,7 +222,8 @@ namespace GD.State
         {
             AudioManager.Instance.PlaySound(timeRunningOutMusic, Types.AudioMixerGroupName.Background, true, false);
 
-            helperSign.NpcData.Dialogues[0] = dangerText;
+            helperSign.NpcData.Dialogues.Clear();
+            helperSign.NpcData.Dialogues.AddFirst(dangerText);
             // Initiates the first cutscene.
             helperSign.GetComponent<NPC>().Interact(gameObject);
         }

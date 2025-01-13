@@ -1,6 +1,7 @@
 ﻿using GD.Items;
 using GD.Types;
 using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,13 +21,12 @@ public class NPCData : SerializedScriptableObject
     [FoldoutGroup("Dialogues", expanded: true)]
     [Tooltip("Each dialogue said by the player, cycled through via int")]
     [SerializeField]
-    private Dictionary<int, string[]> dialogues
-         = new Dictionary<int, string[]>();
+    private LinkedList<string[]> dialogues
+     = new LinkedList<string[]>();
 
     [FoldoutGroup("Dialogues", expanded: true)]
     [Tooltip("The index of the dialogue which will load first")]
-    [SerializeField]
-    private int currentDialogue;
+    private LinkedListNode<string[]> currentDialogue;
 
     [FoldoutGroup("Dialogues", expanded: true)]
     [Tooltip("The character's 'Voice'. Plays on each letter of their dialogue.")]
@@ -38,9 +38,17 @@ public class NPCData : SerializedScriptableObject
     #region Properties
 
     public string Character { get => character; set => character = value; }
-    public Dictionary<int, string[]> Dialogues { get => dialogues; set => dialogues = value; }
-    public int CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
+
+    public LinkedListNode<string[]> CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
     public AudioClip DialogueBeep { get => dialogueBeep; set => dialogueBeep = value; }
+    public LinkedList<string[]> Dialogues { get => dialogues; set => dialogues = value; }
 
     #endregion Properties
+
+    public void OverwriteDialogue(string[] dialogue)
+    {
+        dialogues.Clear();
+        Dialogues.AddFirst(dialogue);
+        currentDialogue = dialogues.First;
+    }
 }

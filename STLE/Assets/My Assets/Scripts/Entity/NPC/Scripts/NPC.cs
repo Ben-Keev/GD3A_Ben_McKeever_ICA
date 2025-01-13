@@ -4,6 +4,7 @@ using GD.Items;
 using GD.Audio;
 using GD.Types;
 using Sirenix.OdinInspector;
+using System.Xml.Linq;
 
 /// <summary>
 /// Represents an item that can be consumed by a game object on the correct layer
@@ -40,7 +41,10 @@ public class NPC : MonoBehaviour, IInteractable
         interactible = true;
 
         // Reset dialogue
-        NpcData.CurrentDialogue = 0;
+
+        if (NpcData.Dialogues.Count != 0)
+            NpcData.CurrentDialogue = NpcData.Dialogues.First;
+
     }
 
     /// <summary>
@@ -66,7 +70,7 @@ public class NPC : MonoBehaviour, IInteractable
                 playerAnim.SetTrigger("attack");
 
             // Cycle to the next possible dialogue
-            cycleDialogue();
+            CycleDialogue();
         }
     }
 
@@ -75,11 +79,13 @@ public class NPC : MonoBehaviour, IInteractable
         this.interactible = interactible;
     }
 
-    private void cycleDialogue()
+    private void CycleDialogue()
     {
-        if (NpcData.CurrentDialogue < NpcData.Dialogues.Count-1)
-            NpcData.CurrentDialogue++;
+        if (NpcData.CurrentDialogue != NpcData.Dialogues.Last)
+            NpcData.CurrentDialogue = NpcData.CurrentDialogue.Next;
     }
+
+
 
     public void OnHover()
     {

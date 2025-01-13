@@ -23,25 +23,30 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dialogues
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String[],
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0|System.Collections.Generic.LinkedList`1[[System.String[], mscorlib]],
+        System
     - Name: 
       Entry: 12
       Data: 3
     - Name: 
       Entry: 7
+      Data: 1|System.String[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: This is the kitchen.
+    - Name: 
+      Entry: 1
+      Data: You'll mainly find compostable rubbish here.
+    - Name: 
+      Entry: 13
       Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 7
       Data: 2|System.String[], mscorlib
     - Name: 
@@ -49,10 +54,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 1
-      Data: This is the Kitchen.
+      Data: There's a lot of leftover fruit lying around
     - Name: 
       Entry: 1
-      Data: You'll mainly find *compostable* rubbish here
+      Data: Make sure you clean your kitchen at home!
     - Name: 
       Entry: 13
       Data: 
@@ -60,15 +65,6 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
       Entry: 7
       Data: 3|System.String[], mscorlib
     - Name: 
@@ -76,42 +72,12 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 1
-      Data: There's a lot of leftover fruit lying around.
+      Data: The other tip signs like to gossip about the locations of rubbish.
     - Name: 
       Entry: 1
-      Data: Make sure you clean up your kitchen at home!
+      Data: They haven't found out I hid paper behind the bookcase yet.
     - Name: 
       Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 7
-      Data: 4|System.String[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 1
-      Data: The other tip signs like to gossip about where you can find rubbish.
-    - Name: 
-      Entry: 1
-      Data: They'll never suspect that I hid paper behind the bookcases.
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: 
       Entry: 8
@@ -123,5 +89,4 @@ MonoBehaviour:
       Entry: 8
       Data: 
   character: Tippster
-  currentDialogue: 0
   dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}

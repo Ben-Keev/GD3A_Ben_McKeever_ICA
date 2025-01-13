@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c9b7a95de8f7e4a904ea9503faa6bb, type: 3}
-  m_Name: Library
+  m_Name: Hangry
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -27,40 +27,16 @@ MonoBehaviour:
         System
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 1|System.String[], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 1
-      Data: This is the library!
-    - Name: 
-      Entry: 1
-      Data: Students come here to read.
-    - Name: 
-      Entry: 1
-      Data: There's paper strewn about the place.
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|System.String[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 1
-      Data: Not all rubbish is visible. Check behind other objects.
-    - Name: 
-      Entry: 1
-      Data: There's rubbish in a cardboard box somewhere...
+      Data: '*munch* *munch* there''s more where that came from.'
     - Name: 
       Entry: 13
       Data: 
@@ -73,5 +49,5 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  character: Tippwell
-  dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}
+  character: Hangry
+  dialogueBeep: {fileID: 8300000, guid: d22bfb69fb5e2384f9acae55797bd619, type: 3}

@@ -23,40 +23,30 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dialogues
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String[],
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 2|System.String[], mscorlib
+      Data: 0|System.Collections.Generic.LinkedList`1[[System.String[], mscorlib]],
+        System
     - Name: 
       Entry: 12
       Data: 3
     - Name: 
+      Entry: 7
+      Data: 1|System.String[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
       Entry: 1
-      Data: You must have met my colleague the "Helper" sign.
+      Data: You must've met my colleague the "Helper" sign.
     - Name: 
       Entry: 1
       Data: I'm a "Tip" sign. Much more helpful if you ask me.
     - Name: 
       Entry: 1
-      Data: I'll tell you more about your current area and give you good tips to
-        win.
+      Data: I'll tell you about your current area and give you EX-clusive tips.
+    - Name: 
+      Entry: 1
+      Data: 'Here''s a free tip: the timer pauses when you talk to NPCs. Don''t stress
+        if you''re in a rush.'
     - Name: 
       Entry: 13
       Data: 
@@ -64,17 +54,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 3|System.String[], mscorlib
+      Data: 2|System.String[], mscorlib
     - Name: 
       Entry: 12
       Data: 2
@@ -83,8 +64,8 @@ MonoBehaviour:
       Data: This is the learning area.
     - Name: 
       Entry: 1
-      Data: There are lots of students here. Talk to them and you might learn somehting
-        new!
+      Data: Students come here to learn. Talk to them and you might learn something,
+        too!
     - Name: 
       Entry: 13
       Data: 
@@ -92,57 +73,17 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 7
-      Data: 4|System.String[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 1
-      Data: Why are you in a rush to stop talking? The countdown pauses while you're
-        talking to other NPCs.
-    - Name: 
-      Entry: 1
-      Data: If you're running out of time it may be better to keep going though.
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 3
-    - Name: $v
-      Entry: 7
-      Data: 5|System.String[], mscorlib
+      Data: 3|System.String[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 1
-      Data: At the end of the game you'll be assigned a grade based on your score.
-        So do your best!
+      Data: One of those kids was talking about a grade. Score lots of points to
+        get a good grade.
     - Name: 
       Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: 
       Entry: 8
@@ -154,5 +95,4 @@ MonoBehaviour:
       Entry: 8
       Data: 
   character: Tippi
-  currentDialogue: 1
   dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}

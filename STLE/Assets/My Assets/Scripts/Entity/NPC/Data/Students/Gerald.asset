@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c9b7a95de8f7e4a904ea9503faa6bb, type: 3}
-  m_Name: Justin
+  m_Name: Gerald
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,36 +23,27 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dialogues
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String[],
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0|System.Collections.Generic.LinkedList`1[[System.String[], mscorlib]],
+        System
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 2|System.String[], mscorlib
+      Data: 1|System.String[], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 1
-      Data: Jeremy is so silly
+      Data: Gross, someone left their leftovers here.
     - Name: 
       Entry: 1
-      Data: Like who reads dictionaries nowadays?
+      Data: Did you know that in Ireland over one million tonnes of food is wasted
+        annually?
+    - Name: 
+      Entry: 1
+      Data: https://www.sustainabletourismnetwork.ie/6-facts-food-waste-ireland/
     - Name: 
       Entry: 13
       Data: 
@@ -60,14 +51,10 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  character: Justin
-  currentDialogue: 0
-  dialogueBeep: {fileID: 8300000, guid: caa23119cb828bb458dc61b7ce9c8de8, type: 3}
+  character: Gerald
+  dialogueBeep: {fileID: 8300000, guid: d22bfb69fb5e2384f9acae55797bd619, type: 3}

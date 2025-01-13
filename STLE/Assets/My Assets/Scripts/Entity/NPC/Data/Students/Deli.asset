@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c9b7a95de8f7e4a904ea9503faa6bb, type: 3}
-  m_Name: Library
+  m_Name: Deli
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -36,13 +36,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 1
-      Data: This is the library!
+      Data: Cars are quite bad for the environment.
     - Name: 
       Entry: 1
-      Data: Students come here to read.
+      Data: Electric cars are better.
     - Name: 
       Entry: 1
-      Data: There's paper strewn about the place.
+      Data: But toy cars are the best...
     - Name: 
       Entry: 13
       Data: 
@@ -54,13 +54,16 @@ MonoBehaviour:
       Data: 2|System.String[], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 1
-      Data: Not all rubbish is visible. Check behind other objects.
+      Data: Plastic? What's wrong with plastic?
     - Name: 
       Entry: 1
-      Data: There's rubbish in a cardboard box somewhere...
+      Data: Fine they're bad for the environment, but they're good for my mood.
+    - Name: 
+      Entry: 1
+      Data: Hopefully we come up with a more renewable material.
     - Name: 
       Entry: 13
       Data: 
@@ -73,5 +76,5 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  character: Tippwell
-  dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}
+  character: Deli
+  dialogueBeep: {fileID: 8300000, guid: d22bfb69fb5e2384f9acae55797bd619, type: 3}

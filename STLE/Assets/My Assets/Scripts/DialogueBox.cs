@@ -17,7 +17,10 @@ using UnityEditor;
 public class DialogueBox : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI textComponent; // Textcomponent where text will be displayed
+    private TextMeshProUGUI dialogueTextComponent; // Textcomponent where text will be displayed
+
+    [SerializeField]
+    private TextMeshProUGUI nameTextComponent; // Textcomponent where text will be displayed
 
     [SerializeField]
     private float textWait; // How long to wait between inserting a character.
@@ -38,8 +41,10 @@ public class DialogueBox : MonoBehaviour
 
     public void StartDialogue(NPCData data)
     {
-        lines = data.Dialogues[data.CurrentDialogue];
+        lines = data.CurrentDialogue.Value;
         currentVoice = data.DialogueBeep;
+
+        nameTextComponent.text = data.Character;
 
         index = 0;
 
@@ -52,7 +57,7 @@ public class DialogueBox : MonoBehaviour
         foreach (char c in lines[index].ToCharArray())
         {
 
-            textComponent.text += c;
+            dialogueTextComponent.text += c;
 
             if (currentVoice != null)
             AudioManager.Instance.PlaySound(currentVoice, AudioMixerGroupName.Voiceover);
@@ -63,7 +68,7 @@ public class DialogueBox : MonoBehaviour
 
     public void AdvanceDialogue(InputAction.CallbackContext context)
     {
-        if (textComponent.text == lines[index])
+        if (dialogueTextComponent.text == lines[index])
         {
             AudioManager.Instance.PlaySound(advanceSound, AudioMixerGroupName.UI);
             NextLine();
@@ -71,7 +76,7 @@ public class DialogueBox : MonoBehaviour
         else
         {
             StopAllCoroutines();
-            textComponent.text = lines[index];
+            dialogueTextComponent.text = lines[index];
         }
     }
 
@@ -80,14 +85,14 @@ public class DialogueBox : MonoBehaviour
         if (index < lines.Length - 1)
         {
             index++;
-            textComponent.text = string.Empty;
+            dialogueTextComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
 
         else // All the dialogue has been read
         {
             DisplayDialogue(false);
-            textComponent.text = string.Empty; // Empty the dialogue
+            dialogueTextComponent.text = string.Empty; // Empty the dialogue
         }
     }
 
@@ -95,7 +100,8 @@ public class DialogueBox : MonoBehaviour
     {
         displayed = isDisplayed;
         GetComponent<Image>().enabled = isDisplayed;
-        textComponent.GetComponent<TMP_Text>().enabled = isDisplayed;
-        //Debug.Log("Visibility: " + isDisplayed);
+        transform.GetChild(1).GetComponent<Image>().enabled = isDisplayed;
+        dialogueTextComponent.enabled = isDisplayed;
+        nameTextComponent.enabled = isDisplayed;
     }
 }

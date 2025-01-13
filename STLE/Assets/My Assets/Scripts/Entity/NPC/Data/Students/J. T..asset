@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c9b7a95de8f7e4a904ea9503faa6bb, type: 3}
-  m_Name: Library
+  m_Name: J. T.
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -27,7 +27,7 @@ MonoBehaviour:
         System
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 1|System.String[], mscorlib
@@ -36,13 +36,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 1
-      Data: This is the library!
+      Data: I bet you don't recycle your foil.
     - Name: 
       Entry: 1
-      Data: Students come here to read.
+      Data: Even though it's as easy as removing the food waste and scrunching it.
     - Name: 
       Entry: 1
-      Data: There's paper strewn about the place.
+      Data: https://www.recyclenow.com/how-to-recycle/recycle-more-no-effort
     - Name: 
       Entry: 13
       Data: 
@@ -57,10 +57,26 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 1
-      Data: Not all rubbish is visible. Check behind other objects.
+      Data: I bet you didn't know there's an online lookup tool to check whether
+        something's recyclable.
     - Name: 
       Entry: 1
-      Data: There's rubbish in a cardboard box somewhere...
+      Data: https://www.recyclenow.com/how-to-recycle/recycle-more-no-effort
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|System.String[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: Do you even recycle bro?
     - Name: 
       Entry: 13
       Data: 
@@ -73,5 +89,5 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  character: Tippwell
-  dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}
+  character: J. T.
+  dialogueBeep: {fileID: 8300000, guid: caa23119cb828bb458dc61b7ce9c8de8, type: 3}

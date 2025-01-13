@@ -23,27 +23,14 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dialogues
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String[],
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0|System.Collections.Generic.LinkedList`1[[System.String[], mscorlib]],
+        System
     - Name: 
       Entry: 12
       Data: 3
     - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 2|System.String[], mscorlib
+      Data: 1|System.String[], mscorlib
     - Name: 
       Entry: 12
       Data: 2
@@ -52,7 +39,8 @@ MonoBehaviour:
       Data: This is the play area.
     - Name: 
       Entry: 1
-      Data: Don't worry about picking up the toys.
+      Data: Don't worry about picking up the toys. It's a mess, but you'll probably
+        want to keep them out of the bin.
     - Name: 
       Entry: 13
       Data: 
@@ -60,17 +48,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 3|System.String[], mscorlib
+      Data: 2|System.String[], mscorlib
     - Name: 
       Entry: 12
       Data: 2
@@ -79,7 +58,8 @@ MonoBehaviour:
       Data: There aren't many bins here but there's plenty of rubbish.
     - Name: 
       Entry: 1
-      Data: You'll get more points for disposing of paper than trash!
+      Data: Disposing of paper gives you more points than disposing trash. But paper
+        is harder to find.
     - Name: 
       Entry: 13
       Data: 
@@ -87,28 +67,17 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 7
-      Data: 4|System.String[], mscorlib
+      Data: 3|System.String[], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 1
-      Data: The teacher is hiding something under their desk...
+      Data: Word is the teacher's desk is filthy. I can't see any dirt though. Are
+        they hiding it somewhere?
     - Name: 
       Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: 
       Entry: 8
@@ -120,5 +89,4 @@ MonoBehaviour:
       Entry: 8
       Data: 
   character: Tepid
-  currentDialogue: 1
   dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}

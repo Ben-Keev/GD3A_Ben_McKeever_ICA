@@ -54,8 +54,7 @@ public class HelperSign : MonoBehaviour
             dialogues[1] = $"I didn't even realise it was possible to put {actual.Name} into {expected.ToString()}";
 
         // Overwrite previous date to avoid needless use of storage.
-        NPCData.CurrentDialogue = 0;
-        NPCData.Dialogues[0] = dialogues;
+        NPCData.OverwriteDialogue(dialogues);
     }
     private void DisplayFeedback(FeedbackType feedback)
     {

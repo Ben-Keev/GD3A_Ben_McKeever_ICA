@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c9b7a95de8f7e4a904ea9503faa6bb, type: 3}
-  m_Name: Library
+  m_Name: Kocher
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -36,13 +36,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 1
-      Data: This is the library!
+      Data: Good hygeine is crucial in the kitchen.
     - Name: 
       Entry: 1
-      Data: Students come here to read.
+      Data: Remove rings and wash your hands before cooking.
     - Name: 
       Entry: 1
-      Data: There's paper strewn about the place.
+      Data: Oh and, get rid of all this trash please!
     - Name: 
       Entry: 13
       Data: 
@@ -57,10 +57,11 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 1
-      Data: Not all rubbish is visible. Check behind other objects.
+      Data: Did you know that sponges can survive on a sponge for two days as it
+        dries?
     - Name: 
       Entry: 1
-      Data: There's rubbish in a cardboard box somewhere...
+      Data: So seriously, don't leave rubbish around your kitchen.
     - Name: 
       Entry: 13
       Data: 
@@ -73,5 +74,5 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  character: Tippwell
-  dialogueBeep: {fileID: 8300000, guid: 3210e08253c033a47bf99f6e560dfcf6, type: 3}
+  character: Kocher
+  dialogueBeep: {fileID: 8300000, guid: caa23119cb828bb458dc61b7ce9c8de8, type: 3}
