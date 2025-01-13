@@ -53,10 +53,10 @@ public class DisplayWinScreen : MonoBehaviour
     {
         switch (score)
         {
-            case >= 200:
+            case >= 300:
                 AudioManager.Instance.PlaySound(fanfares[0], AudioMixerGroupName.Background, true, true);
                 return "A++";
-            case >= 175:
+            case >= 225:
                 AudioManager.Instance.PlaySound(fanfares[0], AudioMixerGroupName.Background, true, true);
                 return "A+";
             case >= 150:

@@ -94,7 +94,10 @@ public class PlayerController : MonoBehaviour
     public void ChangeSpeed(int difference)
     {
         agent.speed += difference/ 16.0f;
-        stepRate += difference / 16.0f;
+        stepRate -= difference / Mathf.Pow(12.0f, 2.0f);
+
+        if (stepRate < 0.2f)
+            stepRate = 0.2f;
     }
 
     //https://www.youtube.com/watch?v=LVu3_IVCzys

@@ -41,6 +41,8 @@ namespace GD.Items
         /// <param name="interactor">Reference to interactor object</param>
         public void Interact(GameObject interactor)
         {
+            Debug.Log(interactible);
+
             if (interactible)
             {
                 //raise the event to notify listeners
@@ -85,6 +87,12 @@ namespace GD.Items
         {
             interactible = activated;
             transform.GetChild(0).gameObject.SetActive(activated);
+
+            string layer = activated ? "Item" : "Ignore Raycast";
+
+            Debug.Log(layer);
+
+            gameObject.layer =  LayerMask.NameToLayer(layer); // Fix a bug where the item is STILL selectable when using "move" as input.
         }
 
         IEnumerator RespawnAfterTime(Stopwatch stopwatch)
@@ -100,6 +108,8 @@ namespace GD.Items
             Func<bool> timeEqual = () => stopwatch.TimeLeft <= threshold;
 
             yield return new WaitUntil(timeEqual);
+
+            Debug.Log(interactible);
 
             UpdateActivation(true);
         }
