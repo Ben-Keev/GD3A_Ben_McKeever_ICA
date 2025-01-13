@@ -15,14 +15,17 @@ namespace GD.Selection
 
             if (player.GetComponent<FSMController>().currentState.name == "Explore") // Player can interact
             {
-                currentTransform.GetComponent<IInteractable>().OnHover();
-
-                //Debug.Log(currentTransform.gameObject.name);
-
-                if (player.GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
+                if (currentTransform.GetComponent<IInteractable>() is IInteractable interactable)
                 {
-                    currentTransform.GetComponent<IInteractable>().Interact(player);
+                    interactable.OnHover();
+
+                    if (player.GetComponent<PlayerExploreInputHandler>().move.WasPressedThisFrame() && currentTransform.GetComponent<Item>() is Item item)
+                        item.Interact(player);
+
+                    if (player.GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
+                        interactable.Interact(player);
                 }
+
             }
         }
 

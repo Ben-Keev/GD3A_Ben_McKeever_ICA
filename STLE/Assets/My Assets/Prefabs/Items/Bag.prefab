@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1452499033576286840, guid: d5088bd8bfb6f4443847afecc4c3fd70, type: 3}
       propertyPath: m_Name
-      value: Trash
+      value: Bag
       objectReference: {fileID: 0}
     - target: {fileID: 2261792727234113730, guid: d5088bd8bfb6f4443847afecc4c3fd70, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59,6 +59,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8092515304983996972, guid: d5088bd8bfb6f4443847afecc4c3fd70, type: 3}
+    - {fileID: 3713508848240941250, guid: d5088bd8bfb6f4443847afecc4c3fd70, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2261792727234113730, guid: d5088bd8bfb6f4443847afecc4c3fd70, type: 3}
       insertIndex: -1

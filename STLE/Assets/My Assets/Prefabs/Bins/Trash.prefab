@@ -58,12 +58,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434477933688520730, guid: ef6e879144062e949b7156a48490150b, type: 3}
       propertyPath: m_Name
-      value: Bin Variant
+      value: Trash
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792925579350382683, guid: ef6e879144062e949b7156a48490150b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792925579350382683, guid: ef6e879144062e949b7156a48490150b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792925579350382683, guid: ef6e879144062e949b7156a48490150b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7696380934529736349, guid: ef6e879144062e949b7156a48490150b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: dac79898f217ce44dba54d7971fa8cfc, type: 2}
+      objectReference: {fileID: 2100000, guid: 1c57a2c9185b25d4f8a4b442f6f9ec35, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

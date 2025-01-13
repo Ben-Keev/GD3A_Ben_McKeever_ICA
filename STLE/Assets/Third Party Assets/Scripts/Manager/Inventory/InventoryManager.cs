@@ -174,7 +174,7 @@ namespace GD.Items
 
         private void DepositIntoBinInventory(BinData bin, ItemData item, int score, int itemQuantity = 1)
         {
-            onScoreEvent?.Raise(score);
+            onScoreEvent?.Raise(score * itemQuantity);
             inventoryCollection.Get((ItemCategoryType)selectedInventory).Remove(item, itemQuantity);
             bin.BinContents.Add(item, itemQuantity);
         }

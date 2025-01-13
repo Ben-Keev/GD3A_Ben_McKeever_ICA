@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float stepRate;
 
+    private float speed;
+
     private NavMeshAgent agent;
     private Animator animator;
     private bool navMeshMovement;
@@ -87,6 +89,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         else if (direction.x < 0)
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+    }
+
+    public void ChangeSpeed(int difference)
+    {
+        agent.speed += difference/ 16.0f;
+        stepRate += difference / 16.0f;
     }
 
     //https://www.youtube.com/watch?v=LVu3_IVCzys
