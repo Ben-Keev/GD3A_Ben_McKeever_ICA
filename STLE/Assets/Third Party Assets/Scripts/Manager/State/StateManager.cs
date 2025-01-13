@@ -140,7 +140,7 @@ namespace GD.State
             binEmpty.SetActive(enabled);
             stopwatch.TimerOn = enabled;
 
-            AudioManager.Instance.PlaySound(inGameMusic, Types.AudioMixerGroupName.Background, true);
+            AudioManager.Instance.PlaySound(inGameMusic, Types.AudioMixerGroupName.Background, true, true);
         }
 
         private void OnDestroy()
@@ -154,7 +154,7 @@ namespace GD.State
             if (resetAllConditionsOnStart)
                 ResetConditions();
             
-            AudioManager.Instance.PlaySound(tutorialMusic, Types.AudioMixerGroupName.Background, true);
+            AudioManager.Instance.PlaySound(tutorialMusic, Types.AudioMixerGroupName.Background, true, true);
 
             // Initiates the first cutscene.
             helperSign.GetComponent<NPC>().Interact(gameObject);
