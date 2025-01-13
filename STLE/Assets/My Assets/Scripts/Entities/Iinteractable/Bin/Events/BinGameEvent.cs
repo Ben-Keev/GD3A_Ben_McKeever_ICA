@@ -1,11 +1,11 @@
-﻿using GD.Items;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace GD.Events
 {
     /// <summary>
-    /// Concrete implementation of BaseGameEvent that carries an int parameter.
+    /// Concrete implementation of BaseGameEvent that carries a tuple containing a bin's transform and its data.
+    /// A tuple lets more than one data type get carried in a game event.
     /// Used to create an integer-based event that can be raised and responded to.
     /// </summary>
     [CreateAssetMenu(fileName = "BinGameEvent",

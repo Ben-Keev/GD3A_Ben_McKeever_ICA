@@ -28,11 +28,10 @@ namespace GD.Items
         [FoldoutGroup("Type & Category")]
         [SerializeField, EnumPaging]
         [Tooltip("How many points the item is worth")]
-        private int value;
+        private int itemValue;
 
         [FoldoutGroup("UI & Sound", expanded: true)]
         [SerializeField]
-        [PreviewField(100, ObjectFieldAlignment.Left)]
         [Tooltip("The sprite that represents this item in the UI")]
         private Sprite uiIcon;
 
@@ -40,11 +39,6 @@ namespace GD.Items
         [SerializeField]
         [Tooltip("The audio clip that represents this item")]
         private AudioClip audioClip;
-
-        [FoldoutGroup("UI & Sound")]
-        [SerializeField]
-        [Tooltip("The position of the audio source that plays the audio clip")]
-        private Vector3 audioPosition;
 
         #endregion Fields
 
@@ -55,8 +49,7 @@ namespace GD.Items
 
         public Sprite UiIcon { get => uiIcon; set => uiIcon = value; }
         public AudioClip AudioClip { get => audioClip; set => audioClip = value; }
-        public Vector3 AudioPosition { get => audioPosition; set => audioPosition = value; }
-        public int Value { get => value; set => this.value = value; }
+        public int Value { get => itemValue; set => this.itemValue = value; }   
 
         #endregion Properties
     }

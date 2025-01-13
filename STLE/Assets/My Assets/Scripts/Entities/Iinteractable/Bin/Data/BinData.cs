@@ -5,27 +5,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// All data related to NPCs
+/// Stores all data for a bin.
 /// </summary>
+/// <see cref="ItemData"/>
+/// <see cref="ItemCategoryType"/>
+/// <see cref="Inventory"/>
+/// <see cref="InventoryCollection"/>
 [CreateAssetMenu(fileName = "BinData", menuName = "GD/Data/Bin")]
 public class BinData : SerializedScriptableObject
 {
     #region Fields
 
     [FoldoutGroup("inventory", expanded: true)]
-    [Tooltip("The bin's type")]
+    [Tooltip("What sort of rubbish is the bin for")]
     [SerializeField]
     private ItemCategoryType binType;
 
     [FoldoutGroup("inventory", expanded: true)]
-    [Tooltip("The bin's inventory")]
+    [Tooltip("The rubbish contained in the bin")]
     [SerializeField]
     private Inventory binContents;
 
     [FoldoutGroup("inventory", expanded: true)]
-    [Tooltip("The item this bin accepts")]
+    [Tooltip("The item that's supposed to go in this bin")]
     [SerializeField]
-    private ItemData acceptedItem;
+    private ItemData correctItem;
 
     #endregion Fields
 
@@ -35,7 +39,7 @@ public class BinData : SerializedScriptableObject
 
     public Inventory BinContents { get => binContents; set => binContents = value; }
 
-    public ItemData AcceptedItem { get => acceptedItem; set => acceptedItem = value; }
+    public ItemData AcceptedItem { get => correctItem; set => correctItem = value; }
 
 
     #endregion Properties

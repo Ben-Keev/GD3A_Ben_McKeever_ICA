@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Tracks player's x and y movement
+/// </summary>
 public class FollowPlayer : MonoBehaviour
 {
 
@@ -14,6 +15,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
+        // Operations ensure player remains at center of camera
         transform.position = new Vector3(player.transform.position.x + 4, transform.position.y, player.transform.position.z - 15);
     }
 }

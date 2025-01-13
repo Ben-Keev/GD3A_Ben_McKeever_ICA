@@ -32,9 +32,6 @@ namespace GD.Audio
         private AudioMixerGroup masterGroup;
 
         [SerializeField]
-        private AudioMixerGroup ambientGroup;
-
-        [SerializeField]
         private AudioMixerGroup backgroundGroup;
 
         [SerializeField]
@@ -45,9 +42,6 @@ namespace GD.Audio
 
         [SerializeField]
         private AudioMixerGroup voiceoverGroup;
-
-        [SerializeField]
-        private AudioMixerGroup weaponGroup;
 
         private ObjectPool<AudioSource> audioSourcePool;
 
@@ -74,16 +68,22 @@ namespace GD.Audio
             return groupName switch
             {
                 AudioMixerGroupName.Master => masterGroup,
-                AudioMixerGroupName.Ambient => ambientGroup,
                 AudioMixerGroupName.Background => backgroundGroup,
                 AudioMixerGroupName.SFX => sfxGroup,
                 AudioMixerGroupName.UI => uiGroup,
-                AudioMixerGroupName.Weapon => weaponGroup,
                 AudioMixerGroupName.Voiceover => voiceoverGroup,
                 _ => null,
             };
         }
 
+        /// <summary>
+        /// Play sound effects or music
+        /// </summary>
+        /// <param name="clip">Audio to be played</param>
+        /// <param name="groupName">Which mixer it will be placed in</param>
+        /// <param name="music">Whether the audio will be treated as music</param>
+        /// <param name="loop">Whether the audio should loop</param>
+        /// <param name="position">What position the audio plays from</param>
         public void PlaySound(AudioClip clip, AudioMixerGroupName groupName, bool music = false, bool loop = false, Vector3 position = default)
         {
             AudioSource audioSource = audioSourcePool.Get();
@@ -92,7 +92,7 @@ namespace GD.Audio
             audioSource.outputAudioMixerGroup = GetAudioMixerGroup(groupName);
             audioSource.loop = loop;
 
-            if (music)
+            if (music) // Stop the previous music track to prevent overlap
             {
                 if (lastPlayedMusic != null && lastPlayedMusic != audioSource)
                 {
@@ -100,6 +100,7 @@ namespace GD.Audio
                     audioSourcePool.ReturnToPool(lastPlayedMusic);
                 }
 
+                // The last played music is now the current music
                 lastPlayedMusic = audioSource;
             }
 

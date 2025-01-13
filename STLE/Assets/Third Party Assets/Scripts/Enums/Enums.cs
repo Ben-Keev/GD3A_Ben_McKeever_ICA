@@ -8,9 +8,6 @@
         [Description("Master audio group")]
         Master,
 
-        [Description("Ambient sounds group")]
-        Ambient,
-
         [Description("Background music group")]
         Background,
 
@@ -22,27 +19,6 @@
 
         [Description("Voiceover group")]
         Voiceover,
-
-        [Description("Weapon sounds group")]
-        Weapon
-    }
-
-    /// <summary>
-    /// Represents the state of a UI element, such as visible, hidden, or transitioning.
-    /// </summary>
-    public enum VisibilityState : sbyte
-    {
-        [Description("The UI element has tween applied.")]
-        End,
-
-        [Description("The UI element is transitioning to a visible state.")]
-        Showing,
-
-        [Description("The UI element is transitioning to a hidden state.")]
-        Hiding,
-
-        [Description("The UI element has not yet had tween applied.")]
-        Start
     }
 
     /// <summary>
@@ -143,13 +119,13 @@
     /// </summary>
     public enum FeedbackType : sbyte
     {
-        [Description("Item that cannot be recycled")]
+        [Description("Correct item in the correct bin")]
         Correct = 0,
 
-        [Description("Item that cannot be recycled")]
+        [Description("Wrong item in the wrong bin")]
         Wrong = 1,
 
-        [Description("Item that can be composted")]
+        [Description("No item to be put in the bin")]
         NoItem = 2
     }
 }

@@ -49,12 +49,7 @@ namespace GD.Items
 
         #endregion Properties
 
-        // Check if a categoryExists
-        public bool CategoryExists(ItemCategoryType categoryType)
-        {
-            return contents.ContainsKey(categoryType);
-        }
-
+        
         public Inventory Get(ItemCategoryType itemCategory)
         {
             if (!contents.ContainsKey(itemCategory))
@@ -89,6 +84,9 @@ namespace GD.Items
             return contents.Count == 0;
         }
 
+        /// <summary>
+        /// Clear all the inventories contained within this collection
+        /// </summary>
         public void ClearInventories()
         {
             // Reset inventories on game boot.

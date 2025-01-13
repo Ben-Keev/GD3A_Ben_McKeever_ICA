@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         if (stepRate != 0.2f)
             stepRate -= difference / Mathf.Pow(12.0f, 2.0f);
 
-        else if (stepRate < 0.2f)
+        if (stepRate < 0.2f)
             stepRate = 0.2f;
     }
 

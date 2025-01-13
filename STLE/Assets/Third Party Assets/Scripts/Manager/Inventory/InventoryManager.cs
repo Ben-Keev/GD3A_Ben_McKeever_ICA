@@ -1,15 +1,10 @@
 using GD.Audio;
 using GD.Events;
 using GD.Types;
-using NUnit.Framework.Interfaces;
 using Sirenix.OdinInspector;
 using System;
-using System.Xml.Linq;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace GD.Items
 {
@@ -82,6 +77,10 @@ namespace GD.Items
             inventoryCollection.ClearInventories();
         }
 
+        /// <summary>
+        /// Change selected inventory and update the UI to indicate so
+        /// </summary>
+        /// <param name="context">Scrollwheel</param>
         public void CycleInventoryUp(InputAction.CallbackContext context)
         {
             selectedInventory++;
@@ -92,6 +91,10 @@ namespace GD.Items
             UpdateUI();
         }
 
+        /// <summary>
+        /// Change selected inventory and update the UI to indicate so
+        /// </summary>
+        /// <param name="context">Scrollwheel</param>
         public void CycleInventoryDown(InputAction.CallbackContext context)
         {
             selectedInventory--;
@@ -113,44 +116,50 @@ namespace GD.Items
             UIManager.Instance.ItemsLeft.text = inventoryCollection.Get(target).Count(possibleItems[(int) target]).ToString();
         }
 
-        private void UpdateSelectedInventoryUI()
-        {
-            ItemCategoryType target = (ItemCategoryType)selectedInventory;
-        }
-
         /// <summary>
-        /// Adds the item to the inventory, taking InventoryCollection as a parameter
+        /// Deposits from player inventory into bin inventory giving visual and aural feedback
+        /// as to whether the choice was currect
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="bin">Tuple containing transform and bin data of the bin object interacted with</param>
         public void OnBinDeposit(Tuple<Transform, BinData> bin)
         {
             FeedbackType feedback;
-            ItemData selectedItem = possibleItems[selectedInventory];
+            ItemData currentlySelectedItem = possibleItems[selectedInventory];
 
+            // Make code more readable
+            Transform binTransform = bin.Item1;
+            BinData binData = bin.Item2;
+
+            // The player did not have items in their selected inventory to put into the bin
             if (inventoryCollection.Get((ItemCategoryType) selectedInventory).isEmpty())
             {
                 feedback = FeedbackType.NoItem;
 
                 AudioManager.Instance.PlaySound(noItemClip, AudioMixerGroupName.SFX);
 
-                SendParticleFeedback(bin.Item1, feedback);
+                SendParticleFeedback(binTransform, feedback);
             }
-            else if (selectedInventory != (int)bin.Item2.BinType)
+
+            // The player put the wrong item into the bin
+            else if (selectedInventory != (int)binData.BinType)
             {
                 feedback = FeedbackType.Wrong;
 
-                DepositIntoBinInventory(bin.Item2, selectedItem, -1);
+                DepositIntoBinInventory(binData, currentlySelectedItem, -1);
 
                 AudioManager.Instance.PlaySound(incorrectClip, AudioMixerGroupName.SFX);
 
-                SendParticleFeedback(bin.Item1, feedback);
+                SendParticleFeedback(binTransform, feedback);
 
-                SendFeedBack(bin.Item2.BinType, selectedItem, feedback);
+                SendFeedBack(binData.BinType, currentlySelectedItem, feedback);
             }
+
+            // The player put the correct item in the correct bin
             else
             {
                 feedback = FeedbackType.Correct;
 
+                // This action is mandatory for the tutorial
                 // Raise the event only once
                 if(onTutorialComplete != null)
                 {
@@ -159,19 +168,26 @@ namespace GD.Items
                 }
 
                 // If there's three of the given item allow the player to deposit 3 at once.
-                if (inventoryCollection[(ItemCategoryType) selectedInventory].Count(selectedItem) >=3)
-                    DepositIntoBinInventory(bin.Item2, selectedItem, selectedItem.Value, 3);
+                if (inventoryCollection[(ItemCategoryType) selectedInventory].Count(currentlySelectedItem) >=3)
+                    DepositIntoBinInventory(binData, currentlySelectedItem, currentlySelectedItem.Value, 3);
                 else
-                    DepositIntoBinInventory(bin.Item2, selectedItem, selectedItem.Value, 1);
+                    DepositIntoBinInventory(binData, currentlySelectedItem, currentlySelectedItem.Value, 1);
 
                 AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);
 
-                SendParticleFeedback(bin.Item1, feedback);
+                SendParticleFeedback(binTransform, feedback);
 
-                SendFeedBack(bin.Item2.BinType, selectedItem, feedback);
+                SendFeedBack(binData.BinType, currentlySelectedItem, feedback);
             }
         }
 
+        /// <summary>
+        /// Take an item from the player's inventory into the bins inventory
+        /// </summary>
+        /// <param name="bin"></param>
+        /// <param name="item"></param>
+        /// <param name="score">Award/Penalty for putting this item in this bin</param>
+        /// <param name="itemQuantity">How much of the item is deposited at once</param>
         private void DepositIntoBinInventory(BinData bin, ItemData item, int score, int itemQuantity = 1)
         {
             onScoreEvent?.Raise(score * itemQuantity);
@@ -179,12 +195,23 @@ namespace GD.Items
             bin.BinContents.Add(item, itemQuantity);
         }
 
+        /// <summary>
+        /// Pack feedback variables into a tuple to raise a feedback event
+        /// </summary>
+        /// <param name="expected"></param>
+        /// <param name="actual"></param>
+        /// <param name="feedback"></param>
         private void SendFeedBack(ItemCategoryType expected, ItemData actual, FeedbackType feedback)
         {
             Tuple<ItemCategoryType, ItemData, FeedbackType> feedbackData = new Tuple<ItemCategoryType, ItemData, FeedbackType>(expected, actual, feedback);
             onFeedbackCreated?.Raise(feedbackData);
         }
 
+        /// <summary>
+        /// Pack particle variables into a tuple to raise a particle event
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <param name="feedback"></param>
         private void SendParticleFeedback(Transform transform, FeedbackType feedback)
         {
             Tuple<Transform, Enum> particleData = new Tuple<Transform, Enum>(transform, feedback);

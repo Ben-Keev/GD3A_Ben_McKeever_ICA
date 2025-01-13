@@ -5,21 +5,29 @@ using System;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Displays final grade card
+/// </summary>
 public class DisplayWinScreen : MonoBehaviour
 {
+    [FoldoutGroup("Data", expanded: true)]
     [SerializeField]
-    private ScoreTracker scoreTracker; // Injected score tracker
-    [SerializeField]
-    private BinData[] bins; // Array of bins (Trash, Recycle, Compost)
-    [SerializeField]
-    private GameObject gameUI;
+    [Tooltip("The score to be read to the screen.")]
+    private ScoreTracker scoreTracker;
 
-    [FoldoutGroup("Grade Fanfares")]
+    [FoldoutGroup("Data", expanded: true)]
+    [Tooltip("All possible bins that can exist")]
     [SerializeField]
-    [Tooltip("0 is highest grade. Lowest possible is 7")]
+    private BinData[] bins;
+
+    [FoldoutGroup("Audio")]
+    [SerializeField]
+    [Tooltip("Fanfare that accomponies grade. 0 is highest 7 is lowest")]
     private AudioClip[] fanfares = new AudioClip[8];
 
-    // Method to update High Score
+    /// <summary>
+    /// Display HighScore in a text component
+    /// </summary>
     private void UpdateHighScore()
     {
         TextMeshProUGUI textComponent = transform.Find("Dynamic Content/High Score").GetComponent<TextMeshProUGUI>();
@@ -28,7 +36,9 @@ public class DisplayWinScreen : MonoBehaviour
             textComponent.text = scoreTracker.HighScore.ToString();
     }
 
-    // Method to update Score
+    /// <summary>
+    /// Display score in a text component
+    /// </summary>
     private void UpdateScore()
     {
         TextMeshProUGUI textComponent = transform.Find("Dynamic Content/Score").GetComponent<TextMeshProUGUI>();
@@ -37,7 +47,9 @@ public class DisplayWinScreen : MonoBehaviour
             textComponent.text = scoreTracker.Score.ToString();
     }
 
-    // Method to calculate and update Grade
+    /// <summary>
+    /// Display the grade in a text component
+    /// </summary>
     private void UpdateGrade()
     {
         TextMeshProUGUI textComponent = transform.Find("Dynamic Content/Grade").GetComponent<TextMeshProUGUI>();
@@ -48,7 +60,11 @@ public class DisplayWinScreen : MonoBehaviour
         }
     }
 
-    // Grade calculation based on the score
+    /// <summary>
+    /// Calculate grade based on given score
+    /// </summary>
+    /// <param name="score">Score taken from ScoreTracker</param>
+    /// <returns>A string containing the grade letter</returns>
     private string CalculateGrade(int score)
     {
         switch (score)
@@ -80,32 +96,37 @@ public class DisplayWinScreen : MonoBehaviour
         }
     }
 
-    // Unified method to update bins (Trash, Recycle, Compost)
+    /// <summary>
+    /// Display breakdown of 1) Correct item placed in a bin and 2) incorrect item placed in a bin
+    /// </summary>
+    /// <param name="bin"></param>
     private void UpdateBin(BinData bin)
     {
         string correctPath = $"Dynamic Content/{bin.BinType}/Correct";
         string wrongPath = $"Dynamic Content/{bin.BinType}/Wrong";
 
-        TextMeshProUGUI correctText = transform.Find(correctPath)?.GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI wrongText = transform.Find(wrongPath)?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI correctTextDisplay = transform.Find(correctPath)?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI wrongTextDisplay = transform.Find(wrongPath)?.GetComponent<TextMeshProUGUI>();
 
         Tuple<int, int> binPerformance = scoreTracker.GetBinPerformance(bin);
 
-        if (correctText != null)
+        if (correctTextDisplay != null)
         {
-            correctText.text = binPerformance.Item1.ToString();
+            correctTextDisplay.text = binPerformance.Item1.ToString();
         }
 
-        if (wrongText != null)
+        if (wrongTextDisplay != null)
         {
-            wrongText.text = binPerformance.Item2.ToString();
+            wrongTextDisplay.text = binPerformance.Item2.ToString();
         }
     }
 
-    // Method to update all components
+    /// <summary>
+    /// Update all child components displaying score
+    /// </summary>
     public void UpdateAll()
     {
-        gameUI.SetActive(false);
+        UIManager.Instance.IndicatorEmpty.SetActive(false);
 
         scoreTracker.StoreHighScore();
         UpdateHighScore();
@@ -118,7 +139,9 @@ public class DisplayWinScreen : MonoBehaviour
         }
     }
 
-    // Whenever the panel is shown update the data
+    /// <summary>
+    /// Whenever panel is shown update the data
+    /// </summary>
     private void OnEnable()
     {
         UpdateAll();

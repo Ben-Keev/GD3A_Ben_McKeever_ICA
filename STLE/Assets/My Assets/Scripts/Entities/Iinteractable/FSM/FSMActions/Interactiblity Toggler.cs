@@ -1,15 +1,13 @@
 using GD.FSM;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Reflection;
-using System;
 using GD.Items;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [CreateAssetMenu(menuName = "GD/FSM/Action/ToggleInteractibility")]
 
-// Can enable or disable aspects of the player's controls.
-public class ToggleInteractibility : FSMAction
+/// <summary>
+/// Enables or disales an IInteractable's ability to be interacted with.
+/// </summary>
+public class ToggleInteractability : FSMAction
 {
     [Tooltip("The target object to measure distance from.")]
     [SerializeField]

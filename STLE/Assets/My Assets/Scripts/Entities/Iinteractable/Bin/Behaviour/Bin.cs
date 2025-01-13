@@ -1,64 +1,81 @@
 ﻿using GD.Events;
 using UnityEngine;
 using GD.Items;
-using Unity.VisualScripting;
-using GD.Selection;
 using System;
+using Sirenix.OdinInspector;
 
 /// <summary>
-/// Represents an item that can be consumed by a game object on the correct layer
+/// Bin that can be interacted with to deposit items
 /// </summary>
-/// <see cref="ItemData"/>
-/// <see cref="ItemGameEvent"/>
+/// <see cref="BinData"/>
+/// <see cref="BinGameEvent"/>
 public class Bin : MonoBehaviour, IInteractable
 {
+    [FoldoutGroup("Data", expanded: true)]
     [SerializeField]
-    [Tooltip("The NPC data that represents this NPC")]
+    [Tooltip("The Bin Data of this bin")]
     private BinData binContents;
 
+    [FoldoutGroup("Data", expanded: true)]
     [SerializeField]
-    [Tooltip("The event raised when NPC is interacted with")]
+    [Tooltip("The event raised when Bin is interacted with")]
     private BinGameEvent onBinEvent;
 
-    public bool interactible;
+    [FoldoutGroup("Runtime Info")]
+    public bool interactable;
+
+    public bool Interactable { get => interactable; set => interactable = value; }
 
     private void Awake()
     {
-        interactible = true;
+        // Interactible by default
+        Interactable = true;
 
         // Reset inventory from previous playthrough
         binContents.BinContents.Clear();
     }
 
     /// <summary>
-    /// Called when the item is interacted with (Most likely right clicked on)
+    /// Called when bin interacted with.
     /// </summary>
     /// <param name="interactor">Reference to interactor object</param>
     public void Interact(GameObject interactor)
     {
-        if (interactible)
+        if (Interactable)
         {
-            Tuple<Transform, BinData> eventData = new Tuple<Transform, BinData>(transform, binContents);
-
+            // The player has a unique animation for interacting with bins and NPCs
             if (interactor.transform.GetComponentInChildren<Animator>() is Animator playerAnim)
                 playerAnim.SetTrigger("attack");
+
+            // Store the necessary data to raise an event
+            Tuple<Transform, BinData> eventData = new Tuple<Transform, BinData>(transform, binContents);
 
             //raise the event to notify listeners
             onBinEvent?.Raise(eventData);
         }
     }
 
-    public void SetInteractable(bool interactible)
+    /// <summary>
+    /// Toggle whether interactaable
+    /// </summary>
+    /// <param name="interactable">Desired State</param>
+    public void SetInteractable(bool interactable)
     {
-        this.interactible = interactible;
+        Interactable = interactable;
     }
 
+    /// <summary>
+    /// An outline is drawn around the bin
+    /// </summary>
     public void OnHover()
     {
-        if (interactible)
+        if (Interactable)
             GetComponent<Outline>().enabled = true;
     }
 
+    /// <summary>
+    /// The outline is removed
+    /// </summary>
     public void OnDehover()
     {
         GetComponent<Outline>().enabled = false;

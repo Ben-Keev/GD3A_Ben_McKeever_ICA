@@ -5,7 +5,9 @@ using UnityEngine;
 namespace GD.State
 {
     /// <summary>
-    /// A condition that ensures no objects with a specific tag or layer are nearby.
+    /// Runs a timer
+    /// Returns true if the timer runs out.
+    /// Triggers "Danger Mode" at a given time where the timer has nearly ran out.
     /// </summary>
     [CreateAssetMenu(fileName = "Stopwatch", menuName = "GD/Conditions/Single/Time", order = 5)]
     public class Stopwatch : ConditionBase
@@ -32,17 +34,18 @@ namespace GD.State
         public bool DangerThresholdReached { get => dangerThresholdReached; set => dangerThresholdReached = value; }
 
         // https://www.youtube.com/watch?v=hxpUk0qiRGs
+        // Implement countdown guide
         protected override bool EvaluateCondition(ConditionContext conditionContext)
         {
             if (TimerOn)
             {
-                if (timeLeft > 0)
-                    timeLeft -= Time.deltaTime;
+                if (timeLeft > 0) // Reduce timeLeft while it's greater than 0
+                    timeLeft -= Time.deltaTime; 
 
-                if(timeLeft < dangerThreshold && !dangerThresholdReached)
+                if(timeLeft < dangerThreshold && !dangerThresholdReached) // There's less time left than danger threshold
                 {
                     timeRunningOut?.Raise();
-                    DangerThresholdReached = true;
+                    DangerThresholdReached = true; // Ensures this if block is only tiggered once.
                 }
 
                 return timeLeft < 0;
@@ -51,6 +54,11 @@ namespace GD.State
             return false; // Can't run out of time if timer isn't running
         }
 
+        /// <summary>
+        /// Convert the remaining time to a string.
+        /// </summary>
+        /// <param name="currentTime">The time you want to be converted</param>
+        /// <returns>Time in the format M:SS which can be easily printed</returns>
         public string ConvertTimeToString(float currentTime)
         {
             currentTime += 1;

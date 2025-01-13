@@ -16,6 +16,6 @@ public class PredicateDialogueBoxDisplayed : PredicateBase
     {
         // Storing the dialogue box as a variable gives outdated parameters when we call for displayed.
         // We must find it in the scene instead.
-        return GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<DialogueBox>().displayed == isDialogueShown;
+        return GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<DialogueBox>().Displayed == isDialogueShown;
     }
 }

@@ -1,5 +1,4 @@
 using GD.Events;
-using GD.Types;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -108,9 +107,9 @@ namespace GD.Items
         }
 
         /// <summary>
-        /// Counts all items in the bin
+        /// Tallies every item in the bin.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The total number of items in the bin regardless of type</returns>
         public int Tally()
         {
             int tally = 0;

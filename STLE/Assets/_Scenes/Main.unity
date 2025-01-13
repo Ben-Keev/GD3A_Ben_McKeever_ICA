@@ -15124,8 +15124,8 @@ MonoBehaviour:
   inventoryCollection: {fileID: 11400000, guid: 330cf89fb64038b459073229783b601f, type: 2}
   winCondition: {fileID: 0}
   loseCondition: {fileID: 0}
-  binEmpty: {fileID: 690143317}
-  itemEmpty: {fileID: 1770295023}
+  gameplayBinsParent: {fileID: 662203171}
+  gameplayItemsParent: {fileID: 1352542394}
   helperSign: {fileID: 1993873475}
   tutorialText:
   - Hey, I'm helper sign! The wooden sign to your right.
@@ -15146,7 +15146,7 @@ MonoBehaviour:
   stopwatch: {fileID: 11400000, guid: 189e2ae93d3627d4aa2e2d41fb1f4dfe, type: 2}
   tutorialMusic: {fileID: 8300000, guid: bc1d89d07c4437e4eae417a328386c3b, type: 3}
   inGameMusic: {fileID: 8300000, guid: 9246397f2aa552745ad42ed4cd3e5930, type: 3}
-  timeRunningOutMusic: {fileID: 8300000, guid: bf337f9ee121607449e4bfb9c43fd1bc, type: 3}
+  dangerModeMusic: {fileID: 8300000, guid: bf337f9ee121607449e4bfb9c43fd1bc, type: 3}
   achievementConditions:
   - {fileID: 11400000, guid: a127dbff8aae41e478efef07500967e1, type: 2}
 --- !u!1001 &1228904684
@@ -18153,7 +18153,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ab2aad24ea26884f8ab51f256dacfa7, type: 2}
   - {fileID: 11400000, guid: 63c81dc2018d5b148af4bad034172b0f, type: 2}
   - {fileID: 11400000, guid: 60a6a5a96dc1d2249b3a269e5302d5a8, type: 2}
-  gameUI: {fileID: 1872669989}
   fanfares:
   - {fileID: 8300000, guid: a44c25ba8570ecd4b8d88775f5a6415b, type: 3}
   - {fileID: 8300000, guid: d8e211c8b9f4c95458b6005b1319776d, type: 3}
@@ -22308,12 +22307,10 @@ MonoBehaviour:
   initialPoolSize: 8
   audioMixer: {fileID: 24100000, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
   masterGroup: {fileID: 24300002, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
-  ambientGroup: {fileID: 2259889797419706146, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
   backgroundGroup: {fileID: 6430635203521748997, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
   sfxGroup: {fileID: -993374168260805261, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
   uiGroup: {fileID: 1421767594225836869, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
   voiceoverGroup: {fileID: 98740022395981796, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
-  weaponGroup: {fileID: -6418907998923841536, guid: d3851e2f07afeef4699b7a5deb4d4c5e, type: 2}
 --- !u!4 &1940528726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec5ea2d0d21ee0742bac014def4fa7da, type: 3}
@@ -24289,7 +24286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2102513007
 Transform:
   m_ObjectHideFlags: 0

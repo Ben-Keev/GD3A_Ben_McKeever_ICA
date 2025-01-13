@@ -8,6 +8,8 @@ using Sirenix.OdinInspector;
 /// <summary>
 /// Represents an NPC that can be spoken to
 /// </summary>
+/// <see cref="NPCData"/>
+/// <see cref="NPCGameEvent"/>
 public class NPC : MonoBehaviour, IInteractable
 {
 

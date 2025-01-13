@@ -56,32 +56,32 @@ namespace GD.State
 
         [FoldoutGroup("Tutorial")]
         [SerializeField]
-        [Tooltip("BinEmpty")]
-        private GameObject binEmpty;
+        [Tooltip("Bins that will appear when you exit the tutorial")]
+        private GameObject gameplayBinsParent;
 
         [FoldoutGroup("Tutorial")]
         [SerializeField]
-        [Tooltip("itemEmpty")]
-        private GameObject itemEmpty;
+        [Tooltip("Items that will appear when you exit the tutorial")]
+        private GameObject gameplayItemsParent;
 
         [FoldoutGroup("Tutorial")]
         [SerializeField]
-        [Tooltip("A helper sign that introduces you to the game")]
+        [Tooltip("The helper sign that introduces you to the game")]
         private NPC helperSign;
 
         [FoldoutGroup("Tutorial")]
         [SerializeField]
-        [Tooltip("A helper sign that introduces you to the game")]
+        [Tooltip("The helper sign's dialogue")]
         private string[] tutorialText = new string[5];
 
         [FoldoutGroup("Tutorial")]
         [SerializeField]
-        [Tooltip("Explains danger mode to you.")]
+        [Tooltip("Explanation of danger mode")]
         private string[] dangerText = new string[5];
 
         [FoldoutGroup("Stopwatch")]
         [SerializeField]
-        [Tooltip("The condition that determines if the player is out of time")]
+        [Tooltip("Determines if the player is out of time")]
         private Stopwatch stopwatch;
 
         [FoldoutGroup("Music")]
@@ -96,8 +96,8 @@ namespace GD.State
 
         [FoldoutGroup("Music")]
         [SerializeField]
-        [Tooltip("Plays when 30s remain")]
-        private AudioClip timeRunningOutMusic;
+        [Tooltip("Plays when entering danger")]
+        private AudioClip dangerModeMusic;
 
         [FoldoutGroup("Achievements [optional]")]
         [SerializeField]
@@ -105,9 +105,13 @@ namespace GD.State
         private List<ConditionBase> achievementConditions;
 
         /// <summary>
-        /// Indicates whether the game has ended.
+        /// The game is ended
         /// </summary>
         private bool gameEnded = false;
+
+        /// <summary>
+        /// Player is in tutorial
+        /// </summary>
         private bool inTutorial = true;
 
         private ConditionContext conditionContext;
@@ -125,14 +129,16 @@ namespace GD.State
             // Register with the tick system
             TimeTickSystem.Instance.RegisterListener(tickRateType, HandleTick);
 
-            playerFSM = player.transform.GetComponent<FSMController>();
+            InitialiseTutorial();
+        }
 
+        private void InitialiseTutorial()
+        {
             UIManager.Instance.FeedbackScreen.SetActive(false);
-            binEmpty.SetActive(false);
-            itemEmpty.SetActive(false);
+            gameplayBinsParent.SetActive(false);
+            gameplayItemsParent.SetActive(false);
 
-            helperSign.NpcData.Dialogues.Clear();
-            helperSign.NpcData.Dialogues.AddFirst(tutorialText);
+            helperSign.NpcData.OverwriteDialogue(tutorialText);
 
             stopwatch.TimeLeft = stopwatch.StartingTime;
             stopwatch.DangerThresholdReached = false;
@@ -142,8 +148,8 @@ namespace GD.State
         public void ToggleTutorial(bool enabled)
         {
             inTutorial = !enabled;
-            itemEmpty.SetActive(enabled);
-            binEmpty.SetActive(enabled);
+            gameplayItemsParent.SetActive(enabled);
+            gameplayBinsParent.SetActive(enabled);
             stopwatch.TimerOn = enabled;
 
             AudioManager.Instance.PlaySound(inGameMusic, Types.AudioMixerGroupName.Background, true, true);
@@ -169,107 +175,39 @@ namespace GD.State
         /// <summary>
         /// Evaluates conditions each frame and handles game state transitions.
         /// </summary>
-        private void Update()  //TODO - NMCG : Slow down the update rate to once every 0.1 seconds
+        private void Update()
         {
             if (!inTutorial)
             {
-                // If the game has already ended, no need to evaluate further
-                if (gameEnded)
-                    return;
 
-                // Evaluate the win condition
-                if (winCondition != null && winCondition.Evaluate(conditionContext))
+                if (stopwatch != null && stopwatch.Evaluate(conditionContext) && !gameEnded)
                 {
-                    HandleWin();
-                    // Set gameEnded to true to prevent further updates
-                    gameEnded = true;
-                    // Optionally, disable this component
-                    // enabled = false;
-                }
-                // Evaluate the lose condition only if the win condition is not met
-                else if (loseCondition != null && loseCondition.Evaluate(conditionContext))
-                {
-                    HandleLoss();
-                    // Set gameEnded to true to prevent further updates
-                    gameEnded = true;
-                    // Optionally, disable this component
-                    // enabled = false;
-                }
-
-                else if (stopwatch != null && stopwatch.Evaluate(conditionContext))
-                {
-                    Debug.Log("Game Ended By Timer Running Out!");
-                    HandleLoss();
+                    TransitionToResultsScreen();
                     gameEnded = true;
                 }
 
                 UIManager.Instance.Score.text = player.ScoreTracker.Score.ToString();
                 UIManager.Instance.Stopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
 
-                foreach (var achievmentCondition in achievementConditions)
-                {
-                    if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
-                    {
-                        if(achievmentCondition.Name == "BeatHighScore")
-                            UIManager.Instance.NewHighScore.enabled = true;
-                    }
-                }
             }
         }
 
-        // Put any modifications that should happen here for the last 30 seconds of the game
+        /// <summary>
+        /// Explains Danger mode to the player and changes music.
+        /// </summary>
         public void EnterDangerThreshold()
         {
-            AudioManager.Instance.PlaySound(timeRunningOutMusic, Types.AudioMixerGroupName.Background, true, false);
+            AudioManager.Instance.PlaySound(dangerModeMusic, Types.AudioMixerGroupName.Background, true, false);
 
-            helperSign.NpcData.Dialogues.Clear();
-            helperSign.NpcData.Dialogues.AddFirst(dangerText);
-            // Initiates the first cutscene.
+            helperSign.NpcData.OverwriteDialogue(dangerText);
             helperSign.GetComponent<NPC>().Interact(gameObject);
         }
 
-        /// <summary>
-        /// Handles the logic when the player wins.
-        /// </summary>
-        protected virtual void HandleWin()
+        private void TransitionToResultsScreen()
         {
-            Debug.Log($"Player Wins! Win condition met at {winCondition.TimeMet} seconds.");
-
             player.gameObject.GetComponent<FSMController>().enabled = false;
             player.gameObject.GetComponent<PlayerExploreInputHandler>().enabled = false;
             UIManager.Instance.FeedbackScreen.SetActive(true);
-
-            // Implement win logic here, such as:
-            // - Displaying a victory screen
-            // - Transitioning to the next level
-            // - Awarding points or achievements
-            // - Playing a victory sound or animation
-
-            // Example:
-            // UIManager.Instance.ShowVictoryScreen();
-            // SceneManager.LoadScene("NextLevel");
-        }
-
-        /// <summary>
-        /// Handles the logic when the player loses.
-        /// </summary>
-        protected virtual void HandleLoss()
-        {
-            //Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
-
-            player.gameObject.GetComponent<FSMController>().enabled = false;
-            player.gameObject.GetComponent<PlayerExploreInputHandler>().enabled = false;
-            UIManager.Instance.FeedbackScreen.SetActive(true);
-
-            // Implement loss logic here, such as:
-            // - Displaying a game over screen
-            // - Offering a restart option
-            // - Reducing player lives
-            // - Playing a defeat sound or animation
-
-            // Example:
-            // UIManager.Instance.ShowGameOverScreen();
-            // GameManager.Instance.RestartLevel();
         }
 
         /// <summary>
@@ -302,39 +240,26 @@ namespace GD.State
 
         /// <summary>
         /// Move code from Update to HandleTick to perform the tasks at a slower rate
+        /// The timer doesn
         /// </summary>
         /// <see cref="TimeTickSystem"/>
         public void HandleTick()
         {
-            // If the game has already ended, no need to evaluate further
-            if (gameEnded)
-                return;
+            if (!inTutorial)
+            {
+                // If the game has already ended, no need to evaluate further
+                if (gameEnded)
+                    return;
 
-            // Evaluate the win condition
-            if (winCondition != null && winCondition.Evaluate(conditionContext))
-            {
-                HandleWin();
-                // Set gameEnded to true to prevent further updates
-                gameEnded = true;
-                // Optionally, disable this component
-                // enabled = false;
-            }
-            // Evaluate the lose condition only if the win condition is not met
-            else if (loseCondition != null && loseCondition.Evaluate(conditionContext))
-            {
-                HandleLoss();
-                // Set gameEnded to true to prevent further updates
-                gameEnded = true;
-                // Optionally, disable this component
-                // enabled = false;
-            }
 
-            // Evaluate the achievement conditions
-            foreach (var achievmentCondition in achievementConditions)
-            {
-                if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
+
+                foreach (var achievmentCondition in achievementConditions)
                 {
-                    //do something here
+                    if (achievmentCondition != null && achievmentCondition.Evaluate(conditionContext))
+                    {
+                        if (achievmentCondition.Name == "BeatHighScore")
+                            UIManager.Instance.NewHighScore.enabled = true;
+                    }
                 }
             }
         }

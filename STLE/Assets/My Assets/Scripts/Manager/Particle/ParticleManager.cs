@@ -1,12 +1,16 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// On call by a game event spawns a particle at a given transform.
+/// </summary>
 public class ParticleManager : MonoBehaviour
 {
     /// <summary>
-    /// Gives feedback as to whether the player made the right choice
+    /// Instantiate a particle at a given spot
     /// </summary>
-    /// <param name="bin"></param>
+    /// <param name="particleData.Item1">Location where item will spawn</param>
+    /// <param name="particleData.Item2">What sort of particle (May give feedback or indicate item type)</param>
     public void instantiateParticle(Tuple<Transform, Enum> particleData)
     {
         Material icon = Resources.Load<Material>("Materials/" + particleData.Item2.ToString());

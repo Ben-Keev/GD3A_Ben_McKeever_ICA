@@ -23,4 +23,4 @@ MonoBehaviour:
     SerializationNodes: []
   binType: 2
   binContents: {fileID: 11400000, guid: 161fe3b998390ca4c80c2839b6695f68, type: 2}
-  acceptedItem: {fileID: 11400000, guid: bec7115605502a74ca62daf422dd3c45, type: 2}
+  correctItem: {fileID: 11400000, guid: bec7115605502a74ca62daf422dd3c45, type: 2}

@@ -1,10 +1,10 @@
 ﻿using GD.Audio;
 using GD.Events;
 using GD.Types;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using UnityEngine;
-using GD.State;
 using Random = UnityEngine.Random;
 using Stopwatch = GD.State.Stopwatch;
 
@@ -29,11 +29,10 @@ namespace GD.Items
         [Tooltip("The event that is raised to trigger particles where this item is consumed")]
         private ParticleGameEvent onParticleEvent;
 
-        [SerializeField]
-        [Tooltip("The layer that the item can be picked up by")]
-        private LayerMask targetLayer;
+        [FoldoutGroup("Runtime Info")]
+        private bool interactable;
 
-        private bool interactible;
+        public bool Interactable { get => interactable; set => interactable = value; }
 
         /// <summary>
         /// Called when the item is interacted with (Most likely right clicked on)
@@ -42,7 +41,7 @@ namespace GD.Items
         public void Interact(GameObject interactor)
         {
 
-            if (interactible)
+            if (Interactable)
             {
                 //raise the event to notify listeners
                 onItemEvent?.Raise(itemData);
@@ -56,61 +55,80 @@ namespace GD.Items
                 // Don't destroy object as want to preserve gameObject transform for particles
                 // make item invisible and uninteractible
 
-                UpdateActivation(false);
+                ChangeActivation(false);
 
                 // Tutorial items will not respawn.
                 // Prevents grinding in the tutorial to cheat.
                 if (gameObject.name != "Tutorial")
-                    StartCoroutine(RespawnAfterTime(interactor.GetComponent<Player>().StopWatch));
+                    StartCoroutine(ActivateAfterTime(interactor.GetComponent<Player>().StopWatch));
             }
         }
 
-        public void SetInteractable(bool interactible)
+
+        /// <summary>
+        /// Enables or disables interactability
+        /// </summary>
+        /// <param name="interactable">Enable or disable paramater</param>
+        public void SetInteractable(bool interactable)
         {
-            this.interactible = interactible;
+            this.Interactable = interactable;
         }
 
+        /// <summary>
+        /// An outline is drawn around the item
+        /// </summary>
         public void OnHover()
         {
-            if (interactible)
+            if (Interactable)
                 GetComponent<Outline>().enabled = true;
         }
 
+        /// <summary>
+        /// An outline is drawn around the item
+        /// </summary>
         public void OnDehover()
         {
             GetComponent<Outline>().enabled = false;
         }
 
-        // Activates or disactivates the item by making it invisible
-        private void UpdateActivation(bool activated)
+        
+        /// <summary>
+        /// Toggles whether the item is visible and interactable
+        /// Can be used to make item appear 'consumed'
+        /// </summary>
+        /// <param name="activated"></param>
+        private void ChangeActivation(bool activated)
         {
-            interactible = activated;
+            Interactable = activated;
+
+            // Hide the item's model
             transform.GetChild(0).gameObject.SetActive(activated);
 
+            // Determine what layer the item will be moved to
+            // Fixes a bug where the item is still interactable when deactivated if using "move" as input.
             string layer = activated ? "Item" : "Ignore Raycast";
 
-            //Debug.Log(layer);
-
-            gameObject.layer =  LayerMask.NameToLayer(layer); // Fix a bug where the item is STILL selectable when using "move" as input.
+            gameObject.layer =  LayerMask.NameToLayer(layer); 
         }
 
-        IEnumerator RespawnAfterTime(Stopwatch stopwatch)
+        /// <summary>
+        /// Wait for the onscreen stopwatch to reach a given time before activating the item again
+        /// </summary>
+        /// <param name="stopwatch"></param>
+        /// <returns></returns>
+        IEnumerator ActivateAfterTime(Stopwatch stopwatch)
         {
             // More valuable items take longer to respawn
             // Use the stopwatch to check when to respawn. This prevents items from spawning while dialogue is active
             // Also negates the need to use TimeScale
             // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions
-
             float threshold = stopwatch.TimeLeft - Random.Range(2.0f + itemData.Value, 10.0f + itemData.Value * 2);
-            //Debug.Log($"{stopwatch.TimeLeft} must be less than {threshold}");
 
             Func<bool> timeEqual = () => stopwatch.TimeLeft <= threshold;
 
             yield return new WaitUntil(timeEqual);
 
-            //Debug.Log(interactible);
-
-            UpdateActivation(true);
+            ChangeActivation(true);
         }
     }
 }
