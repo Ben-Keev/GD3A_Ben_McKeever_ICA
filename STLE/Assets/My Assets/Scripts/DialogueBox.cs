@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using GD.Items;
 using GD.Audio;
 using GD.Types;
+using UnityEditor;
 
 /// <summary>
 /// 
@@ -39,7 +40,6 @@ public class DialogueBox : MonoBehaviour
     {
         lines = data.Dialogues[data.CurrentDialogue];
         currentVoice = data.DialogueBeep;
-
 
         index = 0;
 

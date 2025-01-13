@@ -74,6 +74,11 @@ namespace GD.State
         [Tooltip("A helper sign that introduces you to the game")]
         private string[] tutorialText = new string[5];
 
+        [FoldoutGroup("Tutorial")]
+        [SerializeField]
+        [Tooltip("Explains danger mode to you.")]
+        private string[] dangerText = new string[5];
+
         [FoldoutGroup("Stopwatch")]
         [SerializeField]
         [Tooltip("The condition that determines if the player is out of time")]
@@ -197,7 +202,7 @@ namespace GD.State
                     gameEnded = true;
                 }
 
-                UIManager.Instance.Score.text = player.scoreTracker.Score.ToString();
+                UIManager.Instance.Score.text = player.ScoreTracker.Score.ToString();
                 UIManager.Instance.Stopwatch.text = stopwatch.ConvertTimeToString(stopwatch.TimeLeft);
 
                 foreach (var achievmentCondition in achievementConditions)
@@ -215,6 +220,10 @@ namespace GD.State
         public void EnterDangerThreshold()
         {
             AudioManager.Instance.PlaySound(timeRunningOutMusic, Types.AudioMixerGroupName.Background, true, false);
+
+            helperSign.NpcData.Dialogues[0] = dangerText;
+            // Initiates the first cutscene.
+            helperSign.GetComponent<NPC>().Interact(gameObject);
         }
 
         /// <summary>

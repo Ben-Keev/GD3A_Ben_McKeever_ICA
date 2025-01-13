@@ -4,8 +4,9 @@ using GD.Types;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.WSA;
+using GD.State;
 using Random = UnityEngine.Random;
+using Stopwatch = GD.State.Stopwatch;
 
 namespace GD.Items
 {
@@ -59,7 +60,7 @@ namespace GD.Items
                 // Tutorial items will not respawn.
                 // Prevents grinding in the tutorial to cheat.
                 if (gameObject.name != "Tutorial")
-                    StartCoroutine(RespawnAfterTime());
+                    StartCoroutine(RespawnAfterTime(interactor.GetComponent<Player>().StopWatch));
             }
         }
 
@@ -86,10 +87,19 @@ namespace GD.Items
             transform.GetChild(0).gameObject.SetActive(activated);
         }
 
-        IEnumerator RespawnAfterTime()
+        IEnumerator RespawnAfterTime(Stopwatch stopwatch)
         {
             // More valuable items take longer to respawn
-            yield return new WaitForSeconds(Random.Range(2.0f + itemData.Value, 10.0f + itemData.Value * 2));
+            // Use the stopwatch to check when to respawn. This prevents items from spawning while dialogue is active
+            // Also negates the need to use TimeScale
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions
+
+            float threshold = stopwatch.TimeLeft - Random.Range(2.0f + itemData.Value, 10.0f + itemData.Value * 2);
+            //Debug.Log($"{stopwatch.TimeLeft} must be less than {threshold}");
+
+            Func<bool> timeEqual = () => stopwatch.TimeLeft <= threshold;
+
+            yield return new WaitUntil(timeEqual);
 
             UpdateActivation(true);
         }

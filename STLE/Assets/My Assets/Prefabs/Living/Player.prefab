@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreTracker: {fileID: 11400000, guid: d85c8424ebd4dfc4c9ac4401a7c77ab8, type: 2}
+  stopWatch: {fileID: 11400000, guid: 189e2ae93d3627d4aa2e2d41fb1f4dfe, type: 2}
 --- !u!114 &6688072179395770483
 MonoBehaviour:
   m_ObjectHideFlags: 0
