@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = transform.GetChild(0).GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void StartMoving(InputAction.CallbackContext context)

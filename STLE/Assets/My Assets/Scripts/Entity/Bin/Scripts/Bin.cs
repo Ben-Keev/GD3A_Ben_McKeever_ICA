@@ -40,6 +40,9 @@ public class Bin : MonoBehaviour, IInteractable
         {
             Tuple<Transform, BinData> eventData = new Tuple<Transform, BinData>(transform, binContents);
 
+            if (interactor.transform.GetComponentInChildren<Animator>() is Animator playerAnim)
+                playerAnim.SetTrigger("attack");
+
             //raise the event to notify listeners
             onBinEvent?.Raise(eventData);
         }

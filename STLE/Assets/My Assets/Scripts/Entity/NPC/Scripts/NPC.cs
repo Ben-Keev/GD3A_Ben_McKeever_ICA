@@ -57,6 +57,14 @@ public class NPC : MonoBehaviour, IInteractable
             if(audioClip != null)
             AudioManager.Instance.PlaySound(audioClip, AudioMixerGroupName.SFX);
 
+            // https://stackoverflow.com/questions/7113347/assignment-in-an-if-statement
+            // Assign within an if statement
+            if (GetComponentInChildren<Animator>() is Animator NPCanim)
+                NPCanim.SetTrigger("hurt");
+
+            if(interactor.transform.GetComponentInChildren<Animator>() is Animator playerAnim)
+                playerAnim.SetTrigger("attack");
+
             // Cycle to the next possible dialogue
             cycleDialogue();
         }

@@ -257,6 +257,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5682858904637485639}
     m_Modifications:
+    - target: {fileID: 1411872002157240282, guid: 521aebf732701414da1c25c63cb8390b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2053518115102101880, guid: 521aebf732701414da1c25c63cb8390b, type: 3}
       propertyPath: m_Name
       value: CollegeStudent
@@ -300,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 2053518115102101881, guid: 521aebf732701414da1c25c63cb8390b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851634110196171245, guid: 521aebf732701414da1c25c63cb8390b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

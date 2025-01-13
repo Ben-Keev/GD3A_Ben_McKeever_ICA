@@ -20,7 +20,9 @@ namespace GD.Selection
                 //Debug.Log(currentTransform.gameObject.name);
 
                 if (player.GetComponent<PlayerExploreInputHandler>().interact.WasPressedThisFrame())
+                {
                     currentTransform.GetComponent<IInteractable>().Interact(player);
+                }
             }
         }
 

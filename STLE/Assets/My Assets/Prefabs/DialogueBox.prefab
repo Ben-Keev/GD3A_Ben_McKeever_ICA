@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2765250928347863435}
   m_Layer: 5
   m_Name: DialogueBox
-  m_TagString: Untagged
+  m_TagString: DialogueBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 7592413713967724257}
-  textWait: 0.1
+  textWait: 0.05
+  advanceSound: {fileID: 8300000, guid: 3385a641545133f448fd9326cce51735, type: 3}
+  displayed: 0
 --- !u!1 &3965416172893284095
 GameObject:
   m_ObjectHideFlags: 0

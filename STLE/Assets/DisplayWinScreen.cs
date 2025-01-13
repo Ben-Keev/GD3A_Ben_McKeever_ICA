@@ -1,3 +1,6 @@
+using GD.Audio;
+using GD.Types;
+using Sirenix.OdinInspector;
 using System;
 using TMPro;
 using UnityEngine;
@@ -10,6 +13,11 @@ public class DisplayWinScreen : MonoBehaviour
     private BinData[] bins; // Array of bins (Trash, Recycle, Compost)
     [SerializeField]
     private GameObject gameUI;
+
+    [FoldoutGroup("Grade Fanfares")]
+    [SerializeField]
+    [Tooltip("0 is highest grade. Lowest possible is 7")]
+    private AudioClip[] fanfares = new AudioClip[8];
 
     // Method to update High Score
     private void UpdateHighScore()
@@ -45,17 +53,29 @@ public class DisplayWinScreen : MonoBehaviour
     {
         switch (score)
         {
-            case >= 3:
+            case >= 200:
+                AudioManager.Instance.PlaySound(fanfares[0], AudioMixerGroupName.Background, true, true);
+                return "A++";
+            case >= 175:
+                AudioManager.Instance.PlaySound(fanfares[0], AudioMixerGroupName.Background, true, true);
+                return "A+";
+            case >= 150:
+                AudioManager.Instance.PlaySound(fanfares[1], AudioMixerGroupName.Background, true, true);
                 return "A";
-            case >= 2:
+            case >= 100:
+                AudioManager.Instance.PlaySound(fanfares[2], AudioMixerGroupName.Background, true, true);
                 return "B";
-            case >= 1:
+            case >= 60:
+                AudioManager.Instance.PlaySound(fanfares[3], AudioMixerGroupName.Background, true, true);
                 return "C";
-            case >= 0:
+            case >= 30:
+                AudioManager.Instance.PlaySound(fanfares[4], AudioMixerGroupName.Background, true, true);
                 return "D";
-            case >= -1:
+            case >= 0:
+                AudioManager.Instance.PlaySound(fanfares[5], AudioMixerGroupName.Background, true, true);
                 return "E";
             default:
+                AudioManager.Instance.PlaySound(fanfares[6], AudioMixerGroupName.Background, true, true);
                 return "F";
         }
     }

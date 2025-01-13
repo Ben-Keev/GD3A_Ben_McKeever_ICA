@@ -158,7 +158,11 @@ namespace GD.Items
                     onTutorialComplete = null;
                 }
 
-                DepositIntoBinInventory(bin.Item2, selectedItem, selectedItem.Value);
+                // If there's three of the given item allow the player to deposit 3 at once.
+                if (inventoryCollection[(ItemCategoryType) selectedInventory].Count(selectedItem) >=3)
+                    DepositIntoBinInventory(bin.Item2, selectedItem, selectedItem.Value, 3);
+                else
+                    DepositIntoBinInventory(bin.Item2, selectedItem, selectedItem.Value, 1);
 
                 AudioManager.Instance.PlaySound(correctClip, AudioMixerGroupName.SFX);
 
@@ -168,11 +172,11 @@ namespace GD.Items
             }
         }
 
-        private void DepositIntoBinInventory(BinData bin, ItemData item, int score)
+        private void DepositIntoBinInventory(BinData bin, ItemData item, int score, int itemQuantity = 1)
         {
             onScoreEvent?.Raise(score);
-            inventoryCollection.Get((ItemCategoryType)selectedInventory).Remove(item, 1);
-            bin.BinContents.Add(item, 1);
+            inventoryCollection.Get((ItemCategoryType)selectedInventory).Remove(item, itemQuantity);
+            bin.BinContents.Add(item, itemQuantity);
         }
 
         private void SendFeedBack(ItemCategoryType expected, ItemData actual, FeedbackType feedback)
