@@ -65,7 +65,7 @@ namespace GD.Items
             }
         }
 
-        public void SetInteractible(bool interactible)
+        public void SetInteractable(bool interactible)
         {
             this.interactible = interactible;
         }

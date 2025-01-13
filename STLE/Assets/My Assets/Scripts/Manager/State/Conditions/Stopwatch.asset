@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f943bc8c7b483a6449beeb9d89a5730f, type: 3}
+  m_Name: Stopwatch
+  m_EditorClassIdentifier: 
+  name: Stopwatch
+  description: Starts at starting time. Once past Danger Threshold raises event
+  evaluateStrategy: 0
+  priorityLevel: 1
+  OnConditionMet: {fileID: 0}
+  isMet: 0
+  timeMet: -1
+  startingTime: 120
+  dangerThreshold: 60
+  timeRunningOut: {fileID: 11400000, guid: 07bbd82711401584b8225c721239312d, type: 2}
